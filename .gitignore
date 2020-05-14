@@ -1,0 +1,11 @@
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+extracts/
+*.yaml
+!config.yaml
+*.pt
+!checkpoint_best.pt
+*.log
+config/
+collect/
