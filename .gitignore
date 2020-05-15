@@ -5,9 +5,9 @@ extracts/
 *.yaml
 !config.yaml
 *.pt
-!checkpoint_best.pt
 *.log
 config/
 collect/
 test*
 *.out
+*.pyc

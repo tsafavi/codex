@@ -1,0 +1,59 @@
+dataset:
+  name: codex-m
+  num_entities: 17050
+  num_relations: 51
+eval:
+  batch_size: 256
+  metrics_per:
+    relation_type: true
+import:
+- reciprocal_relations_model
+- rescal
+lookup_embedder:
+  dim: 256
+  initialize: xavier_uniform_
+  initialize_args:
+    normal_:
+      mean: 0.0
+      std: 0.002831017710978018
+    uniform_:
+      a: -0.8659906358727999
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+model: reciprocal_relations_model
+negative_sampling:
+  implementation: batch
+reciprocal_relations_model:
+  base_model:
+    relation_embedder:
+      dim: 65536
+    type: rescal
+rescal:
+  entity_embedder:
+    dropout: -0.06161046028137207
+    regularize_weight: 9.556015558947019e-07
+  relation_embedder:
+    dropout: -0.03550026472657919
+    regularize_weight: 2.560977984443846e-17
+train:
+  auto_correct: true
+  batch_size: 256
+  loss_arg: .nan
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    factor: 0.95
+    mode: max
+    patience: 8
+    threshold: 0.0001
+  max_epochs: 400
+  optimizer_args:
+    lr: 0.0694891221182619
+  type: 1vsAll
+valid:
+  early_stopping:
+    min_threshold:
+      epochs: 50
+      metric_value: 0.05
+
