@@ -9,3 +9,5 @@ extracts/
 *.log
 config/
 collect/
+test*
+*.out
