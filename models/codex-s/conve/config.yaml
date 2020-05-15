@@ -1,0 +1,68 @@
+conve:
+  convolution_bias: false
+  entity_embedder:
+    dropout: -0.01216568611562252
+    regularize_weight: 3.1077524329917436e-15
+  feature_map_dropout: 0.20616520894691348
+  projection_dropout: 0.17085765348747373
+  relation_embedder:
+    dropout: -0.46124614775180817
+    regularize_weight: 4.676379412280399e-09
+  round_dim: true
+dataset:
+  name: codex-s/
+  num_entities: 2034
+  num_relations: 42
+eval:
+  batch_size: 256
+  metrics_per:
+    relation_type: true
+import:
+- conve
+- reciprocal_relations_model
+lookup_embedder:
+  dim: 256
+  initialize: xavier_normal_
+  initialize_args:
+    normal_:
+      mean: 0.0
+      std: 0.0002339748123489979
+    uniform_:
+      a: -0.5582644018785097
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+  regularize_args:
+    p: 3
+    weighted: true
+model: reciprocal_relations_model
+negative_sampling:
+  implementation: batch
+reciprocal_relations_model:
+  base_model:
+    entity_embedder:
+      dim: 288
+    relation_embedder:
+      dim: 288
+train:
+  auto_correct: true
+  batch_size: 512
+  loss_arg: .nan
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    factor: 0.95
+    mode: max
+    patience: 3
+    threshold: 0.0001
+  max_epochs: 400
+  optimizer_args:
+    lr: 0.01165076910298921
+  type: 1vsAll
+valid:
+  early_stopping:
+    min_threshold:
+      epochs: 50
+      metric_value: 0.05
+    patience: 10
+
