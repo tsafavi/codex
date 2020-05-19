@@ -176,6 +176,7 @@ def main():
     relation_ids = list(dataset.relation_ids())
     metric_names = ('mrr', 'hits@10')
     metrics_all = defaultdict(lambda: defaultdict(list))
+    dfs = []
 
     # Keep track of percentage of test triples per relation type
     with torch.no_grad():
@@ -220,14 +221,12 @@ def main():
                     print(line)
 
                     if args.csv is not None:
-                        df = pd.DataFrame.from_dict(
-                            line, orient='index').transpose()
-                        header = not bool(os.path.exists(args.csv))
-                        df.to_csv(
-                            args.csv, mode='a',
-                            index=False, header=header)
+                        dfs.append(pd.DataFrame.from_dict(
+                            line, orient='index').transpose())
 
     if args.csv is not None:
+        df = pd.concat(dfs)
+        df.to_csv(args.csv, index=False)
         print('Saved results to', args.csv)
 
     for modelname in metrics_all:
