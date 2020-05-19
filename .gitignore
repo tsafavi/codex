@@ -14,3 +14,4 @@ test*
 analysis/
 upload.py
 raw/
+models/link-prediction/fb-237/
