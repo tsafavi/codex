@@ -11,3 +11,5 @@ collect/
 test*
 *.out
 *.pyc
+analysis/
+upload.py
