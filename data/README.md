@@ -12,7 +12,6 @@ CoDEx datasets are organized as follows:
 │   ├── es
 │   ├── ru
 │   └── zh
-├── prepare.sh
 ├── relations
 │   ├── ar
 │   ├── de
@@ -23,7 +22,8 @@ CoDEx datasets are organized as follows:
 ├── triples
 │   ├── codex-l
 │   ├── codex-m
-│   └── codex-s
+│   ├── codex-s
+│   └── raw.zip
 └── types
     ├── ar
     ├── de
