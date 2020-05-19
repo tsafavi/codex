@@ -13,5 +13,6 @@ test*
 *.pyc
 analysis/
 upload.py
+tc.csv
 raw/
 models/link-prediction/fb-237/
