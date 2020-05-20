@@ -70,6 +70,11 @@ class Codex(object):
         types = self._load_entity_types()
         return types[eid]
 
+    def entity_wikipedia_url(self, eid):
+        """Get the Wikipedia URL of this entity"""
+        entities = self._load_entities()
+        return entities[eid]['wiki']
+
     def entity_extract(self, eid):
         """Get the Wikipedia intro extract for this entity"""
         fname = os.path.join(
@@ -99,6 +104,11 @@ class Codex(object):
         """Get the Wikidata description of this entity type"""
         type_labels = self._load_entity_type_labels()
         return type_labels[type_id]['description']
+
+    def entity_type_wikipedia_url(self, type_id):
+        """Get the Wikipedia URL of this entity"""
+        type_labels = self._load_entity_type_labels()
+        return type_labels[type_id]['wiki']
 
     def entity_type_extract(self, type_id):
         """Get the Wikipedia intro extract for this entity type"""
@@ -138,9 +148,9 @@ class Codex(object):
         :return: negative triples in the split as a pandas DataFrame
         """
         if split == 'valid':
-            return self._load_valid_neg()
+            return self._load_triples('valid_neg')
         elif split == 'test':
-            return self._load_test_neg()
+            return self._load_triples('test_neg')
         else:
             raise ValueError('Split {} not recognized for negatives'.format(
                 split))
@@ -221,17 +231,3 @@ class Codex(object):
             sep='\t', header=None)
         df.columns = ['head', 'relation', 'tail']
         return df
-
-    def _load_negative_triples(self, split):
-        df = pd.read_csv(
-            os.path.join(
-                self.codex_base,
-                'triples',
-                'negatives',
-                '{}.txt'.format(split)),
-            sep='\t', header=None)
-        df.columns = ['head', 'relation', 'tail']
-        return df
-
-
-
