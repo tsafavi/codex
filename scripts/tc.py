@@ -9,8 +9,7 @@ import torch
 import pandas as pd
 
 from sklearn.metrics import (
-    brier_score_loss, accuracy_score,
-    precision_score, recall_score, f1_score)
+    brier_score_loss, classification_report)
 from sklearn.calibration import CalibratedClassifierCV
 
 import kge.model
@@ -27,7 +26,7 @@ def parse_args():
     )
 
     parser.add_argument(
-        '--valid-neg', default='data/triples/codex-s/valid_neg.txt',
+        '--valid-neg', default='data/triples/negatives/valid.txt',
         help=(
             'File of validation negatives. '
             'For true_neg negative type only.'
@@ -35,7 +34,7 @@ def parse_args():
     )
 
     parser.add_argument(
-        '--test-neg', default='data/triples/codex-s/test_neg.txt',
+        '--test-neg', default='data/triples/negatives/test.txt',
         help=(
             'File of test negatives. '
             'For true_neg negative type only.'
@@ -229,6 +228,8 @@ def triple_classification(
             for X, y, split in zip(Xs, ys, splits):
                 pos_proba = calibrator.predict_proba(X)[:, 1]
                 y_pred = calibrator.predict(X)
+                report = classification_report(y, y_pred, output_dict=True)
+                report = report['0.0']
 
                 metrics.append({
                     'model_file': model_file,
@@ -239,10 +240,9 @@ def triple_classification(
                     'calib_type': calib_type,
                     'num_samples': num_samples,
                     'brier_score': brier_score_loss(y, pos_proba),
-                    'accuracy': accuracy_score(y, y_pred),
-                    'precision': precision_score(y, y_pred),
-                    'recall': recall_score(y, y_pred),
-                    'f1': f1_score(y, y_pred)
+                    'precision': report['precision'],
+                    'recall': report['recall'],
+                    'f1': report['f1-score']
                 })
 
                 print(split, 'split')

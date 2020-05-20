@@ -132,10 +132,7 @@ class Codex(object):
         """
         :param split: one of valid or test
         :return: negative triples in the split as a pandas DataFrame
-            Only supported for CoDEx-S
         """
-        if self.size != 's':
-            raise ValueError('Negatives only supported for CoDEx-S')
         if split == 'valid':
             return self._load_valid_neg()
         elif split == 'test':
@@ -188,43 +185,49 @@ class Codex(object):
     def _load_train(self):
         if not len(self.train_):
             self.train_ = self._load_triples('train')
-            columns = ['head', 'relation', 'tail']
-            self.train_.columns = columns
         return self.train_
 
     def _load_valid(self):
         if not len(self.valid_):
             self.valid_ = self._load_triples('valid')
-            columns = ['head', 'relation', 'tail']
-            self.valid_.columns = columns
         return self.valid_
 
     def _load_valid_neg(self):
         if not len(self.valid_neg_):
-            self.valid_neg_ = self._load_triples('valid_neg')
-            columns = ['head', 'relation', 'tail']
-            self.valid_neg_.columns = columns
+            self.valid_neg_ = self._load_negative_triples('valid')
         return self.valid_neg_
 
     def _load_test(self):
         if not len(self.test_):
             self.test_ = self._load_triples('test')
-            columns = ['head', 'relation', 'tail']
-            self.test_.columns = columns
         return self.test_
 
     def _load_test_neg(self):
         if not len(self.test_neg_):
-            self.test_neg_ = self._load_triples('test_neg')
-            columns = ['head', 'relation', 'tail']
-            self.test_neg_.columns = columns
+            self.test_neg_ = self._load_negative_triples('test')
         return self.test_neg_
 
     def _load_triples(self, split):
-        return pd.read_csv(
+        df = pd.read_csv(
             os.path.join(
                 self.codex_base,
                 'triples',
                 'codex-{}'.format(self.size),
                 '{}.txt'.format(split)),
             sep='\t', header=None)
+        df.columns = ['head', 'relation', 'tail']
+        return df
+
+    def _load_negative_triples(self, split):
+        df = pd.read_csv(
+            os.path.join(
+                self.codex_base,
+                'triples',
+                'negatives',
+                '{}.txt'.format(split)),
+            sep='\t', header=None)
+        df.columns = ['head', 'relation', 'tail']
+        return df
+
+
+

@@ -15,4 +15,4 @@ analysis/
 upload.py
 tc.csv
 raw/
-models/link-prediction/fb-237/
+models/link-prediction/fb15k-237/
