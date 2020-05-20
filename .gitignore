@@ -8,7 +8,6 @@ extracts/
 *.log
 config/
 collect/
-test*
 *.out
 *.pyc
 analysis/
