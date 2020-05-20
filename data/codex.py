@@ -26,6 +26,7 @@ class Codex(object):
 
         self.code = code
         self.size = size
+        self.name_ = 'CoDEx-{}'.format(size.upper())
         self.codex_base = codex_base
 
         self.entities_ = {}
@@ -40,6 +41,9 @@ class Codex(object):
         self.valid_neg_, self.test_neg_ = [
             pd.DataFrame() for _ in range(2)
         ]
+
+    def name(self):
+        return self.name_
 
     def entities(self):
         """Get all entities as a set"""
