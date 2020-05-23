@@ -1,0 +1,66 @@
+dataset:
+  name: codex-l/
+  num_entities: 77951
+  num_relations: 69
+eval:
+  batch_size: 256
+  metrics_per:
+    relation_type: true
+import:
+- reciprocal_relations_model
+- transe
+lookup_embedder:
+  dim: 128
+  initialize: uniform_
+  initialize_args:
+    normal_:
+      mean: 0.0
+      std: 0.08466869875062104
+    uniform_:
+      a: -0.4464176447174698
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+  regularize: ''
+model: reciprocal_relations_model
+negative_sampling:
+  num_samples:
+    o: 2
+    s: 209
+reciprocal_relations_model:
+  base_model:
+    type: transe
+train:
+  auto_correct: true
+  batch_size: 128
+  loss_arg: .nan
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    factor: 0.95
+    mode: max
+    patience: 9
+    threshold: 0.0001
+  max_epochs: 400
+  optimizer: Adam
+  optimizer_args:
+    lr: 0.0009274861234891025
+  type: negative_sampling
+transe:
+  entity_embedder:
+    dropout: -0.4729848774150014
+    normalize:
+      p: -1.0
+    regularize_weight: 7.982916027729102e-14
+  l_norm: 2.0
+  relation_embedder:
+    dropout: -0.252471748739481
+    normalize:
+      p: -1.0
+    regularize_weight: 3.418924663481692e-09
+valid:
+  early_stopping:
+    min_threshold:
+      epochs: 5
+      metric_value: 0.05
+
