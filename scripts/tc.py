@@ -9,7 +9,8 @@ import torch
 import pandas as pd
 
 from sklearn.metrics import (
-    brier_score_loss, classification_report)
+    brier_score_loss, accuracy_score,
+    precision_score, recall_score, f1_score)
 from sklearn.calibration import CalibratedClassifierCV
 
 import kge.model
@@ -24,21 +25,10 @@ def parse_args():
         'model_files', nargs='+',
         help='LibKGE model checkpoint(s)'
     )
-
+    
     parser.add_argument(
-        '--valid-neg', default='data/triples/negatives/valid.txt',
-        help=(
-            'File of validation negatives. '
-            'For true_neg negative type only.'
-        )
-    )
-
-    parser.add_argument(
-        '--test-neg', default='data/triples/negatives/test.txt',
-        help=(
-            'File of test negatives. '
-            'For true_neg negative type only.'
-        )
+        '--data-dir', default='data/triples/codex-s',
+        help='Directory of negative triples'
     )
 
     parser.add_argument(
@@ -151,13 +141,9 @@ def load_neg_spo(dataset, fname):
     relation_ids = {
         val: i for i, val in enumerate(dataset.relation_ids())}
 
-    triples = []
-    for s, p, o in negs:
-        if (s in entity_ids and
-                p in relation_ids and
-                o in entity_ids):
-            triples.append([
-                entity_ids[s], relation_ids[p], entity_ids[o]])
+    triples = [
+        [entity_ids[s], relation_ids[p], entity_ids[o]]
+        for (s, p, o) in negs]
 
     return torch.tensor(triples)
 
@@ -200,6 +186,7 @@ def triple_classification(
           valid_neg is not None and
           test_neg is not None
           ):
+        print('Loading from', valid_neg, 'amd', test_neg)
         valid_neg_spo, test_neg_spo = [
             load_neg_spo(dataset, split)
             for split in (valid_neg, test_neg)]
@@ -228,8 +215,6 @@ def triple_classification(
             for X, y, split in zip(Xs, ys, splits):
                 pos_proba = calibrator.predict_proba(X)[:, 1]
                 y_pred = calibrator.predict(X)
-                report = classification_report(y, y_pred, output_dict=True)
-                report = report['0.0']
 
                 metrics.append({
                     'model_file': model_file,
@@ -240,9 +225,10 @@ def triple_classification(
                     'calib_type': calib_type,
                     'num_samples': num_samples,
                     'brier_score': brier_score_loss(y, pos_proba),
-                    'precision': report['precision'],
-                    'recall': report['recall'],
-                    'f1': report['f1-score']
+                    'accuracy': accuracy_score(y, y_pred),
+                    'precision': precision_score(y, y_pred),
+                    'recall': recall_score(y, y_pred),
+                    'f1': f1_score(y, y_pred)
                 })
 
                 print(split, 'split')
@@ -262,8 +248,8 @@ def main():
             metrics = triple_classification(
                 args.model_files,
                 num_samples=args.num_samples,
-                valid_neg=args.valid_neg,
-                test_neg=args.test_neg,
+                valid_neg=os.path.join(args.data_dir, 'valid_neg.txt'),
+                test_neg=os.path.join(args.data_dir, 'test_neg.txt'),
                 negative_type=negative_type,
                 calib_type=args.calib_type)
 
