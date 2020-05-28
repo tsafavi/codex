@@ -9,7 +9,7 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
     - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
-    - <a href="#paths">Paths</a>
+- <a href="#paths">Paths</a>
 - <a href="#models">Pretrained models and results</a>
   - <a href="#lp">Link prediction</a>
     - <a href="#s-lp">CoDEx-S</a>
@@ -38,11 +38,7 @@ You should now be able to open the ```Explore CoDEx.ipynb``` notebook in your br
 
 
 ### <a id="triples">Triples</a>
-Each triple file follows the format
-```
-<entity ID>\t<relation ID>\t<entity ID>
-```
-without any header or extra information per line.
+
 The dataset statistics are as follows:
 
 |          | Entities | Relations | Train   | Valid (+) | Test (+) | Valid (-) | Test (-) | Total triples |
@@ -52,11 +48,18 @@ The dataset statistics are as follows:
 | CoDEx-L  | 77,951   | 69        | 551,193 | 30,622    | 30,622   | -         | -        | 612,437       |
 | Raw dump | 380,038  | 75        | -       | -         | -        | -         | -        | 1,156,222     |
 
-To unzip the raw data dump (if you plan on using it):
+Each triple file follows the format
+```
+<entity ID>\t<relation ID>\t<entity ID>
+```
+without any header or extra information per line.
+
+To unzip the raw data dump, run:
 ```
 cd data/triples
 unzip raw.zip
 ```
+This will create a new ```data/triples/raw``` directory with a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
 
 
 ### <a id="entities">Entities and entity types</a>
@@ -97,9 +100,9 @@ Each language directory contains an ```relations.json``` file formatted as follo
 }
 ```
 
-### <a id="paths">Paths</a>
-We provide compositional (multi-hop) paths of lengths two and three, discovered using <a href="https://github.com/lajus/amie" target="_blank">AMIE 3</a>, on each CoDEx dataset in the ```data/paths``` directory. 
-Each set of paths is provided as a CSV file.
+## <a id="paths">Paths</a>
+We provide compositional (multi-hop) paths of lengths two and three, discovered using <a href="https://github.com/lajus/amie" target="_blank">AMIE 3</a>, on each CoDEx dataset in the ```paths``` directory. 
+Each set of paths is provided as a TSV file.
 The ```Rule``` column gives paths in the following format: 
 ```
 ?var1 <relation ID 1> ?var2 ?var2 <relation ID 2> ?var3 => ?var1 <relation ID 3> ?var3
