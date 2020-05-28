@@ -10,7 +10,6 @@ config/
 collect/
 *.out
 *.pyc
-analysis/
 upload.py
 tc.csv
 raw/

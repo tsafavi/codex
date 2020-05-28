@@ -10,8 +10,7 @@ class Codex(object):
     CODES = ['ar', 'de', 'en', 'es', 'ru', 'zh']
     SIZES = ['s', 'm', 'l']
 
-    def __init__(self, code='en', size='s',
-                 codex_base=os.path.dirname(os.path.realpath(__file__))):
+    def __init__(self, code='en', size='s', codex_base='data/'):
         """
         :param code: one of Codex.CODES
         :param size: one of Codex.SIZES
