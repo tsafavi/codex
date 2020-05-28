@@ -132,10 +132,10 @@ the format the LibKGE requires.
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|-----|--------|---------|-------------|------------------|
-| RESCAL |  |  |  | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> |  |
-| TransE |  |  |  | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> |  |
-| ComplEx |  |  |  | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> |  |
-| ConvE |  |  |  | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> |  |
+| RESCAL | 0.399 | 0.289 | 0.625 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> |  |
+| TransE | 0.353 | 0.216 | 0.624 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> |  |
+| ComplEx | 0.456 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ConvE | 0.449 | 0.353 | 0.636 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> |  |
 
 #### <a id="m-lp">CoDEx-M</a>
 
