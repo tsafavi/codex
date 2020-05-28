@@ -9,40 +9,20 @@ knowledge graph embedding library for two tasks, link prediction and triple clas
 - <a href="#quick-start">Quick start</a>
 - <a href="#data">Data</a>
     - <a href="#triples">Triples</a>
-    - <a href="#entities">Entities</a>
-    - <a href="#types">Entity types</a>
+    - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
     - <a href="#paths">Paths</a>
-- <a href="#exploration">Data exploration</a>
 - <a href="#models">Models</a>
   - <a href="#lp">Link prediction</a>
   - <a href="#tc">Triple classification</a>
-- <a href="#scripts">Evaluation scripts</a>
 
 ## <a id="quick-start">Quick start</a>
 
-Extract all Wikipedia page excerpts for entities:
+To explore CoDEx datasets in an easy-to-use format, first install the requirements, then launch Jupyter Notebook:
 ```
-chmod u+x extract.sh
-./extract.sh
+pip install -r requirements.txt
+jupyter notebook
 ```
-
-Unzip the raw data dump (if you plan on using it):
-```
-cd data/triples
-unzip raw.zip
-cd ../../
-```
-
-To use the pretrained models or run any scripts that involve pretrained models, you will need to install LibKGE by
-<a href="https://github.com/uma-pi1/kge#quick-start" target="_blank">following the installation instructions</a>.
-After installing LibKGE, take note of the path to your local LibKGE installation, and run the following:
-```
-chmod u+x libkge_setup.sh
-./libkge_setup <your_local_path_to_libkge>
-```
-This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
-the format the LibKGE requires. 
 
 ## <a id="data">Data</a>
 
@@ -90,6 +70,7 @@ Each triple file follows the format
 <entity ID>\t<relation ID>\t<entity ID>
 ```
 without any header or extra information per line.
+The dataset statistics are as follows:
 
 |          | Entities | Relations | Train   | Valid (+) | Test (+) | Valid (-) | Test (-) | Total triples |
 |----------|----------|-----------|---------|-----------|----------|-----------|----------|---------------|
@@ -98,22 +79,73 @@ without any header or extra information per line.
 | CoDEx-L  | 77,951   | 69        | 551,193 | 30,622    | 30,622   | -         | -        | 612,437       |
 | Raw dump | 380,038  | 75        | -       | -         | -        | -         | -        | 1,156,222     |
 
+To unzip the raw data dump (if you plan on using it):
+```
+cd data/triples
+unzip raw.zip
+```
 
-### <a id="entities">Entities</a>
 
+### <a id="entities">Entities and entity types</a>
+We provide entity labels, Wikidata descriptions, and Wikipedia page extracts for entities and entity types in six languages:
+Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
+Each subdirectory of ```entities/``` and ```types``` contains an ```entities.json``` file formatted as follows:
+```
+{
+  <Wikidata entity ID> :{
+    "label": <label in respective language if available>,
+    "description": <Wikidata description in respective language if available>,
+    "wiki": <Wikipedia page URL in respective language if available>
+  }
+}
+```
 
-### <a id="types">Entity types</a>
+The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of Wikidata type IDs, i.e.,
+```
+{
+  "<Wikidata entity ID>":[
+    <Wikidata type ID 1>,
+    <Wikidata type ID 2>,
+    ...
+  ]
+}
+```
+
+To extract all Wikipedia plain-text page excerpts for entities:
+```
+chmod u+x extract.sh
+./extract.sh
+```
+This will create an ```extracts/``` folder for each language in the ```entities/``` and ```types``` directories.
+Each file, named ```<Wikidata ID>.txt```, contains the excerpt for the specified Wikidata entity. 
 
 ### <a id="relations">Relations</a>
+We provide relation labels and Wikidata descriptions for relations in six languages: 
+Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
+Each language directory contains an ```relations.json``` file formatted as follows:
+```
+{
+  <Wikidata relation ID> :{
+    "label": <label in respective language if available>,
+    "description": <Wikidata description in respective language if available>
+  }
+}
+```
 
 ### <a id="paths">Paths</a>
 
-## <a id="exploration">Data exploration</a>
-
 ## <a id="models">Models</a>
+
+To use the pretrained models or run any scripts that involve pretrained models, you will need to install LibKGE by
+<a href="https://github.com/uma-pi1/kge#quick-start" target="_blank">following the installation instructions</a>.
+After installing LibKGE, take note of the path to your local LibKGE installation, and run the following:
+```
+chmod u+x libkge_setup.sh
+./libkge_setup <your_local_path_to_libkge>
+```
+This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
+the format the LibKGE requires. 
 
 ### <a id="lp">Link prediction</a>
 
 ### <a id="tc">Triple classification</a>
-
-## <a id="scripts">Evaluation scripts</a>
