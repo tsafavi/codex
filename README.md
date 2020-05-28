@@ -142,7 +142,7 @@ the format the LibKGE requires.
 |---------|-----|--------|---------|-------------|------------------|
 | RESCAL |  |  |  |  |  |
 | TransE |  |  |  |  |  |
-| ComplEx |  |  |  |  |  |
+| ComplEx |  |  |  | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> |  |
 | ConvE |  |  |  |  |  |
 
 #### <a id="l-lp">CoDEx-L</a>
