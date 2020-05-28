@@ -191,7 +191,7 @@ We provide the best triple classification results, LibKGE configuration files, a
 | RESCAL | 0.756 | 0.735 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> |  |
 | TransE | 0.651 | 0.558 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
 | ComplEx | 0.765 | 0.751 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> |  |
-| ConvE |  |  | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> |  |
+| ConvE | 0.766 | 0.742 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> |  |
 
 
 ### <a id="scripts">Evaluation scripts</a>
