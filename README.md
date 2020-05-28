@@ -42,7 +42,7 @@ You should now be able to open the ```Explore CoDEx.ipynb``` notebook in your br
 The dataset statistics are as follows:
 
 |          | Entities | Relations | Train   | Valid (+) | Test (+) | Valid (-) | Test (-) | Total triples |
-|----------|----------|-----------|---------|-----------|----------|-----------|----------|---------------|
+|----------|---------:|----------:|--------:|----------:|---------:|----------:|---------:|--------------:|
 | CoDEx-S  | 2,034    | 42        | 32,888  | 1,827     | 1,828    | 1,827     | 1,828    | 36,543        |
 | CoDEx-M  | 17,050   | 51        | 185,584 | 10,310    | 10,311   | 10,310    | 10,311   | 206,205       |
 | CoDEx-L  | 77,951   | 69        | 551,193 | 30,622    | 30,622   | -         | -        | 612,437       |
@@ -131,7 +131,7 @@ the format the LibKGE requires.
 #### <a id="s-lp">CoDEx-S</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
-|---------|-----|--------|---------|-------------|------------------|
+|---------|----:|-------:|--------:|------------:|-----------------:|
 | RESCAL | 0.399 | 0.289 | 0.625 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> |  |
 | TransE | 0.353 | 0.216 | 0.624 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> |  |
 | ComplEx | 0.456 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> |  |
@@ -140,16 +140,16 @@ the format the LibKGE requires.
 #### <a id="m-lp">CoDEx-M</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
-|---------|-----|--------|---------|-------------|------------------|
-| RESCAL |  |  |  | <a href="models/link-prediction/codex-m/rescal/config.yaml">config.yaml</a> |  |
-| TransE |  |  |  | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> |  |
-| ComplEx |  |  |  | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> |  |
-| ConvE |  |  |  | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> |  |
+|---------|----:|-------:|--------:|------------:|-----------------:|
+| RESCAL | 0.317 | 0.244 | 0.456 | <a href="models/link-prediction/codex-m/rescal/config.yaml">config.yaml</a> |  |
+| TransE | 0.303 | 0.223 | 0.454 | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> |  |
+| ComplEx | 0.337 | 0.262 | 0.476 | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> |  |
+| ConvE | 0.318 | 0.239 | 0.464 | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> |  |
 
 #### <a id="l-lp">CoDEx-L</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
-|---------|-----|--------|---------|-------------|------------------|
+|---------|----:|-------:|--------:|------------:|-----------------:|
 | RESCAL |  |  |  | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> |  |
 | TransE |  |  |  | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> |  |
 | ComplEx |  |  |  | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> |  |
@@ -160,7 +160,7 @@ the format the LibKGE requires.
 #### <a id="s-tc">CoDEx-S</a>
 
 |  | Acc | F1 | Config file | Pretrained model |
-|---------|-----|----|-------------|------------------|
+|--------|----:|---:|------------:|-----------------:|
 | RESCAL |  |  | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
 | TransE |  |  | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
 | ComplEx |  |  | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
@@ -169,7 +169,7 @@ the format the LibKGE requires.
 #### <a id="m-tc">CoDEx-M</a>
 
 |  | Acc | F1 | Config file | Pretrained model |
-|---------|-----|----|-------------|------------------|
+|--------|----:|---:|------------:|-----------------:|
 | RESCAL |  |  | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> |  |
 | TransE |  |  | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
 | ComplEx |  |  | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> |  |
