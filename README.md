@@ -165,10 +165,10 @@ the format the LibKGE requires.
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL |  |  | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
-| TransE |  |  | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
-| ComplEx |  |  | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
-| ConvE |  |  | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
+| RESCAL | 0.804 | 0.800 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
+| TransE | 0.659 | 0.632 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
+| ComplEx | 0.810 | 0.808 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ConvE | 0.734 | 0.744 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
 
 #### <a id="m-tc">CoDEx-M</a>
 
