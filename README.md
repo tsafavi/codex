@@ -21,12 +21,18 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 
 ## <a id="quick-start">Quick start</a>
 
-To explore CoDEx datasets in an easy-to-use interface, first install the requirements, then launch Jupyter Notebook:
+To explore the CoDEx datasets in an easy-to-use interface, 
+first extract all Wikipedia plain-text page excerpts for entities:
+```
+chmod u+x extract.sh
+./extract.sh
+```
+Next, install the Python requirements, then launch Jupyter Notebook:
 ```
 pip install -r requirements.txt
 jupyter notebook
 ```
-You should now be able to open the "Explore CoDEx" notebook in your browser, which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
+You should now be able to open the ```Explore CoDEx.ipynb``` notebook in your browser, which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
 
 ## <a id="data">Data</a>
 
@@ -77,14 +83,6 @@ The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of
   ]
 }
 ```
-
-To extract all Wikipedia plain-text page excerpts for entities:
-```
-chmod u+x extract.sh
-./extract.sh
-```
-This will create an ```extracts/``` folder for each language in the ```entities/``` and ```types``` directories.
-Each file, named ```<Wikidata ID>.txt```, contains the excerpt for the specified Wikidata entity. 
 
 ### <a id="relations">Relations</a>
 We provide relation labels and Wikidata descriptions for relations in six languages: 
