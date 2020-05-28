@@ -1,2 +1,4 @@
 jupyter
+matplotlib
 pandas
+seaborn
