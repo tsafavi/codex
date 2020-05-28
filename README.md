@@ -19,8 +19,8 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
     - <a href="#s-tc">CoDEx-S</a>
     - <a href="#m-tc">CoDEx-M</a>
   - <a href="#scripts">Evaluation scripts</a>
-    - <a href="#tc-script">Triple classification</a>
     - <a href="#baseline-script">Link prediction baseline comparison</a>
+    - <a href="#tc-script">Triple classification</a>
 
 ## <a id="quick-start">Quick start</a>
 
@@ -190,6 +190,14 @@ the format the LibKGE requires.
 We provide several evaluation scripts to reproduce results in our paper.
 **Please note that these scripts rely on LibKGE, so if you update your installation of LibKGE and the API changes, you may need to update the scripts accordingly.**
 
+#### <a id="baseline-script">Link prediction baseline</a>
+
+```
+chmod u+x scripts/baseline.sh
+scripts/baseline.sh
+```
+This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/``` directory, then compares a simple frequency baseline to the best model on FB15K-237 and CoDEx-M, saving the results for each dataset to a CSV.
+
 #### <a id="tc-script">Triple classification</a>
 
 ```
@@ -197,11 +205,3 @@ chmod u+x scripts/tc.sh
 scripts/tc.sh
 ```
 This script runs triple classification on each model in the ```models/triple-classification/``` directory for each dataset and outputs validation and test accuracy/F1. 
-
-#### <a id="baseline-script">Link prediction baseline comparison</a>
-
-```
-chmod u+x scripts/baseline.sh
-scripts/baseline.sh
-```
-This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/``` directory, then compares a simple frequency baseline to the best model on FB15K-237 and CoDEx-M, saving the results for each dataset to a CSV.
