@@ -25,7 +25,7 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 ## <a id="quick-start">Quick start</a>
 
 
-To explore the CoDEx datasets in an easy-to-use interface, 
+To get familiar with the CoDEx datasets in an easy-to-use interface,
 first unzip the repository:
 ```
 unzip codex.zip
@@ -42,13 +42,13 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 You should now be able to open the ```Explore CoDEx.ipynb``` notebook in your browser, which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
+We provide a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
 
 ## <a id="data">Data</a>
 
-
 ### <a id="triples">Triples</a>
 
-The dataset statistics are as follows:
+The statistics for each CoDEx dataset are as follows:
 
 |          | Entities | Relations | Train   | Valid (+) | Test (+) | Valid (-) | Test (-) | Total triples |
 |----------|---------:|----------:|--------:|----------:|---------:|----------:|---------:|--------------:|
@@ -63,18 +63,19 @@ Each triple file follows the format
 ```
 without any header or extra information per line.
 
-To unzip the raw data dump, run:
+If you'd like to use the raw data dump, run
 ```
 cd data/triples
 unzip raw.zip
 ```
-This will create a new ```data/triples/raw``` directory with a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
+This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
 
 
 ### <a id="entities">Entities and entity types</a>
 We provide entity labels, Wikidata descriptions, and Wikipedia page extracts for entities and entity types in six languages:
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
-Each subdirectory of ```entities/``` and ```types``` contains an ```entities.json``` file formatted as follows:
+
+Each subdirectory of ```entities/``` and ```types/``` contains an ```entities.json``` file formatted as follows:
 ```
 {
   <Wikidata entity ID>:{
@@ -84,6 +85,7 @@ Each subdirectory of ```entities/``` and ```types``` contains an ```entities.jso
   }
 }
 ```
+For the labels, descriptions, or Wikipedia URLs that are not available in a given language, the value will be the empty string ```''```. 
 
 The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of Wikidata type IDs, i.e.,
 ```
@@ -99,7 +101,8 @@ The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of
 ### <a id="relations">Relations</a>
 We provide relation labels and Wikidata descriptions for relations in six languages: 
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
-Each language directory contains an ```relations.json``` file formatted as follows:
+
+Each language directory contains a ```relations.json``` file formatted as follows:
 ```
 {
   <Wikidata relation ID>:{
@@ -110,7 +113,7 @@ Each language directory contains an ```relations.json``` file formatted as follo
 ```
 
 ## <a id="paths">Paths</a>
-We provide compositional (multi-hop) paths of lengths two and three, discovered using <a href="https://github.com/lajus/amie" target="_blank">AMIE 3</a>, on each CoDEx dataset in the ```paths``` directory. 
+We provide compositional (multi-hop) paths of lengths two and three, discovered using <a href="https://github.com/lajus/amie" target="_blank">AMIE 3</a>, on each CoDEx dataset in the ```paths/``` directory. 
 Each set of paths is provided as a TSV file.
 The ```Rule``` column gives paths in the following format: 
 ```
@@ -127,6 +130,7 @@ We also provide an overview of the compositional paths in CoDEx in the quick-sta
 
 To use the pretrained models or run any scripts that involve pretrained models, you will need to install LibKGE by
 <a href="https://github.com/uma-pi1/kge#quick-start" target="_blank">following the installation instructions</a>.
+
 After installing LibKGE, take note of the path to your local LibKGE installation, and run the following:
 ```
 chmod u+x libkge_setup.sh
@@ -135,7 +139,12 @@ chmod u+x libkge_setup.sh
 This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
 the format the LibKGE requires. 
 
+For each model, you can either <a href="https://github.com/uma-pi1/kge#train-a-model" target="_blank">train it from scratch following the LibKGE API</a> using the configuration files provided in each model directory, or download the pretrained models we provide here. 
+
 ### <a id="lp">Link prediction</a>
+
+We provide the best link prediction results, LibKGE configuration files, and pretrained models for each CoDEx dataset.
+The LibKGE documentation explains how to <a href="https://github.com/uma-pi1/kge#evaluate-a-trained-model" target="_blank">test each model using the LibKGE API</a>. 
 
 #### <a id="s-lp">CoDEx-S</a>
 
@@ -166,6 +175,8 @@ the format the LibKGE requires.
 
 ### <a id="tc">Triple classification</a>
 
+We provide the best triple classification results, LibKGE configuration files, and pretrained models for CoDEx-S and CoDEx-M.
+
 #### <a id="s-tc">CoDEx-S</a>
 
 |  | Acc | F1 | Config file | Pretrained model |
@@ -187,7 +198,7 @@ the format the LibKGE requires.
 
 ### <a id="scripts">Evaluation scripts</a>
 
-We provide several evaluation scripts to reproduce results in our paper.
+For the results not obtained using LibKGE, we provide several additional evaluation scripts to reproduce results in our paper.
 **Please note that these scripts rely on LibKGE, so if you update your installation of LibKGE and the API changes, you may need to update the scripts accordingly.**
 
 #### <a id="baseline-script">Link prediction baseline</a>
