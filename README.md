@@ -101,6 +101,18 @@ Each language directory contains an ```relations.json``` file formatted as follo
 ```
 
 ### <a id="paths">Paths</a>
+We provide compositional (multi-hop) paths of lengths two and three, discovered using <a href="https://github.com/lajus/amie" target="_blank">AMIE 3</a>, on each CoDEx dataset in the ```data/paths``` directory. 
+Each set of paths is provided as a CSV file.
+The ```Rule``` column gives paths in the following format: 
+```
+?var1 <relation ID 1> ?var2 ?var2 <relation ID 2> ?var3 => ?var1 <relation ID 3> ?var3
+```
+To understand the other outputs of AMIE 3, take a look at:
+> Jonathan Lajus, Luis Galárraga, Fabian M. Suchanek </br>
+> <a href="https://suchanek.name/work/publications/eswc-2020-amie-3.pdf" target="_blank">Fast and Exact Rule Mining with AMIE 3</a>  </br>
+> Extended Semantic Web Conference (ESWC), 2020
+
+We also provide an overview of the compositional paths in CoDEx in the quick-start exploration notebook. 
 
 ## <a id="models">Pretrained models and results</a>
 
