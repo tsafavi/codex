@@ -150,10 +150,10 @@ the format the LibKGE requires.
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|----:|-------:|--------:|------------:|-----------------:|
-| RESCAL |  |  |  | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> |  |
-| TransE |  |  |  | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> |  |
-| ComplEx |  |  |  | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> |  |
-| ConvE |  |  |  | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> |  |
+| RESCAL | 0.304 | 0.242 | 0.419 | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> |  |
+| TransE | 0.187 | 0.116 | 0.317 | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> |  |
+| ComplEx | 0.294 | 0.237 | 0.400 | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> |  |
+| ConvE | 0.303 | 0.240 | 0.420 | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> |  |
 
 ### <a id="tc">Triple classification</a>
 
