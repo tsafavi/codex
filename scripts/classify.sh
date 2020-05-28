@@ -1,3 +1,7 @@
 #!/bin/bash
-models=$(find models/triple-classification/codex-s/*/*.pt)
-python scripts/tc.py ${models} --negative-types true_neg --csv tc.csv
+declare -a sizes=("s" "m")
+
+for size in "${sizes[@]}"; do
+    models=$(find models/triple-classification/codex-${size}/*/*.pt)
+    python scripts/tc.py ${models}
+done

@@ -7,10 +7,8 @@ extracts/
 *.pt
 *.log
 config/
-collect/
 *.out
 *.pyc
-upload.py
 tc.csv
 raw/
 models/link-prediction/fb15k-237/
