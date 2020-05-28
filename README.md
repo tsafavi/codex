@@ -131,28 +131,28 @@ the format the LibKGE requires.
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|-----|--------|---------|-------------|------------------|
-| RESCAL |  |  |  |  |  |
-| TransE |  |  |  |  |  |
-| ComplEx |  |  |  |  |  |
-| ConvE |  |  |  |  |  |
+| RESCAL |  |  |  | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  |  | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  |  | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  |  | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> |  |
 
 #### <a id="m-lp">CoDEx-M</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|-----|--------|---------|-------------|------------------|
-| RESCAL |  |  |  |  |  |
-| TransE |  |  |  |  |  |
-| ComplEx |  |  |  | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> |  |
-| ConvE |  |  |  |  |  |
+| RESCAL |  |  |  | <a href="models/link-prediction/codex-m/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  |  | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  |  | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  |  | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> |  |
 
 #### <a id="l-lp">CoDEx-L</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|-----|--------|---------|-------------|------------------|
-| RESCAL |  |  |  |  |  |
-| TransE |  |  |  |  |  |
-| ComplEx |  |  |  |  |  |
-| ConvE |  |  |  |  |  |
+| RESCAL |  |  |  | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  |  | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  |  | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  |  | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> |  |
 
 ### <a id="tc">Triple classification</a>
 
@@ -160,16 +160,16 @@ the format the LibKGE requires.
 
 |  | Acc | F1 | Config file | Pretrained model |
 |---------|-----|----|-------------|------------------|
-| RESCAL |  |  |  |  |
-| TransE |  |  |  |  |
-| ComplEx |  |  |  |  |
-| ConvE |  |  |  |  |
+| RESCAL |  |  | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
 
 #### <a id="m-tc">CoDEx-M</a>
 
 |  | Acc | F1 | Config file | Pretrained model |
 |---------|-----|----|-------------|------------------|
-| RESCAL |  |  |  |  |
-| TransE |  |  |  |  |
-| ComplEx |  |  |  |  |
-| ConvE |  |  |  |  |
+| RESCAL |  |  | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> |  |
