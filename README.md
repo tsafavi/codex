@@ -4,23 +4,23 @@ We provide baseline performance results, configuration files, and pretrained mod
 on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibKGE</a> library for two tasks, link prediction and triple classification.
 
 ## Table of contents
-- <a href="#quick-start">Quick start</a>
-- <a href="#data">Data</a>
+1. <a href="#quick-start">Quick start</a>
+2. <a href="#data">Data</a>
     - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
-- <a href="#paths">Paths</a>
-- <a href="#models">Pretrained models and results</a>
-  - <a href="#lp">Link prediction</a>
-    - <a href="#s-lp">CoDEx-S</a>
-    - <a href="#m-lp">CoDEx-M</a>
-    - <a href="#l-lp">CoDEx-L</a>
-  - <a href="#tc">Triple classification</a>
-    - <a href="#s-tc">CoDEx-S</a>
-    - <a href="#m-tc">CoDEx-M</a>
-  - <a href="#scripts">Evaluation scripts</a>
-    - <a href="#baseline-script">Link prediction baseline</a>
-    - <a href="#tc-script">Triple classification</a>
+3. <a href="#paths">Paths</a>
+4. <a href="#models">Pretrained models and results</a>
+    - <a href="#lp">Link prediction</a>
+      - <a href="#s-lp">CoDEx-S</a>
+      - <a href="#m-lp">CoDEx-M</a>
+      - <a href="#l-lp">CoDEx-L</a>
+    - <a href="#tc">Triple classification</a>
+      - <a href="#s-tc">CoDEx-S</a>
+      - <a href="#m-tc">CoDEx-M</a>
+    - <a href="#scripts">Evaluation scripts</a>
+      - <a href="#baseline-script">Link prediction baseline</a>
+      - <a href="#tc-script">Triple classification</a>
 
 ## <a id="quick-start">Quick start</a>
 
