@@ -1,9 +1,7 @@
 CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia. 
-CoDEx offers three rich knowledge graph datasets accompanied by entity types, entity and relation descriptions, accompanying
-free text taken from Wikipedia page extracts, and hard negative triples for evaluation.
+CoDEx offers three rich knowledge graph datasets that contain positive and hard negative triples, entity types, entity and relation descriptions, and Wikipedia page extracts for entities. 
 We provide baseline performance results, configuration files, and pretrained models
-on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibKGE</a>
-knowledge graph embedding library for two tasks, link prediction and triple classification.
+on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibKGE</a> library for two tasks, link prediction and triple classification.
 
 ## Table of contents
 - <a href="#quick-start">Quick start</a>
@@ -12,17 +10,29 @@ knowledge graph embedding library for two tasks, link prediction and triple clas
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
     - <a href="#paths">Paths</a>
-- <a href="#models">Models</a>
+- <a href="#models">Pretrained models and results</a>
   - <a href="#lp">Link prediction</a>
+    - <a href="#s-lp">CoDEx-S</a>
+    - <a href="#m-lp">CoDEx-M</a>
+    - <a href="#l-lp">CoDEx-L</a>
   - <a href="#tc">Triple classification</a>
+    - <a href="#s-tc">CoDEx-S</a>
+    - <a href="#m-tc">CoDEx-M</a>
 
 ## <a id="quick-start">Quick start</a>
 
-To explore CoDEx datasets in an easy-to-use format, first install the requirements, then launch Jupyter Notebook:
+To explore the CoDEx datasets in an easy-to-use interface, 
+first extract all Wikipedia plain-text page excerpts for entities:
+```
+chmod u+x extract.sh
+./extract.sh
+```
+Next, install the Python requirements, then launch Jupyter Notebook:
 ```
 pip install -r requirements.txt
 jupyter notebook
 ```
+You should now be able to open the ```Explore CoDEx.ipynb``` notebook in your browser, which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
 
 ## <a id="data">Data</a>
 
@@ -74,14 +84,6 @@ The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of
 }
 ```
 
-To extract all Wikipedia plain-text page excerpts for entities:
-```
-chmod u+x extract.sh
-./extract.sh
-```
-This will create an ```extracts/``` folder for each language in the ```entities/``` and ```types``` directories.
-Each file, named ```<Wikidata ID>.txt```, contains the excerpt for the specified Wikidata entity. 
-
 ### <a id="relations">Relations</a>
 We provide relation labels and Wikidata descriptions for relations in six languages: 
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
@@ -96,8 +98,20 @@ Each language directory contains an ```relations.json``` file formatted as follo
 ```
 
 ### <a id="paths">Paths</a>
+We provide compositional (multi-hop) paths of lengths two and three, discovered using <a href="https://github.com/lajus/amie" target="_blank">AMIE 3</a>, on each CoDEx dataset in the ```data/paths``` directory. 
+Each set of paths is provided as a CSV file.
+The ```Rule``` column gives paths in the following format: 
+```
+?var1 <relation ID 1> ?var2 ?var2 <relation ID 2> ?var3 => ?var1 <relation ID 3> ?var3
+```
+To understand the other outputs of AMIE 3, take a look at:
+> Jonathan Lajus, Luis Galárraga, Fabian M. Suchanek </br>
+> <a href="https://suchanek.name/work/publications/eswc-2020-amie-3.pdf" target="_blank">Fast and Exact Rule Mining with AMIE 3</a>  </br>
+> Extended Semantic Web Conference (ESWC), 2020
 
-## <a id="models">Models</a>
+We also provide an overview of the compositional paths in CoDEx in the quick-start exploration notebook. 
+
+## <a id="models">Pretrained models and results</a>
 
 To use the pretrained models or run any scripts that involve pretrained models, you will need to install LibKGE by
 <a href="https://github.com/uma-pi1/kge#quick-start" target="_blank">following the installation instructions</a>.
@@ -111,4 +125,49 @@ the format the LibKGE requires.
 
 ### <a id="lp">Link prediction</a>
 
+#### <a id="s-lp">CoDEx-S</a>
+
+|  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
+|---------|-----|--------|---------|-------------|------------------|
+| RESCAL |  |  |  | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  |  | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  |  | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  |  | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> |  |
+
+#### <a id="m-lp">CoDEx-M</a>
+
+|  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
+|---------|-----|--------|---------|-------------|------------------|
+| RESCAL |  |  |  | <a href="models/link-prediction/codex-m/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  |  | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  |  | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  |  | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> |  |
+
+#### <a id="l-lp">CoDEx-L</a>
+
+|  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
+|---------|-----|--------|---------|-------------|------------------|
+| RESCAL |  |  |  | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  |  | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  |  | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  |  | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> |  |
+
 ### <a id="tc">Triple classification</a>
+
+#### <a id="s-tc">CoDEx-S</a>
+
+|  | Acc | F1 | Config file | Pretrained model |
+|---------|-----|----|-------------|------------------|
+| RESCAL |  |  | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
+
+#### <a id="m-tc">CoDEx-M</a>
+
+|  | Acc | F1 | Config file | Pretrained model |
+|---------|-----|----|-------------|------------------|
+| RESCAL |  |  | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> |  |
+| TransE |  |  | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
+| ComplEx |  |  | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> |  |
+| ConvE |  |  | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> |  |
