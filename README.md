@@ -11,11 +11,13 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
     - <a href="#relations">Relations</a>
 3. <a href="#paths">Paths</a>
 4. <a href="#models">Pretrained models and results</a>
-    - <a href="#lp">Link prediction</a>
+    - <a href="#libkge">Installing LibKGE</a>
+    - <a href="#pretrained">Downloading pretrained models</a>
+    - <a href="#lp">Link prediction results</a>
       - <a href="#s-lp">CoDEx-S</a>
       - <a href="#m-lp">CoDEx-M</a>
       - <a href="#l-lp">CoDEx-L</a>
-    - <a href="#tc">Triple classification</a>
+    - <a href="#tc">Triple classification results</a>
       - <a href="#s-tc">CoDEx-S</a>
       - <a href="#m-tc">CoDEx-M</a>
     - <a href="#scripts">Evaluation scripts</a>
@@ -85,7 +87,7 @@ Each subdirectory of ```entities/``` and ```types/``` contains an ```entities.js
   }
 }
 ```
-For the labels, descriptions, or Wikipedia URLs that are not available in a given language, the value will be the empty string ```''```. 
+For the labels, descriptions, or Wikipedia URLs that are not available in a given language, the value will be the empty string.
 
 The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of Wikidata type IDs, i.e.,
 ```
@@ -128,6 +130,7 @@ We also provide an overview of the compositional paths in CoDEx in the quick-sta
 
 ## <a id="models">Pretrained models and results</a>
 
+### <a id="libkge">Installing LibKGE</a>
 To use the pretrained models or run any scripts that involve pretrained models, you will need to install LibKGE by
 <a href="https://github.com/uma-pi1/kge#quick-start" target="_blank">following the installation instructions</a>.
 
@@ -139,6 +142,7 @@ chmod u+x libkge_setup.sh
 This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
 the format the LibKGE requires. 
 
+### <a id="pretrained">Downloading pretrained models</a>
 To download pretrained models via the command line, use our ```download_pretrained.py``` script in the ```models/``` directory.
 The arguments are as follows:
 ```
@@ -164,7 +168,7 @@ This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```m
 
 Alternatively, you can manually download pretrained the model files provided as links here.
 
-### <a id="lp">Link prediction</a>
+### <a id="lp">Link prediction results</a>
 
 #### <a id="s-lp">CoDEx-S</a>
 
@@ -193,7 +197,7 @@ Alternatively, you can manually download pretrained the model files provided as 
 | ComplEx | 0.294 | 0.237 | 0.400 | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/m12qiudcnsv6ts9/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 | ConvE | 0.303 | 0.240 | 0.420 | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vhvdbaln0bwx625/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 
-### <a id="tc">Triple classification</a>
+### <a id="tc">Triple classification results</a>
 
 
 #### <a id="s-tc">CoDEx-S</a>
