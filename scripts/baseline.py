@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 
 import kge.model
+from kge.util.io import load_checkpoint
 
 from collections import defaultdict
 
@@ -164,8 +165,8 @@ def main():
     args = parse_args()
 
     # Load model checkpoint and data
-    model_pt = kge.model.KgeModel.load_from_checkpoint(
-        args.model_checkpoint)
+    checkpoint = load_checkpoint(args.model_checkpoint)
+    model_pt = kge.model.KgeModel.create_from(checkpoint)
     dataset = model_pt.dataset
 
     # Load all data
