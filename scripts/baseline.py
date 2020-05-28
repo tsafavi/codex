@@ -2,7 +2,6 @@
 Compare an embedding model to a non-learning
 frequency baseline.
 """
-import os
 import argparse
 import torch
 
@@ -134,19 +133,25 @@ def evaluate_rankings(scores, test_spo, all_spo, direction='o', k=10):
     """
     scores = filter_false_negatives(
         scores, test_spo, all_spo, direction=direction)
+    scores[torch.isnan(scores)] = float('-Inf')
 
     mrr, hits = [], []
 
     for i, (s, p, o) in enumerate(test_spo):
         row = scores[i]  # corresponding predictions
-        pos_score = row[o] if direction == 'o' else row[s]
+        idx = o if direction == 'o' else s
+        true_score = row[idx]
+
+        # remove current label from scores
+        row = row.clone()
+        row[idx] = float('-Inf')
 
         # follow LibKGE protocol for ranking and ties
         rank = int(
-            torch.sum(row > pos_score, dtype=torch.long)) + 1
+            torch.sum(row > true_score, dtype=torch.long))
         num_ties = int(
-            torch.sum(row == pos_score, dtype=torch.long))
-        rank = rank + num_ties // 2
+            torch.sum(row == true_score, dtype=torch.long))
+        rank = rank + num_ties // 2 + 1
 
         # compute MRR and Hits@k
         mrr.append(1 / rank)

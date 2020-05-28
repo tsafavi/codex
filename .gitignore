@@ -10,9 +10,9 @@ config/
 collect/
 *.out
 *.pyc
-analysis/
 upload.py
 tc.csv
 raw/
 models/link-prediction/fb15k-237/
 *.swp
+venv/

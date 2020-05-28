@@ -26,7 +26,7 @@ def parse_args():
         'model_files', nargs='+',
         help='LibKGE model checkpoint(s)'
     )
-    
+
     parser.add_argument(
         '--data-dir', default='data/triples/codex-s',
         help='Directory of negative triples'
@@ -43,7 +43,7 @@ def parse_args():
     )
 
     parser.add_argument(
-        '--calib-type', default='sigmoid',
+        '--calib-type', default='isotonic',
         choices=['sigmoid', 'isotonic'],
         help=(
             'Calibrator type. '
