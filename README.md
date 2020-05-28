@@ -26,43 +26,6 @@ jupyter notebook
 
 ## <a id="data">Data</a>
 
-CoDEx datasets are organized as follows:
-
-```
-.
-├── entities
-│   ├── ar
-│   ├── de
-│   ├── en
-│   ├── es
-│   ├── ru
-│   └── zh
-├── paths
-│   ├── codex-l.tsv
-│   ├── codex-m.tsv
-│   └── codex-s.tsv
-├── relations
-│   ├── ar
-│   ├── de
-│   ├── en
-│   ├── es
-│   ├── ru
-│   └── zh
-├── test.sh
-├── triples
-│   ├── codex-l
-│   ├── codex-m
-│   ├── codex-s
-│   └── raw.zip
-└── types
-    ├── ar
-    ├── de
-    ├── en
-    ├── entity2types.json
-    ├── es
-    ├── ru
-    └── zh
-```
 
 ### <a id="triples">Triples</a>
 Each triple file follows the format
@@ -92,10 +55,10 @@ Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze 
 Each subdirectory of ```entities/``` and ```types``` contains an ```entities.json``` file formatted as follows:
 ```
 {
-  <Wikidata entity ID> :{
-    "label": <label in respective language if available>,
-    "description": <Wikidata description in respective language if available>,
-    "wiki": <Wikipedia page URL in respective language if available>
+  <Wikidata entity ID>:{
+    "label":<label in respective language if available>,
+    "description":<Wikidata description in respective language if available>,
+    "wiki":<Wikipedia page URL in respective language if available>
   }
 }
 ```
@@ -125,9 +88,9 @@ Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze 
 Each language directory contains an ```relations.json``` file formatted as follows:
 ```
 {
-  <Wikidata relation ID> :{
-    "label": <label in respective language if available>,
-    "description": <Wikidata description in respective language if available>
+  <Wikidata relation ID>:{
+    "label":<label in respective language if available>,
+    "description":<Wikidata description in respective language if available>
   }
 }
 ```
