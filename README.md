@@ -18,6 +18,10 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
   - <a href="#tc">Triple classification</a>
     - <a href="#s-tc">CoDEx-S</a>
     - <a href="#m-tc">CoDEx-M</a>
+- <a href="#scripts">Data and evaluation scripts</a>
+  - <a href="#neg">Negative generation</a>
+  - <a href="#tc-script">Triple classification</a>
+  - <a href="#baseline">Link prediction baseline comparison</a>
 
 ## <a id="quick-start">Quick start</a>
 
@@ -161,10 +165,10 @@ the format the LibKGE requires.
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL |  |  | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
-| TransE |  |  | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
-| ComplEx |  |  | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
-| ConvE |  |  | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
+| RESCAL | 0.804 | 0.800 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
+| TransE | 0.659 | 0.632 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
+| ComplEx | 0.810 | 0.808 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ConvE | 0.734 | 0.744 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
 
 #### <a id="m-tc">CoDEx-M</a>
 
@@ -174,3 +178,12 @@ the format the LibKGE requires.
 | TransE |  |  | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
 | ComplEx |  |  | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> |  |
 | ConvE |  |  | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> |  |
+
+
+### <a id="scripts">Data and evaluation scripts</a>
+
+#### <a id="neg">Negative generation</a>
+
+#### <a id="tc-script">Triple classification</a>
+
+#### <a id="baseline">Link prediction baseline comparison</a>
