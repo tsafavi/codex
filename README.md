@@ -38,11 +38,7 @@ You should now be able to open the ```Explore CoDEx.ipynb``` notebook in your br
 
 
 ### <a id="triples">Triples</a>
-Each triple file follows the format
-```
-<entity ID>\t<relation ID>\t<entity ID>
-```
-without any header or extra information per line.
+
 The dataset statistics are as follows:
 
 |          | Entities | Relations | Train   | Valid (+) | Test (+) | Valid (-) | Test (-) | Total triples |
@@ -52,11 +48,18 @@ The dataset statistics are as follows:
 | CoDEx-L  | 77,951   | 69        | 551,193 | 30,622    | 30,622   | -         | -        | 612,437       |
 | Raw dump | 380,038  | 75        | -       | -         | -        | -         | -        | 1,156,222     |
 
-To unzip the raw data dump (if you plan on using it):
+Each triple file follows the format
+```
+<entity ID>\t<relation ID>\t<entity ID>
+```
+without any header or extra information per line.
+
+To unzip the raw data dump, run:
 ```
 cd data/triples
 unzip raw.zip
 ```
+This will create a new ```data/triples/raw``` directory with a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
 
 
 ### <a id="entities">Entities and entity types</a>
