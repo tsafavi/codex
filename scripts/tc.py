@@ -16,6 +16,7 @@ from sklearn.calibration import CalibratedClassifierCV
 import kge.model
 import kge.config
 import kge.util.sampler
+from kge.util.io import load_checkpoint
 
 
 def parse_args():
@@ -169,7 +170,8 @@ def triple_classification(
 
     # Load first model, get dataset
     # Assumes all models trained on same data
-    model = kge.model.KgeModel.load_from_checkpoint(model_files[0])
+    checkpoint = load_checkpoint(model_files[0])
+    model = kge.model.KgeModel.create_from(checkpoint)
     dataset = model.dataset
 
     splits = ('valid', 'test')
@@ -198,7 +200,8 @@ def triple_classification(
     metrics = []
     for model_file in model_files:
         if os.path.exists(model_file):
-            model = kge.model.KgeModel.load_from_checkpoint(model_file)
+            checkpoint = load_checkpoint(model_file)
+            model = kge.model.KgeModel.create_from(checkpoint)
             print('Testing on', model_file)
 
             # Score negative and positive validation triples
