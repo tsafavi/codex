@@ -24,13 +24,19 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 
 ## <a id="quick-start">Quick start</a>
 
+
 To explore the CoDEx datasets in an easy-to-use interface, 
-first extract all Wikipedia plain-text page excerpts for entities:
+first clone the repository:
+```
+git clone <git_url_here/codex.git>
+cd codex
+```
+Extract all Wikipedia plain-text page excerpts for entities:
 ```
 chmod u+x extract.sh
 ./extract.sh
 ```
-Next, install the Python requirements, then launch Jupyter Notebook:
+Finally, install the Python requirements, then launch Jupyter Notebook:
 ```
 pip install -r requirements.txt
 jupyter notebook
@@ -186,4 +192,16 @@ We provide several evaluation scripts to reproduce results in our paper.
 
 #### <a id="tc-script">Triple classification</a>
 
+```
+chmod u+x scripts/tc.sh
+scripts/tc.sh
+```
+This script runs triple classification on each model in the ```models/triple-classification/``` directory for each dataset and outputs validation and test accuracy/F1. 
+
 #### <a id="baseline-script">Link prediction baseline comparison</a>
+
+```
+chmod u+x scripts/baseline.sh
+scripts/baseline.sh
+```
+This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/``` directory, then compares a simple frequency baseline to the best model on FB15K-237 and CoDEx-M, saving the results for each dataset to a CSV.
