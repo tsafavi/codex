@@ -18,9 +18,9 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
   - <a href="#tc">Triple classification</a>
     - <a href="#s-tc">CoDEx-S</a>
     - <a href="#m-tc">CoDEx-M</a>
-- <a href="#scripts">Evaluation scripts</a>
-  - <a href="#tc-script">Triple classification</a>
-  - <a href="#baseline-script">Link prediction baseline comparison</a>
+  - <a href="#scripts">Evaluation scripts</a>
+    - <a href="#tc-script">Triple classification</a>
+    - <a href="#baseline-script">Link prediction baseline comparison</a>
 
 ## <a id="quick-start">Quick start</a>
 
