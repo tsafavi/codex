@@ -26,9 +26,9 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 
 
 To explore the CoDEx datasets in an easy-to-use interface, 
-first clone the repository:
+first unzip the repository:
 ```
-git clone <git_url_here/codex.git>
+unzip codex.zip
 cd codex
 ```
 Extract all Wikipedia plain-text page excerpts for entities:
@@ -59,7 +59,7 @@ The dataset statistics are as follows:
 
 Each triple file follows the format
 ```
-<entity ID>\t<relation ID>\t<entity ID>
+<Wikidata head entity ID>\t<Wikidata relation ID>\t<Wikidata tail entity ID>
 ```
 without any header or extra information per line.
 
@@ -196,7 +196,7 @@ We provide several evaluation scripts to reproduce results in our paper.
 chmod u+x scripts/baseline.sh
 scripts/baseline.sh
 ```
-This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/``` directory, then compares a simple frequency baseline to the best model on FB15K-237 and CoDEx-M, saving the results for each dataset to a CSV.
+This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/``` directory, then compares a simple frequency baseline to the best model on FB15K-237 and CoDEx-M, saving the results to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
 
 #### <a id="tc-script">Triple classification</a>
 
