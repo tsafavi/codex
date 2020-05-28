@@ -139,7 +139,7 @@ chmod u+x libkge_setup.sh
 This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
 the format the LibKGE requires. 
 
-To download pretrained models, you can manually follow the links provided here, or you can use our ```download_pretrained.py``` script in the ```models/``` directory.
+To download pretrained models via the command line, use our ```download_pretrained.py``` script in the ```models/``` directory.
 The arguments are as follows:
 ```
 usage: download_pretrained.py [-h]
@@ -162,10 +162,9 @@ python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
 
-### <a id="lp">Link prediction</a>
+Alternatively, you can manually download pretrained the model files provided as links here.
 
-We provide the best link prediction results, LibKGE configuration files, and pretrained models for each CoDEx dataset.
-The LibKGE documentation explains how to <a href="https://github.com/uma-pi1/kge#evaluate-a-trained-model" target="_blank">test each model using the LibKGE API</a>. 
+### <a id="lp">Link prediction</a>
 
 #### <a id="s-lp">CoDEx-S</a>
 
@@ -196,7 +195,6 @@ The LibKGE documentation explains how to <a href="https://github.com/uma-pi1/kge
 
 ### <a id="tc">Triple classification</a>
 
-We provide the best triple classification results, LibKGE configuration files, and pretrained models for CoDEx-S and CoDEx-M.
 
 #### <a id="s-tc">CoDEx-S</a>
 
