@@ -9,7 +9,7 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
     - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
-    - <a href="#paths">Paths</a>
+- <a href="#paths">Paths</a>
 - <a href="#models">Pretrained models and results</a>
   - <a href="#lp">Link prediction</a>
     - <a href="#s-lp">CoDEx-S</a>
@@ -97,9 +97,9 @@ Each language directory contains an ```relations.json``` file formatted as follo
 }
 ```
 
-### <a id="paths">Paths</a>
-We provide compositional (multi-hop) paths of lengths two and three, discovered using <a href="https://github.com/lajus/amie" target="_blank">AMIE 3</a>, on each CoDEx dataset in the ```data/paths``` directory. 
-Each set of paths is provided as a CSV file.
+## <a id="paths">Paths</a>
+We provide compositional (multi-hop) paths of lengths two and three, discovered using <a href="https://github.com/lajus/amie" target="_blank">AMIE 3</a>, on each CoDEx dataset in the ```paths``` directory. 
+Each set of paths is provided as a TSV file.
 The ```Rule``` column gives paths in the following format: 
 ```
 ?var1 <relation ID 1> ?var2 ?var2 <relation ID 2> ?var3 => ?var1 <relation ID 3> ?var3
