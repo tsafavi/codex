@@ -188,10 +188,10 @@ We provide the best triple classification results, LibKGE configuration files, a
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.756 | 0.735 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> |  |
-| TransE | 0.651 | 0.558 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
-| ComplEx | 0.765 | 0.751 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> |  |
-| ConvE | 0.766 | 0.742 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> |  |
+| RESCAL | 0.756 | 0.735 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/a41qdj3m889vpo9/checkpoint_best.pt?dl=0">KvsAll-kl<a/> |
+| TransE | 0.651 | 0.558 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1889mg22lg84fwe/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
+| ComplEx | 0.765 | 0.751 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/uv97hgzvqoccf3f/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.766 | 0.742 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/yyo0v1mu6yluxft/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 
 
 ### <a id="scripts">Evaluation scripts</a>
