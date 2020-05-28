@@ -18,10 +18,9 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
   - <a href="#tc">Triple classification</a>
     - <a href="#s-tc">CoDEx-S</a>
     - <a href="#m-tc">CoDEx-M</a>
-- <a href="#scripts">Data and evaluation scripts</a>
-  - <a href="#neg">Negative generation</a>
+- <a href="#scripts">Evaluation scripts</a>
   - <a href="#tc-script">Triple classification</a>
-  - <a href="#baseline">Link prediction baseline comparison</a>
+  - <a href="#baseline-script">Link prediction baseline comparison</a>
 
 ## <a id="quick-start">Quick start</a>
 
@@ -176,14 +175,15 @@ the format the LibKGE requires.
 |--------|----:|---:|------------:|-----------------:|
 | RESCAL |  |  | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> |  |
 | TransE |  |  | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
-| ComplEx |  |  | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> |  |
+| ComplEx | 0.765 | 0.751 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> |  |
 | ConvE |  |  | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> |  |
 
 
-### <a id="scripts">Data and evaluation scripts</a>
+### <a id="scripts">Evaluation scripts</a>
 
-#### <a id="neg">Negative generation</a>
+We provide several evaluation scripts to reproduce results in our paper.
+**Please note that these scripts rely on LibKGE, so if you update your installation of LibKGE and the API changes, you may need to update the scripts accordingly.**
 
 #### <a id="tc-script">Triple classification</a>
 
-#### <a id="baseline">Link prediction baseline comparison</a>
+#### <a id="baseline-script">Link prediction baseline comparison</a>
