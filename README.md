@@ -139,8 +139,6 @@ chmod u+x libkge_setup.sh
 This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
 the format the LibKGE requires. 
 
-For each model, you can either <a href="https://github.com/uma-pi1/kge#train-a-model" target="_blank">train it from scratch following the LibKGE API</a> using the configuration files provided in each model directory, or download the pretrained models we provide here. 
-
 ### <a id="lp">Link prediction</a>
 
 We provide the best link prediction results, LibKGE configuration files, and pretrained models for each CoDEx dataset.
