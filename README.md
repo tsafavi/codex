@@ -183,7 +183,7 @@ Alternatively, you can manually download pretrained the model files provided as 
 |---------|----:|-------:|--------:|------------:|-----------------:|
 | RESCAL | 0.399 | 0.289 | 0.625 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/uqmbau2ofn02d7d/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 | TransE | 0.353 | 0.216 | 0.624 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/dqx7o7l7llsl942/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
-| ComplEx | 0.456 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j76o5yhios3ityy/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| ComplEx | 0.465 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j76o5yhios3ityy/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 | ConvE | 0.449 | 0.353 | 0.636 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vrt0h546itt3yht/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 
 #### <a id="m-lp">CoDEx-M</a>
