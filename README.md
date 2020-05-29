@@ -5,14 +5,16 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 
 ## Table of contents
 1. <a href="#quick-start">Quick start</a>
+    - <a href="#setup">Setup</a>
+    - <a href="#libkge">Installing LibKGE</a>
+    - <a href="#pretrained">Downloading pretrained models via the command line</a>
 2. <a href="#data">Data</a>
+    - <a href="#explore">Data exploration</a>
     - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
 3. <a href="#paths">Paths</a>
 4. <a href="#models">Pretrained models and results</a>
-    - <a href="#libkge">Installing LibKGE</a>
-    - <a href="#pretrained">Downloading pretrained models</a>
     - <a href="#lp">Link prediction results</a>
       - <a href="#s-lp">CoDEx-S</a>
       - <a href="#m-lp">CoDEx-M</a>
@@ -26,29 +28,73 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 
 ## <a id="quick-start">Quick start</a>
 
+### <a id="setup">Setup</a>
 
-To get familiar with the CoDEx datasets in an easy-to-use interface,
-first unzip the repository:
 ```
+# unzip the repository
 unzip codex.zip
 cd codex
-```
-Extract all Wikipedia plain-text page excerpts for entities:
-```
+
+# extract all Wikipedia plain-text page excerpts for entities
 chmod u+x extract.sh
 ./extract.sh
-```
-Finally, set up a virtual environment, install the Python requirements, then launch Jupyter Notebook:
-```
-python3.7 -m venv venv
-source venv/bin/activate
+
+# set up a virtual environment and install the Python requirements
+python3.7 -m venv myenv
+source myenv/bin/activate
 pip install -r requirements.txt
-jupyter notebook
 ```
-You should now be able to open the ```Explore CoDEx.ipynb``` notebook in your browser, which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
-We provide a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
+
+### <a id="libkge">Installing LibKGE</a>
+
+To **use the pretrained models or run any scripts that involve pretrained models**, install LibKGE in the same virtualenv we created above by
+<a href="https://github.com/uma-pi1/kge#quick-start" target="_blank">following the installation instructions</a>.
+
+After installing LibKGE, take note of the path to your local LibKGE installation, and run the following:
+```
+chmod u+x libkge_setup.sh
+./libkge_setup <your_local_path_to_libkge>
+```
+This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
+the format the LibKGE requires. 
+
+### <a id="pretrained">Downloading pretrained models via the command line</a>
+
+To **download pretrained models via the command line**, use our ```download_pretrained.py``` script in the ```models/``` directory.
+The arguments are as follows:
+```
+usage: download_pretrained.py [-h]
+                              {s,m,l} {triple-classification,link-prediction}
+                              {rescal,transe,complex,conve}
+                              [{rescal,transe,complex,conve} ...]
+
+positional arguments:
+  {s,m,l}               CoDEx dataset to download model(s)
+  {triple-classification,link-prediction}
+                        Task to download model(s) for
+  {rescal,transe,complex,conve}
+                        Model(s) to download for this task
+```
+For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**,
+run
+```
+cd models/
+python download_pretrained.py m link-prediction complex conve
+```
+This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
 
 ## <a id="data">Data</a>
+
+### <a id="explore">Data exploration</a>
+
+To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
+To launch:
+```
+python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
+jupyter lab
+```
+Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
+which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
 
 ### <a id="triples">Triples</a>
 
@@ -102,6 +148,8 @@ The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of
 }
 ```
 
+After running the ```extract.sh``` script as explained in the quick-start, each subdirectory of ```entities/``` and ```types/``` will have an ```extracts/``` folder containing files of plain-text Wikipedia extracts for entities. Each file is named ```<Wikidata entity ID>.txt```. 
+
 ### <a id="relations">Relations</a>
 We provide relation labels and Wikidata descriptions for relations in six languages: 
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
@@ -132,44 +180,6 @@ We also provide an overview of the compositional paths in CoDEx in the quick-sta
 
 ## <a id="models">Pretrained models and results</a>
 
-### <a id="libkge">Installing LibKGE</a>
-To use the pretrained models or run any scripts that involve pretrained models, you will need to install LibKGE by
-<a href="https://github.com/uma-pi1/kge#quick-start" target="_blank">following the installation instructions</a>.
-
-After installing LibKGE, take note of the path to your local LibKGE installation, and run the following:
-```
-chmod u+x libkge_setup.sh
-./libkge_setup <your_local_path_to_libkge>
-```
-This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
-the format the LibKGE requires. 
-
-### <a id="pretrained">Downloading pretrained models</a>
-To download pretrained models via the command line, use our ```download_pretrained.py``` script in the ```models/``` directory.
-The arguments are as follows:
-```
-usage: download_pretrained.py [-h]
-                              {s,m,l} {triple-classification,link-prediction}
-                              {rescal,transe,complex,conve}
-                              [{rescal,transe,complex,conve} ...]
-
-positional arguments:
-  {s,m,l}               CoDEx dataset to download model(s)
-  {triple-classification,link-prediction}
-                        Task to download model(s) for
-  {rescal,transe,complex,conve}
-                        Model(s) to download for this task
-```
-For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**,
-run
-```
-cd models/
-python download_pretrained.py m link-prediction complex conve
-```
-This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
-
-Alternatively, you can manually download pretrained the model files provided as links here.
-
 ### <a id="lp">Link prediction results</a>
 
 #### <a id="s-lp">CoDEx-S</a>
@@ -178,7 +188,7 @@ Alternatively, you can manually download pretrained the model files provided as 
 |---------|----:|-------:|--------:|------------:|-----------------:|
 | RESCAL | 0.399 | 0.289 | 0.625 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/uqmbau2ofn02d7d/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 | TransE | 0.353 | 0.216 | 0.624 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/dqx7o7l7llsl942/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
-| ComplEx | 0.456 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j76o5yhios3ityy/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| ComplEx | 0.465 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j76o5yhios3ityy/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 | ConvE | 0.449 | 0.353 | 0.636 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vrt0h546itt3yht/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 
 #### <a id="m-lp">CoDEx-M</a>
@@ -224,7 +234,6 @@ Alternatively, you can manually download pretrained the model files provided as 
 ### <a id="scripts">Evaluation scripts</a>
 
 For the results not obtained using LibKGE, we provide several additional evaluation scripts to reproduce results in our paper.
-**Please note that these scripts rely on LibKGE, so if you update your installation of LibKGE and the API changes, you may need to update the scripts accordingly.**
 
 #### <a id="baseline-script">Link prediction baseline</a>
 
