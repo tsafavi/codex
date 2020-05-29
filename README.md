@@ -5,9 +5,10 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 
 ## Table of contents
 1. <a href="#quick-start">Quick start</a>
-    - <a href="#explore">Data exploration</a>
+    - <a href="#setup">Setup</a>
     - <a href="#libkge">Installing LibKGE</a>
     - <a href="#pretrained">Downloading pretrained models via the command line</a>
+    - <a href="#explore">Data exploration</a>
 2. <a href="#data">Data</a>
     - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
@@ -27,10 +28,9 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 
 ## <a id="quick-start">Quick start</a>
 
-### <a id="explore">Data exploration</a>
+### <a id="setup">Setup</a>
 
-To get familiar with the CoDEx datasets in an easy-to-use interface,
-first unzip the repository:
+First unzip the repository:
 ```
 unzip codex.zip
 cd codex
@@ -40,17 +40,12 @@ Extract all Wikipedia plain-text page excerpts for entities:
 chmod u+x extract.sh
 ./extract.sh
 ```
-Finally, set up a virtual environment, install the Python requirements, then launch Jupyter Notebook:
+Finally, set up a virtual environment and install the Python requirements:
 ```
 python3.7 -m venv myenv
 source myenv/bin/activate
 pip install -r requirements.txt
-python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
-jupyter lab
 ```
-Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
-which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
-We provide a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
 
 ### <a id="libkge">Installing LibKGE</a>
 
@@ -89,6 +84,17 @@ cd models/
 python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
+
+### <a id="explore">Data exploration</a>
+
+To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
+To launch:
+```
+python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
+jupyter lab
+```
+Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
+which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
 
 ## <a id="data">Data</a>
 
