@@ -104,6 +104,8 @@ The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of
 }
 ```
 
+After running the ```extract.sh``` script as explained in the quick-start, each subdirectory of ```entities/``` and ```types/``` will have an ```extracts/``` folder containing files of plain-text Wikipedia extracts for entities. Each file is named ```<Wikidata entity ID>.txt```. 
+
 ### <a id="relations">Relations</a>
 We provide relation labels and Wikidata descriptions for relations in six languages: 
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
