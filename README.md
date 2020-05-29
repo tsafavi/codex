@@ -40,13 +40,14 @@ chmod u+x extract.sh
 ```
 Finally, set up a virtual environment, install the Python requirements, then launch Jupyter Notebook:
 ```
-python3.7 -m venv venv
-source venv/bin/activate
+python3.7 -m venv myenv
+source myenv/bin/activate
 pip install -r requirements.txt
-python -m ipykernel install --user --name=venv  # register your venv with jupyterlab
-jupyter notebook
+python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
+jupyter lab
 ```
-You should now be able to open the ```Explore CoDEx.ipynb``` notebook in your browser, which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
+Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
+which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
 We provide a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
 
 ## <a id="data">Data</a>
