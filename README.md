@@ -30,18 +30,16 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
 
 ### <a id="setup">Setup</a>
 
-First unzip the repository:
 ```
+# unzip the repository
 unzip codex.zip
 cd codex
-```
-Extract all Wikipedia plain-text page excerpts for entities:
-```
+
+# extract all Wikipedia plain-text page excerpts for entities
 chmod u+x extract.sh
 ./extract.sh
-```
-Finally, set up a virtual environment and install the Python requirements:
-```
+
+# set up a virtual environment and install the Python requirements
 python3.7 -m venv myenv
 source myenv/bin/activate
 pip install -r requirements.txt
