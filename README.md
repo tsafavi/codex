@@ -11,11 +11,13 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
     - <a href="#relations">Relations</a>
 3. <a href="#paths">Paths</a>
 4. <a href="#models">Pretrained models and results</a>
-    - <a href="#lp">Link prediction</a>
+    - <a href="#libkge">Installing LibKGE</a>
+    - <a href="#pretrained">Downloading pretrained models</a>
+    - <a href="#lp">Link prediction results</a>
       - <a href="#s-lp">CoDEx-S</a>
       - <a href="#m-lp">CoDEx-M</a>
       - <a href="#l-lp">CoDEx-L</a>
-    - <a href="#tc">Triple classification</a>
+    - <a href="#tc">Triple classification results</a>
       - <a href="#s-tc">CoDEx-S</a>
       - <a href="#m-tc">CoDEx-M</a>
     - <a href="#scripts">Evaluation scripts</a>
@@ -36,8 +38,10 @@ Extract all Wikipedia plain-text page excerpts for entities:
 chmod u+x extract.sh
 ./extract.sh
 ```
-Finally, install the Python requirements, then launch Jupyter Notebook:
+Finally, set up a virtual environment, install the Python requirements, then launch Jupyter Notebook:
 ```
+python3.7 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 jupyter notebook
 ```
@@ -85,7 +89,7 @@ Each subdirectory of ```entities/``` and ```types/``` contains an ```entities.js
   }
 }
 ```
-For the labels, descriptions, or Wikipedia URLs that are not available in a given language, the value will be the empty string ```''```. 
+For the labels, descriptions, or Wikipedia URLs that are not available in a given language, the value will be the empty string.
 
 The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of Wikidata type IDs, i.e.,
 ```
@@ -128,6 +132,7 @@ We also provide an overview of the compositional paths in CoDEx in the quick-sta
 
 ## <a id="models">Pretrained models and results</a>
 
+### <a id="libkge">Installing LibKGE</a>
 To use the pretrained models or run any scripts that involve pretrained models, you will need to install LibKGE by
 <a href="https://github.com/uma-pi1/kge#quick-start" target="_blank">following the installation instructions</a>.
 
@@ -139,59 +144,81 @@ chmod u+x libkge_setup.sh
 This script will copy each CoDEx dataset to LibKGE's ```data/``` directory and preprocess each dataset according to
 the format the LibKGE requires. 
 
-### <a id="lp">Link prediction</a>
+### <a id="pretrained">Downloading pretrained models</a>
+To download pretrained models via the command line, use our ```download_pretrained.py``` script in the ```models/``` directory.
+The arguments are as follows:
+```
+usage: download_pretrained.py [-h]
+                              {s,m,l} {triple-classification,link-prediction}
+                              {rescal,transe,complex,conve}
+                              [{rescal,transe,complex,conve} ...]
 
-We provide the best link prediction results, LibKGE configuration files, and pretrained models for each CoDEx dataset.
-The LibKGE documentation explains how to <a href="https://github.com/uma-pi1/kge#evaluate-a-trained-model" target="_blank">test each model using the LibKGE API</a>. 
+positional arguments:
+  {s,m,l}               CoDEx dataset to download model(s)
+  {triple-classification,link-prediction}
+                        Task to download model(s) for
+  {rescal,transe,complex,conve}
+                        Model(s) to download for this task
+```
+For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**,
+run
+```
+cd models/
+python download_pretrained.py m link-prediction complex conve
+```
+This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
+
+Alternatively, you can manually download pretrained the model files provided as links here.
+
+### <a id="lp">Link prediction results</a>
 
 #### <a id="s-lp">CoDEx-S</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|----:|-------:|--------:|------------:|-----------------:|
-| RESCAL | 0.399 | 0.289 | 0.625 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/uqmbau2ofn02d7d/checkpoint_best.pt?dl=1">1vsAll-kl</a> |
-| TransE | 0.353 | 0.216 | 0.624 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/dqx7o7l7llsl942/checkpoint_best.pt?dl=1">NegSamp-kl</a> |
-| ComplEx | 0.456 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j76o5yhios3ityy/checkpoint_best.pt?dl=1">1vsAll-kl</a> |
-| ConvE | 0.449 | 0.353 | 0.636 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vrt0h546itt3yht/checkpoint_best.pt?dl=1">1vsAll-kl</a> |
+| RESCAL | 0.399 | 0.289 | 0.625 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/uqmbau2ofn02d7d/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TransE | 0.353 | 0.216 | 0.624 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/dqx7o7l7llsl942/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.456 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j76o5yhios3ityy/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| ConvE | 0.449 | 0.353 | 0.636 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vrt0h546itt3yht/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 
 #### <a id="m-lp">CoDEx-M</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|----:|-------:|--------:|------------:|-----------------:|
-| RESCAL | 0.317 | 0.244 | 0.456 | <a href="models/link-prediction/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/2gt5qhjaxmka5a7/checkpoint_best.pt?dl=1">1vsAll-kl</a> |
-| TransE | 0.303 | 0.223 | 0.454 | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/5vzd6cw99cwhkz2/checkpoint_best.pt?dl=1">NegSamp-kl</a> |
-| ComplEx | 0.337 | 0.262 | 0.476 | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/q0fqwogwn7txz0w/checkpoint_best.pt?dl=1">KvsAll-kl</a> |
-| ConvE | 0.318 | 0.239 | 0.464 | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/mmca4gomoo1rlvf/checkpoint_best.pt?dl=1">NegSamp-kl</a> |
+| RESCAL | 0.317 | 0.244 | 0.456 | <a href="models/link-prediction/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/2gt5qhjaxmka5a7/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TransE | 0.303 | 0.223 | 0.454 | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/5vzd6cw99cwhkz2/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.337 | 0.262 | 0.476 | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/q0fqwogwn7txz0w/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.318 | 0.239 | 0.464 | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/mmca4gomoo1rlvf/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
 
 #### <a id="l-lp">CoDEx-L</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|----:|-------:|--------:|------------:|-----------------:|
-| RESCAL | 0.304 | 0.242 | 0.419 | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/5r5vur63thkqhpd/checkpoint_best.pt?dl=1">1vsAll-kl</a> |
-| TransE | 0.187 | 0.116 | 0.317 | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/9doc6jqfq7uqmpq/checkpoint_best.pt?dl=1">NegSamp-kl</a> |
-| ComplEx | 0.294 | 0.237 | 0.400 | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/m12qiudcnsv6ts9/checkpoint_best.pt?dl=1">1vsAll-kl</a> |
-| ConvE | 0.303 | 0.240 | 0.420 | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vhvdbaln0bwx625/checkpoint_best.pt?dl=1">1vsAll-kl</a> |
+| RESCAL | 0.304 | 0.242 | 0.419 | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/5r5vur63thkqhpd/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TransE | 0.187 | 0.116 | 0.317 | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/9doc6jqfq7uqmpq/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.294 | 0.237 | 0.400 | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/m12qiudcnsv6ts9/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| ConvE | 0.303 | 0.240 | 0.420 | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vhvdbaln0bwx625/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 
-### <a id="tc">Triple classification</a>
+### <a id="tc">Triple classification results</a>
 
-We provide the best triple classification results, LibKGE configuration files, and pretrained models for CoDEx-S and CoDEx-M.
 
 #### <a id="s-tc">CoDEx-S</a>
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.804 | 0.800 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/50fsixy423jkrhp/checkpoint_best.pt?dl=1">KvsAll-kl</a> |
-| TransE | 0.659 | 0.632 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/rz9xd3j7ixgezr7/checkpoint_best.pt?dl=1">NegSamp-mr</a> |
-| ComplEx | 0.810 | 0.808 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/skn4u7pt9ig8lt1/checkpoint_best.pt?dl=1">KvsAll-kl</a> |
-| ConvE | 0.734 | 0.744 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1ca1vdafr6gt57e/checkpoint_best.pt?dl=1">1vsAll-kl</a> |
+| RESCAL | 0.804 | 0.800 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/50fsixy423jkrhp/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| TransE | 0.659 | 0.632 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/rz9xd3j7ixgezr7/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
+| ComplEx | 0.810 | 0.808 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/skn4u7pt9ig8lt1/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.734 | 0.744 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1ca1vdafr6gt57e/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 
 #### <a id="m-tc">CoDEx-M</a>
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.756 | 0.735 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/a41qdj3m889vpo9/checkpoint_best.pt?dl=1">KvsAll-kl<a/> |
-| TransE | 0.651 | 0.558 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1889mg22lg84fwe/checkpoint_best.pt?dl=1">NegSamp-mr</a> |
-| ComplEx | 0.765 | 0.751 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1kxb89a9u5zn95e/checkpoint_best.pt?dl=1">KvsAll-kl</a> |
-| ConvE | 0.766 | 0.742 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/yyo0v1mu6yluxft/checkpoint_best.pt?dl=1">KvsAll-kl</a> |
+| RESCAL | 0.756 | 0.735 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/a41qdj3m889vpo9/checkpoint_best.pt?dl=0">KvsAll-kl<a/> |
+| TransE | 0.651 | 0.558 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1889mg22lg84fwe/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
+| ComplEx | 0.765 | 0.751 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1kxb89a9u5zn95e/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.766 | 0.742 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/yyo0v1mu6yluxft/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 
 
 ### <a id="scripts">Evaluation scripts</a>
