@@ -8,8 +8,8 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
     - <a href="#setup">Setup</a>
     - <a href="#libkge">Installing LibKGE</a>
     - <a href="#pretrained">Downloading pretrained models via the command line</a>
-    - <a href="#explore">Data exploration</a>
 2. <a href="#data">Data</a>
+    - <a href="#explore">Data exploration</a>
     - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
@@ -83,6 +83,8 @@ python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
 
+## <a id="data">Data</a>
+
 ### <a id="explore">Data exploration</a>
 
 To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
@@ -93,8 +95,6 @@ jupyter lab
 ```
 Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
 which provides a glimpse into how the datasets are structured and what kinds of information you can obtain from each dataset. 
-
-## <a id="data">Data</a>
 
 ### <a id="triples">Triples</a>
 
