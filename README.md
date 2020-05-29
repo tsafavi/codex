@@ -9,10 +9,10 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
     - <a href="#libkge">Installing LibKGE</a>
     - <a href="#pretrained">Downloading pretrained models via the command line</a>
 2. <a href="#data">Data</a>
+    - <a href="#explore">Data exploration and analysis</a>
     - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
-    - <a href="#explore">Data exploration and analysis</a>
 3. <a href="#models">Pretrained models and results</a>
     - <a href="#lp">Link prediction results</a>
       - <a href="#s-lp">CoDEx-S</a>
@@ -84,6 +84,17 @@ This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```m
 
 ## <a id="data">Data</a>
 
+### <a id="explore">Data exploration and analysis</a>
+
+To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
+To launch:
+```
+python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
+jupyter lab
+```
+Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
+which provides a glimpse into each dataset, for example frequent entities and relations, negative triples, compositional (multi-hop) paths and symmetry, etc.
+
 ### <a id="triples">Triples</a>
 
 The statistics for each CoDEx dataset are as follows:
@@ -151,17 +162,6 @@ Each language directory contains a ```relations.json``` file formatted as follow
   }
 }
 ```
-
-### <a id="explore">Data exploration and analysis</a>
-
-To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
-To launch:
-```
-python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
-jupyter lab
-```
-Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
-which provides a glimpse into each dataset, for example frequent entities and relations, negative triples, compositional (multi-hop) paths and symmetry, etc.
 
 ## <a id="models">Pretrained models and results</a>
 
