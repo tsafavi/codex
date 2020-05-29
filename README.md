@@ -38,8 +38,10 @@ Extract all Wikipedia plain-text page excerpts for entities:
 chmod u+x extract.sh
 ./extract.sh
 ```
-Finally, install the Python requirements, then launch Jupyter Notebook:
+Finally, set up a virtual environment, install the Python requirements, then launch Jupyter Notebook:
 ```
+python3.7 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 jupyter notebook
 ```
