@@ -40,7 +40,15 @@ if __name__ == '__main__':
     ]
 
     for model, link in zip(df['model'], df['link']):
-        dst = '{}/codex-{}/{}/checkpoint_best.pt'.format(
-            args.task, args.size, model)
-        os.system('curl -L {} -o {}'.format(link, dst))
-        print('Downloaded LibKGE checkpoint to', dst)
+        dst = os.path.join(
+            'models',
+            args.task,
+            'codex-' + args.size,
+            model,
+            'checkpoint_best.pt'
+        )
+        if not os.path.exists(dst):
+            os.system('curl -L {} -o {}'.format(link, dst))
+            print('Downloaded LibKGE checkpoint to', dst)
+        else:
+            print(dst, 'already exists')
