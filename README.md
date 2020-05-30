@@ -3,7 +3,7 @@
 CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia. 
 CoDEx offers three rich knowledge graph datasets that contain positive and hard negative triples, entity types, entity and relation descriptions, and Wikipedia page extracts for entities. 
 We provide baseline performance results, configuration files, and pretrained models
-on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibKGE</a> library for two tasks, link prediction and triple classification.
+on CoDEx using the [LibKGE](https://github.com/uma-pi1/kge) library for two knowledge graph completion tasks, link prediction and triple classification.
 
 The statistics for each CoDEx dataset are as follows:
 
@@ -68,13 +68,13 @@ which provides a glimpse into each dataset, for example frequent entities and re
 
 ### <a id="kge">LibKGE setup</a>
 
-To **use the pretrained models or run any scripts that involve pretrained models**, you will need to set up <a href="https://github.com/uma-pi1/kge">LibKGE</a>.
+To **use the pretrained models or run any scripts that involve pretrained models**, you will need to set up [LibKGE](https://github.com/uma-pi1/kge).
 Run the following: 
 ```
+# run from codex-master/
 ./libkge_setup.sh
 ```
-This script will install ```kge``` inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to
-the format the LibKGE requires. 
+This script will install the library in the ```kge/``` directory inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to the format the LibKGE requires. 
 
 ### <a id="scripts">Reproducing our results</a>
 
@@ -82,17 +82,24 @@ For the evaluation results not obtained using LibKGE's testing API, we provide s
 
 #### <a id="baseline-script">Link prediction baseline</a>
 
+```scripts/baseline.py``` compares a simple frequency baseline to the best model on CoDEx-M and the FB15K-237 benchmark.
+The results are saved to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
+To run:
 ```
+# run from codex-master/
 scripts/baseline.sh
 ```
-This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/fb15k-237/``` directory and the best link prediction model on CoDEx-M, then compares a simple frequency baseline to each model, saving the results to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
+Note that this script first downloads the [best pretrained LibKGE model on FB15K-237](https://github.com/uma-pi1/kge#results-and-pretrained-models) to ```models/link-prediction/fb15k-237/rescal/``` and the best link prediction model on CoDEx-M to ```models/link-prediction/codex-m/complex/``` if they do not already exist. 
 
 #### <a id="tc-script">Triple classification</a>
 
+```scripts/tc.py``` runs triple classification and outputs validation and test accuracy/F1. 
+To run:
 ```
+# run from codex-master/
 scripts/tc.sh
 ```
-This script downloads all triple classification models, runs triple classification, and outputs validation and test accuracy/F1. 
+Note that this script first downloads all triple classification models on CoDEx-S and CoDEx-M and saves them to ```models/triple-classification/{codex-s,codex-m}/``` if they do not already exist. 
 
 ### <a id="pretrained">Downloading pretrained models via the command line</a>
 
@@ -111,9 +118,9 @@ positional arguments:
   {rescal,transe,complex,conve}
                         Model(s) to download for this task
 ```
-For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**,
-run
+For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**:
 ```
+# run from codex-master/
 python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
@@ -127,10 +134,10 @@ Alternatively, you can download the models manually following the links we provi
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|----:|-------:|--------:|------------:|-----------------:|
-| RESCAL | 0.399 | 0.289 | 0.625 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/uqmbau2ofn02d7d/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| TransE | 0.353 | 0.216 | 0.624 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/dqx7o7l7llsl942/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
-| ComplEx | 0.465 | 0.372 | 0.643 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j76o5yhios3ityy/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| ConvE | 0.449 | 0.353 | 0.636 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vrt0h546itt3yht/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| RESCAL | 0.404 | 0.293 | 0.623 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j62q0wo5xbkur8h/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TransE | 0.354 | 0.219 | 0.634 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/n2y9yy301inxbij/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.465 | 0.372 | 0.646 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/2zxj9klewmbs35j/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| ConvE | 0.444 | 0.343 | 0.635 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/93r05b854t0nw8h/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 
 #### <a id="m-lp">CoDEx-M</a>
 
