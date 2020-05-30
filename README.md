@@ -3,16 +3,21 @@ CoDEx offers three rich knowledge graph datasets that contain positive and hard 
 We provide baseline performance results, configuration files, and pretrained models
 on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibKGE</a> library for two tasks, link prediction and triple classification.
 
+The statistics for each CoDEx dataset are as follows:
+
+|          | Entities | Relations | Train   | Valid (+) | Test (+) | Valid (-) | Test (-) | Total triples |
+|----------|---------:|----------:|--------:|----------:|---------:|----------:|---------:|--------------:|
+| CoDEx-S  | 2,034    | 42        | 32,888  | 1,827     | 1,828    | 1,827     | 1,828    | 36,543        |
+| CoDEx-M  | 17,050   | 51        | 185,584 | 10,310    | 10,311   | 10,310    | 10,311   | 206,205       |
+| CoDEx-L  | 77,951   | 69        | 551,193 | 30,622    | 30,622   | -         | -        | 612,437       |
+| Raw dump | 380,038  | 75        | -       | -         | -        | -         | -        | 1,156,222     |
+
 ## Table of contents
 1. <a href="#quick-start">Quick start</a>
     - <a href="#setup">Setup</a>
     - <a href="#libkge">Installing LibKGE</a>
     - <a href="#pretrained">Downloading pretrained models via the command line</a>
-2. <a href="#data">Data</a>
-    - <a href="#explore">Data exploration and analysis</a>
-    - <a href="#triples">Triples</a>
-    - <a href="#entities">Entities and entity types</a>
-    - <a href="#relations">Relations</a>
+2. <a href="#explore">Data exploration and analysis</a>
 3. <a href="#models">Pretrained models and results</a>
     - <a href="#lp">Link prediction results</a>
       - <a href="#s-lp">CoDEx-S</a>
@@ -24,6 +29,10 @@ on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibK
     - <a href="#scripts">Evaluation scripts</a>
       - <a href="#baseline-script">Link prediction baseline</a>
       - <a href="#tc-script">Triple classification</a>
+4. <a href="#data">Data directory structure</a>
+    - <a href="#triples">Triples</a>
+    - <a href="#entities">Entities and entity types</a>
+    - <a href="#relations">Relations</a>
 
 ## <a id="quick-start">Quick start</a>
 
@@ -79,9 +88,8 @@ python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
 
-## <a id="data">Data</a>
 
-### <a id="explore">Data exploration and analysis</a>
+## <a id="explore">Data exploration and analysis</a>
 
 To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
 To launch:
@@ -92,74 +100,6 @@ jupyter lab
 ```
 Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
 which provides a glimpse into each dataset, for example frequent entities and relations, negative triples, compositional (multi-hop) paths and symmetry, etc.
-
-### <a id="triples">Triples</a>
-
-The statistics for each CoDEx dataset are as follows:
-
-|          | Entities | Relations | Train   | Valid (+) | Test (+) | Valid (-) | Test (-) | Total triples |
-|----------|---------:|----------:|--------:|----------:|---------:|----------:|---------:|--------------:|
-| CoDEx-S  | 2,034    | 42        | 32,888  | 1,827     | 1,828    | 1,827     | 1,828    | 36,543        |
-| CoDEx-M  | 17,050   | 51        | 185,584 | 10,310    | 10,311   | 10,310    | 10,311   | 206,205       |
-| CoDEx-L  | 77,951   | 69        | 551,193 | 30,622    | 30,622   | -         | -        | 612,437       |
-| Raw dump | 380,038  | 75        | -       | -         | -        | -         | -        | 1,156,222     |
-
-Each triple file follows the format
-```
-<Wikidata head entity ID>\t<Wikidata relation ID>\t<Wikidata tail entity ID>
-```
-without any header or extra information per line.
-
-If you'd like to use the raw data dump, run
-```
-cd data/triples
-unzip raw.zip
-```
-This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
-
-
-### <a id="entities">Entities and entity types</a>
-We provide entity labels, Wikidata descriptions, and Wikipedia page extracts for entities and entity types in six languages:
-Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
-
-Each subdirectory of ```entities/``` and ```types/``` contains an ```entities.json``` file formatted as follows:
-```
-{
-  <Wikidata entity ID>:{
-    "label":<label in respective language if available>,
-    "description":<Wikidata description in respective language if available>,
-    "wiki":<Wikipedia page URL in respective language if available>
-  }
-}
-```
-For the labels, descriptions, or Wikipedia URLs that are not available in a given language, the value will be the empty string.
-
-The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of Wikidata type IDs, i.e.,
-```
-{
-  "<Wikidata entity ID>":[
-    <Wikidata type ID 1>,
-    <Wikidata type ID 2>,
-    ...
-  ]
-}
-```
-
-After running the ```extract.sh``` script as explained in the quick-start, each subdirectory of ```entities/``` and ```types/``` will have an ```extracts/``` folder containing files of plain-text Wikipedia extracts for entities. Each file is named ```<Wikidata entity ID>.txt```. 
-
-### <a id="relations">Relations</a>
-We provide relation labels and Wikidata descriptions for relations in six languages: 
-Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
-
-Each language directory contains a ```relations.json``` file formatted as follows:
-```
-{
-  <Wikidata relation ID>:{
-    "label":<label in respective language if available>,
-    "description":<Wikidata description in respective language if available>
-  }
-}
-```
 
 ## <a id="models">Pretrained models and results</a>
 
@@ -233,3 +173,64 @@ chmod u+x scripts/tc.sh
 scripts/tc.sh
 ```
 This script runs triple classification on each model in the ```models/triple-classification/``` directory for each dataset and outputs validation and test accuracy/F1. 
+
+## <a id="data">Data directory structure</a>
+
+### <a id="triples">Triples</a>
+
+Each triple file follows the format
+```
+<Wikidata head entity ID>\t<Wikidata relation ID>\t<Wikidata tail entity ID>
+```
+without any header or extra information per line.
+
+If you'd like to use the raw data dump, run
+```
+cd data/triples
+unzip raw.zip
+```
+This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
+
+
+### <a id="entities">Entities and entity types</a>
+We provide entity labels, Wikidata descriptions, and Wikipedia page extracts for entities and entity types in six languages:
+Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
+
+Each subdirectory of ```entities/``` contains an ```entities.json``` file formatted as follows:
+```
+{
+  <Wikidata entity ID>:{
+    "label":<label in respective language if available>,
+    "description":<Wikidata description in respective language if available>,
+    "wiki":<Wikipedia page URL in respective language if available>
+  }
+}
+```
+For the labels, descriptions, or Wikipedia URLs that are not available in a given language, the value will be the empty string.
+
+The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of Wikidata type IDs, i.e.,
+```
+{
+  "<Wikidata entity ID>":[
+    <Wikidata type ID 1>,
+    <Wikidata type ID 2>,
+    ...
+  ]
+}
+```
+
+After running the ```extract.sh``` script as explained in the quick-start, each subdirectory of ```entities/``` and ```types/``` will have an ```extracts/``` folder containing files of plain-text Wikipedia extracts for entities. Each file is named ```<Wikidata entity ID>.txt```. 
+
+### <a id="relations">Relations</a>
+We provide relation labels and Wikidata descriptions for relations in six languages: 
+Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
+
+Each language directory contains a ```relations.json``` file formatted as follows:
+```
+{
+  <Wikidata relation ID>:{
+    "label":<label in respective language if available>,
+    "description":<Wikidata description in respective language if available>
+  }
+}
+```
