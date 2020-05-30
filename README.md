@@ -3,7 +3,7 @@
 CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia. 
 CoDEx offers three rich knowledge graph datasets that contain positive and hard negative triples, entity types, entity and relation descriptions, and Wikipedia page extracts for entities. 
 We provide baseline performance results, configuration files, and pretrained models
-on CoDEx using the <a href="https://github.com/uma-pi1/kge" target="_blank">LibKGE</a> library for two tasks, link prediction and triple classification.
+on CoDEx using the [LibKGE](https://github.com/uma-pi1/kge) library for two knowledge graph completion tasks, link prediction and triple classification.
 
 The statistics for each CoDEx dataset are as follows:
 
