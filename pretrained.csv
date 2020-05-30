@@ -1,8 +1,8 @@
 size,task,model,link
-s,link-prediction,rescal,https://www.dropbox.com/s/uqmbau2ofn02d7d/checkpoint_best.pt?dl=1
-s,link-prediction,transe,https://www.dropbox.com/s/dqx7o7l7llsl942/checkpoint_best.pt?dl=1
-s,link-prediction,complex,https://www.dropbox.com/s/j76o5yhios3ityy/checkpoint_best.pt?dl=1
-s,link-prediction,conve,https://www.dropbox.com/s/vrt0h546itt3yht/checkpoint_best.pt?dl=1
+s,link-prediction,rescal,https://www.dropbox.com/s/j62q0wo5xbkur8h/checkpoint_best.pt?dl=1
+s,link-prediction,transe,https://www.dropbox.com/s/n2y9yy301inxbij/checkpoint_best.pt?dl=1
+s,link-prediction,complex,https://www.dropbox.com/s/2zxj9klewmbs35j/checkpoint_best.pt?dl=1
+s,link-prediction,conve,https://www.dropbox.com/s/93r05b854t0nw8h/checkpoint_best.pt?dl=1
 m,link-prediction,rescal,https://www.dropbox.com/s/2gt5qhjaxmka5a7/checkpoint_best.pt?dl=1
 m,link-prediction,transe,https://www.dropbox.com/s/5vzd6cw99cwhkz2/checkpoint_best.pt?dl=1
 m,link-prediction,complex,https://www.dropbox.com/s/q0fqwogwn7txz0w/checkpoint_best.pt?dl=1

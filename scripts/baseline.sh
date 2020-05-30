@@ -2,7 +2,7 @@
 set -e
 
 codex_dir="models/link-prediction/codex-m/complex"
-fb_dir="models/link-prediction/fb15k-237"
+fb_dir="models/link-prediction/fb15k-237/rescal"
 
 python download_pretrained.py m link-prediction complex
 
