@@ -26,7 +26,7 @@ The statistics for each CoDEx dataset are as follows:
     - <a href="#tc">Triple classification results</a>
       - <a href="#s-tc">CoDEx-S</a>
       - <a href="#m-tc">CoDEx-M</a>
-    - <a href="#scripts">Evaluation scripts</a>
+    - <a href="#scripts">Reproducing our results</a>
       - <a href="#baseline-script">Link prediction baseline</a>
       - <a href="#tc-script">Triple classification</a>
 4. <a href="#data">Data directory structure</a>
@@ -156,9 +156,9 @@ Alternatively, you can download the models manually following the links we provi
 | ConvE | 0.766 | 0.742 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/yyo0v1mu6yluxft/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 
 
-### <a id="scripts">Evaluation scripts</a>
+### <a id="scripts">Reproducing our results</a>
 
-For the results not obtained using LibKGE, we provide several additional evaluation scripts to reproduce results in our paper.
+For the evaluation results not obtained using LibKGE's testing API, we provide several additional evaluation scripts to reproduce results in our paper.
 
 #### <a id="baseline-script">Link prediction baseline</a>
 
