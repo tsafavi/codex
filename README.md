@@ -68,14 +68,13 @@ which provides a glimpse into each dataset, for example frequent entities and re
 
 ### <a id="kge">LibKGE setup</a>
 
-To **use the pretrained models or run any scripts that involve pretrained models**, you will need to set up <a href="https://github.com/uma-pi1/kge">LibKGE</a>.
+To **use the pretrained models or run any scripts that involve pretrained models**, you will need to set up [LibKGE](https://github.com/uma-pi1/kge).
 Run the following: 
 ```
 # run from codex-master/
 ./libkge_setup.sh
 ```
-This script will install the library in the ```kge/``` directory inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to
-the format the LibKGE requires. 
+This script will install the library in the ```kge/``` directory inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to the format the LibKGE requires. 
 
 ### <a id="scripts">Reproducing our results</a>
 
@@ -90,7 +89,7 @@ To run:
 # run from codex-master/
 scripts/baseline.sh
 ```
-Note that this script first downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to ```models/link-prediction/fb15k-237/rescal/``` and the best link prediction model on CoDEx-M to ```models/link-prediction/codex-m/complex/``` if they do not already exist. 
+Note that this script first downloads the [best pretrained LibKGE model on FB15K-237](https://github.com/uma-pi1/kge#results-and-pretrained-models) to ```models/link-prediction/fb15k-237/rescal/``` and the best link prediction model on CoDEx-M to ```models/link-prediction/codex-m/complex/``` if they do not already exist. 
 
 #### <a id="tc-script">Triple classification</a>
 
