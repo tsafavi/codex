@@ -1,0 +1,63 @@
+dataset:
+  name: fb15k-237
+eval:
+  batch_size: 256
+  metrics_per:
+    relation_type: true
+  trace_level: example
+import:
+- reciprocal_relations_model
+- rescal
+lookup_embedder:
+  dim: 128
+  initialize_args:
+    normal_:
+      mean: 0.0
+      std: 0.12253330829253249
+    uniform_:
+      a: -0.011611245661190428
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+  regularize: ''
+  regularize_args:
+    weighted: true
+model: rescal
+negative_sampling:
+  implementation: batch
+  num_samples:
+    p: -1
+reciprocal_relations_model:
+  base_model:
+    type: rescal
+rescal:
+  entity_embedder:
+    dropout: 0.4267429455561116
+    regularize_weight: 4.7008266379369885e-11
+  relation_embedder:
+    dim: 16384
+    dropout: 0.15935746704923415
+    regularize_weight: 7.335042280341127e-13
+train:
+  auto_correct: true
+  batch_size: 512
+  loss_arg: 1.0
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    factor: 0.95
+    mode: max
+    patience: 1
+    threshold: 0.0001
+  max_epochs: 400
+  optimizer: Adam
+  optimizer_args:
+    lr: 0.0007391873099551063
+  type: 1vsAll
+valid:
+  early_stopping:
+    min_threshold:
+      epochs: 50
+      metric_value: 0.05
+    patience: 10
+

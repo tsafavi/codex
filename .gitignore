@@ -10,6 +10,7 @@ config/
 *.out
 *.pyc
 raw/
-models/link-prediction/fb15k-237/
 *.swp
 venv/
+kge/
+myenv/
