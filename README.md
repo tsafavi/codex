@@ -217,7 +217,7 @@ The file ```data/types/entity2types.json``` maps each Wikidata entity ID to a li
 Each subdirectory of ```data/types/``` contains a ```types.json``` file formatted as follows: 
 ```
 {
-  <Wikidata entity type ID>:{
+  <Wikidata type ID>:{
     "label":<label in respective language if available>,
     "description":<Wikidata description in respective language if available>,
     "wiki":<Wikipedia page URL in respective language if available>
