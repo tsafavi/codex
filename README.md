@@ -71,9 +71,10 @@ which provides a glimpse into each dataset, for example frequent entities and re
 To **use the pretrained models or run any scripts that involve pretrained models**, you will need to set up <a href="https://github.com/uma-pi1/kge">LibKGE</a>.
 Run the following: 
 ```
+# run from codex-master/
 ./libkge_setup.sh
 ```
-This script will install ```kge``` inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to
+This script will install the library in the ```kge/``` directory inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to
 the format the LibKGE requires. 
 
 ### <a id="scripts">Reproducing our results</a>
@@ -82,17 +83,24 @@ For the evaluation results not obtained using LibKGE's testing API, we provide s
 
 #### <a id="baseline-script">Link prediction baseline</a>
 
+The ```scripts/baseline.py``` evaluation script compares a simple frequency baseline to the best model on CoDEx-M and the FB15K-237 benchmark.
+The results are saved to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
+To run:
 ```
+# run from codex-master/
 scripts/baseline.sh
 ```
-This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/fb15k-237/``` directory and the best link prediction model on CoDEx-M, then compares a simple frequency baseline to each model, saving the results to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
+Note that this script first downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to ```models/link-prediction/fb15k-237/rescal/``` and the best link prediction model on CoDEx-M to ```models/link-prediction/codex-m/complex/``` if they do not already exist. 
 
 #### <a id="tc-script">Triple classification</a>
 
+The ```scripts/tc.py``` evaluation script runs triple classification, and outputs validation and test accuracy/F1. 
+To run:
 ```
+# run from codex-master/
 scripts/tc.sh
 ```
-This script downloads all triple classification models, runs triple classification, and outputs validation and test accuracy/F1. 
+Note that this script first downloads all triple classification models on CoDEx-S and CoDEx-M and saves them to ```models/triple-classification/{codex-s,codex-m}/``` if they do not already exist. 
 
 ### <a id="pretrained">Downloading pretrained models via the command line</a>
 
@@ -111,9 +119,9 @@ positional arguments:
   {rescal,transe,complex,conve}
                         Model(s) to download for this task
 ```
-For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**,
-run
+For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**:
 ```
+# run from codex-master/
 python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
