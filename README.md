@@ -83,7 +83,7 @@ For the evaluation results not obtained using LibKGE's testing API, we provide s
 
 #### <a id="baseline-script">Link prediction baseline</a>
 
-The ```scripts/baseline.py``` evaluation script compares a simple frequency baseline to the best model on CoDEx-M and the FB15K-237 benchmark.
+```scripts/baseline.py``` compares a simple frequency baseline to the best model on CoDEx-M and the FB15K-237 benchmark.
 The results are saved to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
 To run:
 ```
@@ -94,7 +94,7 @@ Note that this script first downloads the <a href="https://github.com/uma-pi1/kg
 
 #### <a id="tc-script">Triple classification</a>
 
-The ```scripts/tc.py``` evaluation script runs triple classification, and outputs validation and test accuracy/F1. 
+```scripts/tc.py``` runs triple classification and outputs validation and test accuracy/F1. 
 To run:
 ```
 # run from codex-master/
