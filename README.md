@@ -1,3 +1,5 @@
+# README.md
+
 CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia. 
 CoDEx offers three rich knowledge graph datasets that contain positive and hard negative triples, entity types, entity and relation descriptions, and Wikipedia page extracts for entities. 
 We provide baseline performance results, configuration files, and pretrained models
@@ -76,7 +78,7 @@ the format the LibKGE requires.
 
 ### <a id="scripts">Reproducing our results</a>
 
-For the evaluation results not obtained using LibKGE's testing API, we provide several additional evaluation scripts to reproduce results in our paper.
+For the evaluation results not obtained using LibKGE's testing API, we provide several additional evaluation scripts to reproduce results in our paper. These scripts assume that you have set up LibKGE using the script we provided. 
 
 #### <a id="baseline-script">Link prediction baseline</a>
 
