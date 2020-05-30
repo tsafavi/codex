@@ -1,3 +1,5 @@
+# README.md
+
 CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia. 
 CoDEx offers three rich knowledge graph datasets that contain positive and hard negative triples, entity types, entity and relation descriptions, and Wikipedia page extracts for entities. 
 We provide baseline performance results, configuration files, and pretrained models
@@ -29,9 +31,9 @@ The statistics for each CoDEx dataset are as follows:
       - <a href="#s-tc">CoDEx-S</a>
       - <a href="#m-tc">CoDEx-M</a>
 4. <a href="#data">Data directory structure</a>
-    - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
+    - <a href="#triples">Triples</a>
 
 ## <a id="quick-start">Quick start</a>
 
@@ -76,7 +78,7 @@ the format the LibKGE requires.
 
 ### <a id="scripts">Reproducing our results</a>
 
-For the evaluation results not obtained using LibKGE's testing API, we provide several additional evaluation scripts to reproduce results in our paper.
+For the evaluation results not obtained using LibKGE's testing API, we provide several additional evaluation scripts to reproduce results in our paper. These scripts assume that you have set up LibKGE using the script we provided. 
 
 #### <a id="baseline-script">Link prediction baseline</a>
 
@@ -94,7 +96,7 @@ This script downloads all triple classification models, runs triple classificati
 
 ### <a id="pretrained">Downloading pretrained models via the command line</a>
 
-To **download pretrained models via the command line**, use our ```download_pretrained.py``` script in the ```models/``` directory.
+To **download pretrained models via the command line**, use our ```download_pretrained.py``` Python script.
 The arguments are as follows:
 ```
 usage: download_pretrained.py [-h]
@@ -112,7 +114,6 @@ positional arguments:
 For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**,
 run
 ```
-cd models/
 python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
@@ -156,10 +157,10 @@ Alternatively, you can download the models manually following the links we provi
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.804 | 0.800 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/50fsixy423jkrhp/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| TransE | 0.659 | 0.632 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/rz9xd3j7ixgezr7/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
-| ComplEx | 0.810 | 0.808 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/skn4u7pt9ig8lt1/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| ConvE | 0.734 | 0.744 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1ca1vdafr6gt57e/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| RESCAL | 0.805 | 0.803 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/y5tbtzqa4ndtdrh/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| TransE | 0.662 | 0.640 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/67er5ddvsheyn41/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
+| ComplEx | 0.814 | 0.809 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/amui3jl9dt5y0v0/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.731 | 0.728 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/xxudenkcx249bso/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 
 #### <a id="m-tc">CoDEx-M</a>
 
@@ -173,22 +174,40 @@ Alternatively, you can download the models manually following the links we provi
 
 ## <a id="data">Data directory structure</a>
 
-### <a id="triples">Triples</a>
-
-Each triple file follows the format
+The ```data/``` directory is structured as follows:
 ```
-<Wikidata head entity ID>\t<Wikidata relation ID>\t<Wikidata tail entity ID>
-```
-without any header or extra information per line.
-
-If you'd like to use the raw data dump, run
-```
-cd data/triples
-unzip raw.zip
-```
-This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
-
-
+.
+├── entities
+│   ├── ar
+│   ├── de
+│   ├── en
+│   ├── es
+│   ├── ru
+│   └── zh
+├── relations
+│   ├── ar
+│   ├── de
+│   ├── en
+│   ├── es
+│   ├── ru
+│   └── zh
+├── triples
+│   ├── codex-l
+│   ├── codex-m
+│   ├── codex-s
+│   └── raw.zip
+└── types
+    ├── ar
+    ├── de
+    ├── en
+    ├── entity2types.json
+    ├── es
+    ├── ru
+    └── zh
+ ```
+ 
+ We provide an overview of each subdirectory in this section. 
+ 
 ### <a id="entities">Entities and entity types</a>
 We provide entity labels, Wikidata descriptions, and Wikipedia page extracts for entities and entity types in six languages:
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
@@ -218,7 +237,7 @@ The file ```data/types/entity2types.json``` maps each Wikidata entity ID to a li
 Each subdirectory of ```data/types/``` contains a ```types.json``` file formatted as follows: 
 ```
 {
-  <Wikidata entity type ID>:{
+  <Wikidata type ID>:{
     "label":<label in respective language if available>,
     "description":<Wikidata description in respective language if available>,
     "wiki":<Wikipedia page URL in respective language if available>
@@ -241,3 +260,19 @@ Each subdirectory of ```data/relations/``` contains a ```relations.json``` file 
   }
 }
 ```
+
+### <a id="triples">Triples</a>
+
+Each triple file follows the format
+```
+<Wikidata head entity ID>\t<Wikidata relation ID>\t<Wikidata tail entity ID>
+```
+without any header or extra information per line.
+
+If you'd like to use the raw data dump, run
+```
+cd data/triples
+unzip raw.zip
+```
+This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
+
