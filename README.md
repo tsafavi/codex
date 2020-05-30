@@ -16,9 +16,9 @@ The statistics for each CoDEx dataset are as follows:
 1. <a href="#quick-start">Quick start</a>
     - <a href="#setup">Setup</a>
     - <a href="#libkge">Installing LibKGE</a>
-    - <a href="#pretrained">Downloading pretrained models via the command line</a>
 2. <a href="#explore">Data exploration and analysis</a>
 3. <a href="#models">Pretrained models and results</a>
+    - <a href="#pretrained">Downloading pretrained models via the command line</a>
     - <a href="#lp">Link prediction results</a>
       - <a href="#s-lp">CoDEx-S</a>
       - <a href="#m-lp">CoDEx-M</a>
@@ -63,6 +63,20 @@ Run the following:
 This script will install ```kge``` inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to
 the format the LibKGE requires. 
 
+## <a id="explore">Data exploration and analysis</a>
+
+To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
+To launch:
+```
+# run from codex-master/
+python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
+jupyter lab
+```
+Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
+which provides a glimpse into each dataset, for example frequent entities and relations, negative triples, compositional (multi-hop) paths and symmetry, etc.
+
+## <a id="models">Pretrained models and results</a>
+
 ### <a id="pretrained">Downloading pretrained models via the command line</a>
 
 To **download pretrained models via the command line**, use our ```download_pretrained.py``` script in the ```models/``` directory.
@@ -88,20 +102,8 @@ python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
 
+Alternatively, you can download the models manually following the links we provide here. 
 
-## <a id="explore">Data exploration and analysis</a>
-
-To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
-To launch:
-```
-# run from codex-master/
-python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
-jupyter lab
-```
-Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
-which provides a glimpse into each dataset, for example frequent entities and relations, negative triples, compositional (multi-hop) paths and symmetry, etc.
-
-## <a id="models">Pretrained models and results</a>
 
 ### <a id="lp">Link prediction results</a>
 
@@ -194,7 +196,7 @@ This will create a new ```data/triples/raw/``` directory containing a single fil
 We provide entity labels, Wikidata descriptions, and Wikipedia page extracts for entities and entity types in six languages:
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
 
-Each subdirectory of ```entities/``` contains an ```entities.json``` file formatted as follows:
+Each subdirectory of ```data/entities/``` contains an ```entities.json``` file formatted as follows:
 ```
 {
   <Wikidata entity ID>:{
@@ -206,7 +208,7 @@ Each subdirectory of ```entities/``` contains an ```entities.json``` file format
 ```
 For the labels, descriptions, or Wikipedia URLs that are not available in a given language, the value will be the empty string.
 
-The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of Wikidata type IDs, i.e.,
+The file ```data/types/entity2types.json``` maps each Wikidata entity ID to a list of Wikidata type IDs, i.e.,
 ```
 {
   "<Wikidata entity ID>":[
@@ -216,6 +218,16 @@ The file ```types/entity2types.json``` maps each Wikidata entity ID to a list of
   ]
 }
 ```
+Each subdirectory of ```data/types/``` contains a ```types.json``` file formatted as follows: 
+```
+{
+  <Wikidata entity type ID>:{
+    "label":<label in respective language if available>,
+    "description":<Wikidata description in respective language if available>,
+    "wiki":<Wikipedia page URL in respective language if available>
+  }
+}
+```
 
 After running the ```extract.sh``` script as explained in the quick-start, each subdirectory of ```entities/``` and ```types/``` will have an ```extracts/``` folder containing files of plain-text Wikipedia extracts for entities. Each file is named ```<Wikidata entity ID>.txt```. 
 
@@ -223,7 +235,7 @@ After running the ```extract.sh``` script as explained in the quick-start, each 
 We provide relation labels and Wikidata descriptions for relations in six languages: 
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
 
-Each language directory contains a ```relations.json``` file formatted as follows:
+Each subdirectory of ```data/relations/``` contains a ```relations.json``` file formatted as follows:
 ```
 {
   <Wikidata relation ID>:{
