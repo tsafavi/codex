@@ -163,14 +163,14 @@ For the results not obtained using LibKGE, we provide several additional evaluat
 ```
 scripts/baseline.sh
 ```
-This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/fb15k-237/``` directory and the best model on CoDEx-M, then compares a simple frequency baseline to the best model on FB15K-237 and CoDEx-M, saving the results to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
+This script downloads the <a href="https://github.com/uma-pi1/kge#results-and-pretrained-models" target="_blank">best pretrained LibKGE model on FB15K-237</a> to the ```models/link-prediction/fb15k-237/``` directory and the best link prediction model on CoDEx-M, then compares a simple frequency baseline to each model, saving the results to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
 
 #### <a id="tc-script">Triple classification</a>
 
 ```
 scripts/tc.sh
 ```
-This script downloads all triple classification models, runs triple classification on each model, and outputs validation and test accuracy/F1. 
+This script downloads all triple classification models, runs triple classification, and outputs validation and test accuracy/F1. 
 
 ## <a id="data">Data directory structure</a>
 
