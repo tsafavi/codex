@@ -112,7 +112,6 @@ positional arguments:
 For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**,
 run
 ```
-cd models/
 python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
