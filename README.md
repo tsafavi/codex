@@ -31,9 +31,9 @@ The statistics for each CoDEx dataset are as follows:
       - <a href="#s-tc">CoDEx-S</a>
       - <a href="#m-tc">CoDEx-M</a>
 4. <a href="#data">Data directory structure</a>
-    - <a href="#triples">Triples</a>
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
+    - <a href="#triples">Triples</a>
 
 ## <a id="quick-start">Quick start</a>
 
@@ -174,22 +174,40 @@ Alternatively, you can download the models manually following the links we provi
 
 ## <a id="data">Data directory structure</a>
 
-### <a id="triples">Triples</a>
-
-Each triple file follows the format
+The ```data/``` directory is structured as follows:
 ```
-<Wikidata head entity ID>\t<Wikidata relation ID>\t<Wikidata tail entity ID>
-```
-without any header or extra information per line.
-
-If you'd like to use the raw data dump, run
-```
-cd data/triples
-unzip raw.zip
-```
-This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
-
-
+.
+├── entities
+│   ├── ar
+│   ├── de
+│   ├── en
+│   ├── es
+│   ├── ru
+│   └── zh
+├── relations
+│   ├── ar
+│   ├── de
+│   ├── en
+│   ├── es
+│   ├── ru
+│   └── zh
+├── triples
+│   ├── codex-l
+│   ├── codex-m
+│   ├── codex-s
+│   └── raw.zip
+└── types
+    ├── ar
+    ├── de
+    ├── en
+    ├── entity2types.json
+    ├── es
+    ├── ru
+    └── zh
+ ```
+ 
+ We provide an overview of each subdirectory in this section. 
+ 
 ### <a id="entities">Entities and entity types</a>
 We provide entity labels, Wikidata descriptions, and Wikipedia page extracts for entities and entity types in six languages:
 Arabic (ar), German (de), English (en), Spanish (es), Russian (ru), and Chineze (zh).
@@ -242,3 +260,19 @@ Each subdirectory of ```data/relations/``` contains a ```relations.json``` file 
   }
 }
 ```
+
+### <a id="triples">Triples</a>
+
+Each triple file follows the format
+```
+<Wikidata head entity ID>\t<Wikidata relation ID>\t<Wikidata tail entity ID>
+```
+without any header or extra information per line.
+
+If you'd like to use the raw data dump, run
+```
+cd data/triples
+unzip raw.zip
+```
+This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
+
