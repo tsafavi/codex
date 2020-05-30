@@ -94,7 +94,7 @@ This script downloads all triple classification models, runs triple classificati
 
 ### <a id="pretrained">Downloading pretrained models via the command line</a>
 
-To **download pretrained models via the command line**, use our ```download_pretrained.py``` script in the ```models/``` directory.
+To **download pretrained models via the command line**, use our ```download_pretrained.py``` Python script.
 The arguments are as follows:
 ```
 usage: download_pretrained.py [-h]
