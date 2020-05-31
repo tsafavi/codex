@@ -64,6 +64,8 @@ jupyter lab
 Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
 which provides a glimpse into each dataset, for example frequent entities and relations, negative triples, compositional (multi-hop) paths and symmetry, etc.
 
+If you are working on a server and want to run JupyterLab remotely, check out [these instructions](https://www.blopig.com/blog/2018/03/running-jupyter-notebook-on-a-remote-server-via-ssh/) on how to set up port forwarding to view your remotely-hosted notebook locally. 
+
 ## <a id="models">Pretrained models and results</a>
 
 ### <a id="kge">LibKGE setup</a>
