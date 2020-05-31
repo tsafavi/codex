@@ -42,9 +42,9 @@ The statistics for each CoDEx dataset are as follows:
 unzip codex.zip
 cd codex-master
 
-# extract all Wikipedia plain-text page excerpts for entities
+# extract English Wikipedia plain-text excerpts for entities
 # this may take a few minutes
-./extract.sh
+./extract_en.sh
 
 # set up a virtual environment and install the Python requirements
 python3.7 -m venv myenv
