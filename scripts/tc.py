@@ -16,6 +16,9 @@ import kge.config
 import kge.util.sampler
 from kge.util.io import load_checkpoint
 
+import warnings
+warnings.filterwarnings('ignore')
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -175,6 +178,7 @@ def main():
                     model, test_spo, test_neg_spo)
 
                 # Calibrate scores and predict on valid and test sets
+                print('Calibrating', model_file, 'on the validation set')
                 calibrator = CalibratedClassifierCV(
                     cv=5, method=args.calib_type)
                 calibrator.fit(X_valid, y_valid)

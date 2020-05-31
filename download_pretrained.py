@@ -51,4 +51,4 @@ if __name__ == '__main__':
             os.system('curl -L {} -o {}'.format(link, dst))
             print('Downloaded LibKGE checkpoint to', dst)
         else:
-            print(dst, 'already exists')
+            print('Skipping download of', dst, 'because path already exists')
