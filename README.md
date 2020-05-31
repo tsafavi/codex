@@ -253,8 +253,10 @@ Each subdirectory of ```data/types/``` contains a ```types.json``` file formatte
   }
 }
 ```
-
-After running the ```extract.sh``` script as explained in the quick-start, each subdirectory of ```entities/``` and ```types/``` will have an ```extracts/``` folder containing files of plain-text Wikipedia extracts for entities. Each file is named ```<Wikidata entity ID>.txt```. 
+Each ```extracts.zip``` file contains zipped files of entity descriptions from Wikipedia.
+Each file is named ```<Wikidata entity ID>.txt```. 
+We provide the ```extract_en.sh``` script to unzip all English-language entity and entity type extracts.
+You can edit this script and provide a different language code (```ar``` for Arabic, ```de``` for German, ```es``` for Spanish, ```ru``` for Russian, and ```zh``` for Chinese) to extract descriptions for other languages. 
 
 ### <a id="relations">Relations</a>
 We provide relation labels and Wikidata descriptions for relations in six languages: 
