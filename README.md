@@ -43,7 +43,6 @@ unzip codex.zip
 cd codex-master
 
 # extract English Wikipedia plain-text excerpts for entities
-# this may take a few minutes
 ./extract_en.sh
 
 # set up a virtual environment and install the Python requirements
@@ -74,6 +73,7 @@ To **use the pretrained models or run any scripts that involve pretrained models
 Run the following: 
 ```
 # run from codex-master/
+# this may take a few minutes
 ./libkge_setup.sh
 ```
 This script will install the library in the ```kge/``` directory inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to the format the LibKGE requires. 
