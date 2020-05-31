@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-# retrieve and install libkge in development mode
+# -----------------------------------------
+# LibKGE setup from https://github.com/uma-pi1/kge/blob/master/data/download_all.sh
 git clone https://github.com/uma-pi1/kge.git
 cd kge
 pip install -e .
@@ -20,6 +21,7 @@ if [ ! -f "fb15k-237/dataset.yaml" ]; then
 else
 	echo fb15k-237 already prepared
 fi
+# -----------------------------------------
 
 declare -a sizes=("s" "m" "l")
 for size in "${sizes[@]}"; do
