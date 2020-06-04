@@ -43,7 +43,8 @@ unzip codex.zip
 cd codex-master
 
 # extract English Wikipedia plain-text excerpts for entities
-./extract_en.sh
+# other language codes available: ar, de, es, ru, zh
+./extract.sh en
 
 # set up a virtual environment and install the Python requirements
 python3.7 -m venv myenv
