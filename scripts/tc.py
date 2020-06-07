@@ -145,11 +145,12 @@ def load_neg_spo(dataset, size='s'):
 
 def calibrate(X_valid, y_valid, X_test, method='sigmoid'):
     """
-    :param X_valid: scores of validation triples
-    :param y_valid: labels of validation triples
-    :param X_test: scores of test triples
+    :param X_valid: scores of validation triples (n_valid,1)
+    :param y_valid: labels of validation triples (n_valid,)
+    :param X_test: scores of test triples (n_test,1)
     :param method: one of 'sigmoid', 'isotonic'
     :return: calibrated validation and test predictions
+        ((n_valid,) (n_test,))
     """
     if method == 'sigmoid':
         calibrator = LogisticRegression()
