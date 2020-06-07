@@ -6,10 +6,13 @@ import argparse
 import os
 import torch
 
+import numpy as np
 import pandas as pd
 
 from sklearn.metrics import accuracy_score, f1_score
-from sklearn.calibration import CalibratedClassifierCV
+from scipy.special import expit
+from sklearn.isotonic import IsotonicRegression
+from sklearn.linear_model import LogisticRegression
 
 import kge.model
 import kge.config
@@ -38,16 +41,15 @@ def parse_args():
 
     parser.add_argument(
         '--negative', default='codex',
-        nargs='+',
         choices=['frequency', 'uniform', 'codex'],
         help=(
-            'Types of negative sampling to use. '
+            'Type of negative sampling to use. '
             'Default is CoDEx hard negatives'
         )
     )
 
     parser.add_argument(
-        '--calib-type', default='isotonic',
+        '--calib-type', default='sigmoid',
         choices=['sigmoid', 'isotonic'],
         help=(
             'Calibrator type. '
@@ -141,6 +143,34 @@ def load_neg_spo(dataset, size='s'):
     return negs
 
 
+def calibrate(X_valid, y_valid, X_test, method='sigmoid'):
+    if method == 'sigmoid':
+        calibrator = LogisticRegression()
+        calibrator.fit(X_valid, y_valid)
+        return (
+            calibrator.predict(X_valid),
+            calibrator.predict(X_test)
+        )
+    elif method == 'isotonic':
+        X_valid, X_test = expit(X_valid), expit(X_test)
+        X_valid, X_test = (
+            torch.flatten(X_valid),
+            torch.flatten(X_test)
+        )
+        calibrator = IsotonicRegression(out_of_bounds='clip')
+        calibrator.fit(X_valid, y_valid)
+
+        def binarize(y):
+            return np.asarray(y > 0.5, dtype=int)
+        return (
+            binarize(calibrator.predict(X_valid)),
+            binarize(calibrator.predict(X_test))
+        )
+    else:
+        raise ValueError('Calibration type {} not supported'.format(
+            method))
+
+
 def main():
     args = parse_args()
 
@@ -158,7 +188,7 @@ def main():
         if args.negative in ('uniform', 'frequency'):
             valid_neg_spo, test_neg_spo = [
                 generate_neg_spo(dataset, split,
-                                 negative_type=args.negative_type)
+                                 negative_type=args.negative)
                 for split in splits]
         else:
             valid_neg_spo, test_neg_spo = load_neg_spo(dataset, size=args.size)
@@ -178,20 +208,30 @@ def main():
                     model, test_spo, test_neg_spo)
 
                 # Calibrate scores and predict on valid and test sets
-                print('Calibrating', model_file, 'on the validation set')
-                calibrator = CalibratedClassifierCV(
-                    cv=5, method=args.calib_type)
-                calibrator.fit(X_valid, y_valid)
+                print(
+                    'Calibrating', model_file,
+                    'on the validation set using',
+                    args.calib_type, 'calibration'
+                )
 
-                Xs, ys = (X_valid, X_test), (y_valid, y_test)
+                # Calibrate and get validation/test predictions
+                y_pred_valid, y_pred_test = calibrate(
+                    X_valid, y_valid, X_test, method=args.calib_type)
+
+                Xs, y_trues, y_preds = (
+                    (X_valid, X_test),
+                    (y_valid, y_test),
+                    (y_pred_valid, y_pred_test)
+                )
                 metrics.append({
                     'model_file': model_file
                 })
-                for X, y, split in zip(Xs, ys, splits):
-                    y_pred = calibrator.predict(X)
+
+                for X, y_true, y_pred, split in zip(
+                        Xs, y_trues, y_preds, splits):
                     metrics[-1]['accuracy_' + split] = (
-                        accuracy_score(y, y_pred))
-                    metrics[-1]['f1_' + split] = f1_score(y, y_pred)
+                        accuracy_score(y_true, y_pred))
+                    metrics[-1]['f1_' + split] = f1_score(y_true, y_pred)
 
         for metric in metrics:
             for key, val in metric.items():
