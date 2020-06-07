@@ -117,8 +117,9 @@ def filter_false_negatives(scores, test_spo, all_spo, direction='o'):
             if direction == 'o'
             else (all_spo[:, 0] != s) & (all_spo[:, 2] == o)
         )
+        idx = 0 if direction == 's' else 2
 
-        false_neg_idx = all_spo[rel_idx & ent_idx]
+        false_neg_idx = all_spo[rel_idx & ent_idx][:, idx]
         scores[i, false_neg_idx] = float('-Inf')  # ranked last
     return scores
 
