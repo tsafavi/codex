@@ -50,11 +50,14 @@ cd codex-master
 python3.7 -m venv myenv
 source myenv/bin/activate
 pip install -r requirements.txt
+
+# finally, install the codex data-loading API
+pip install -e .
 ```
 
 ## <a id="explore">Data exploration and analysis</a>
 
-To get familiar with the CoDEx datasets in an easy-to-use interface, we have provided an exploration notebook with Jupyter and a simple data-loading API in ```codex.py``` that makes loading different data aspects, like descriptions, extracts, dataset splits, etc. straightforward.
+To get familiar with the CoDEx datasets and the data-loading API in an easy-to-use interface, we have provided an exploration notebook with Jupyter. 
 To launch:
 ```
 # run from codex-master/
