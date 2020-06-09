@@ -107,7 +107,7 @@ def filter_false_negatives(scores, test_spo, all_spo, direction='o'):
     :param scores: scores of test predictions
     :param test_spo: torch.Tensor of test triples
     :param all_spo: torch.Tensor of all triples for filtering
-    :return scores: scores for each object in test,
+    :return scores: scores for each subject or object in test,
         with false negatives filtered out
     """
     for i, (s, p, o) in enumerate(test_spo):
