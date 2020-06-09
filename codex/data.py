@@ -10,11 +10,10 @@ class Codex(object):
     CODES = ['ar', 'de', 'en', 'es', 'ru', 'zh']
     SIZES = ['s', 'm', 'l']
 
-    def __init__(self, code='en', size='s', codex_base='data/'):
+    def __init__(self, code='en', size='s'):
         """
         :param code: one of Codex.CODES
         :param size: one of Codex.SIZES
-        :param codex_base: path to codex data
         """
         if code not in Codex.CODES:
             raise ValueError('Language code {} not supported'.format(
@@ -26,7 +25,9 @@ class Codex(object):
         self.code = code
         self.size = size
         self.name_ = 'CoDEx-{}'.format(size.upper())
-        self.codex_base = codex_base
+        self.codex_base=(
+            os.path.join(
+                os.path.split(os.path.abspath(__file__))[0], '../data'))
 
         self.entities_ = {}
         self.relations_ = {}
