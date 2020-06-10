@@ -200,8 +200,8 @@ def main():
                 for split in splits]
         else:
             valid_neg_spo, test_neg_spo = load_neg_spo(dataset, size=args.size)
-            print('Loaded {} valid negatives and {} test negatives'.format(
-                len(valid_neg_spo), len(test_neg_spo)))
+            print(f'Loaded {len(valid_neg_spo)} valid negatives',
+                  f'and {len(test_neg_spo)} test negatives')
 
         metrics = []
         for model_file in args.model_files:
@@ -243,7 +243,7 @@ def main():
 
         for metric in metrics:
             for key, val in metric.items():
-                print('{}: {}'.format(key, val))
+                print(f'{key}: {val}')
             print()
 
 
