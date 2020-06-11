@@ -8,7 +8,10 @@ class Codex(object):
 
     # Available language codes
     CODES = ['ar', 'de', 'en', 'es', 'ru', 'zh']
+    # CoDEx data sizes
     SIZES = ['s', 'm', 'l']
+    # Ordering and names of triple columns
+    COLUMNS = ['head', 'relation', 'tail']
 
     def __init__(self, code='en', size='s'):
         """
@@ -16,16 +19,14 @@ class Codex(object):
         :param size: one of Codex.SIZES
         """
         if code not in Codex.CODES:
-            raise ValueError('Language code {} not supported'.format(
-                code))
+            raise ValueError(f'Language code {code} not supported')
         if size not in Codex.SIZES:
-            raise ValueError('Size {} not recognized'.format(
-                size))
+            raise ValueError(f'Size {size} not recognized')
 
         self.code = code
         self.size = size
-        self.name_ = 'CoDEx-{}'.format(size.upper())
-        self.codex_base=(
+        self.name_ = f'CoDEx-{size.upper()}'
+        self.data_dir_base = (
             os.path.join(
                 os.path.split(os.path.abspath(__file__))[0], '../data'))
 
@@ -78,8 +79,8 @@ class Codex(object):
     def entity_extract(self, eid):
         """Get the Wikipedia intro extract for this entity"""
         fname = os.path.join(
-            self.codex_base, 'entities', self.code,
-            'extracts', '{}.txt'.format(eid))
+            self.data_dir_base, 'entities', self.code,
+            'extracts', f'{eid}.txt')
         if os.path.exists(fname):
             with open(fname) as f:
                 return ''.join(f.readlines())
@@ -113,8 +114,8 @@ class Codex(object):
     def entity_type_extract(self, type_id):
         """Get the Wikipedia intro extract for this entity type"""
         fname = os.path.join(
-            self.codex_base, 'types', self.code,
-            'extracts', '{}.txt'.format(type_id))
+            self.data_dir_base, 'types', self.code,
+            'extracts', f'{type_id}.txt')
         if os.path.exists(fname):
             with open(fname) as f:
                 return ''.join(f.readlines())
@@ -140,7 +141,7 @@ class Codex(object):
         elif split == 'test':
             return self._load_test()
         else:
-            raise ValueError('Split {} not recognized'.format(split))
+            raise ValueError(f'Split {split} not recognized')
 
     def negative_split(self, split):
         """
@@ -152,8 +153,7 @@ class Codex(object):
         elif split == 'test':
             return self._load_triples('test_neg')
         else:
-            raise ValueError('Split {} not recognized for negatives'.format(
-                split))
+            raise ValueError(f'Split {split} not recognized for negatives')
 
     # Data loading utilities -----------------------------------------
 
@@ -161,7 +161,7 @@ class Codex(object):
         if not len(self.entities_):
             self.entities_ = json.load(
                 open(os.path.join(
-                    self.codex_base,
+                    self.data_dir_base,
                     'entities',
                     self.code,
                     'entities.json')))
@@ -171,7 +171,7 @@ class Codex(object):
         if not len(self.relations_):
             self.relations_ = json.load(
                 open(os.path.join(
-                    self.codex_base,
+                    self.data_dir_base,
                     'relations',
                     self.code,
                     'relations.json')))
@@ -181,7 +181,7 @@ class Codex(object):
         if not len(self.entity_types_):
             self.entity_types_ = json.load(
                 open(os.path.join(
-                    self.codex_base,
+                    self.data_dir_base,
                     'types',
                     'entity2types.json')))
         return self.entity_types_
@@ -190,7 +190,7 @@ class Codex(object):
         if not len(self.type_labels_):
             self.type_labels_ = json.load(
                 open(os.path.join(
-                    self.codex_base,
+                    self.data_dir_base,
                     'types',
                     self.code,
                     'types.json')))
@@ -222,12 +222,10 @@ class Codex(object):
         return self.test_neg_
 
     def _load_triples(self, split):
-        df = pd.read_csv(
+        return pd.read_csv(
             os.path.join(
-                self.codex_base,
+                self.data_dir_base,
                 'triples',
-                'codex-{}'.format(self.size),
-                '{}.txt'.format(split)),
-            sep='\t', header=None)
-        df.columns = ['head', 'relation', 'tail']
-        return df
+                f'codex-{self.size}',
+                f'{split}.txt'),
+            sep='\t', names=Codex.COLUMNS)
