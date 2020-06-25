@@ -1,4 +1,4 @@
-![The CoDEx logo.](LogoMakr_4uA3bK.png)
+![The CoDEx logo.](codex_logo.png)
 
 CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia. 
 CoDEx offers three rich knowledge graph datasets that contain positive and hard negative triples, entity types, entity and relation descriptions, and Wikipedia page extracts for entities. 
