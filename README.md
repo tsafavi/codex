@@ -34,6 +34,7 @@ The statistics for each CoDEx dataset are as follows:
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
     - <a href="#triples">Triples</a>
+5. <a href="#ref">References and acknowledgements</a>
 
 ## <a id="quick-start">Quick start</a>
 
@@ -290,4 +291,8 @@ cd data/triples
 unzip raw.zip
 ```
 This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
+
+# <a id="ref">References and acknowledgements</a>
+
+We thank [HeadsOfBirds](https://thenounproject.com/search/?q=lightbulb&i=1148270) for the lightbulb icon and [Evan Bond](https://thenounproject.com/icon/1113230/) for the book icon in our logo.
 
