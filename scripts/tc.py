@@ -9,6 +9,8 @@ import torch
 import numpy as np
 import pandas as pd
 
+from tqdm import tqdm
+
 from sklearn.metrics import accuracy_score, f1_score
 from scipy.special import expit
 from sklearn.isotonic import IsotonicRegression

@@ -2,3 +2,4 @@ jupyterlab
 matplotlib
 pandas
 seaborn
+tqdm
