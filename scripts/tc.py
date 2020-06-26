@@ -14,8 +14,8 @@ from scipy.special import expit
 from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import LogisticRegression
 
+from kge import Config
 import kge.model
-import kge.config
 import kge.util.sampler
 from kge.util.io import load_checkpoint
 
@@ -93,7 +93,7 @@ def generate_neg_spo(
     :return: torch.Tensor of randomly generated negative triples
     """
     # Sample corrupted object entities
-    config = kge.config.Config()
+    config = Config()
 
     if negative_type == 'uniform':
         sampler = kge.util.sampler.KgeUniformSampler(
