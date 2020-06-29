@@ -15,3 +15,4 @@ venv/
 kge/
 myenv/
 *.egg-info/
+local/
