@@ -16,3 +16,6 @@ kge/
 myenv/
 *.egg-info/
 local/
+.vscode/
+codex.csv
+fb.csv
