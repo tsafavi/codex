@@ -143,9 +143,9 @@ class Codex(object):
         :return: negative triples in the split as a pandas DataFrame
         """
         if split == "valid":
-            return self._load_triples("valid_neg")
+            return self._load_triples("valid_negatives")
         elif split == "test":
-            return self._load_triples("test_neg")
+            return self._load_triples("test_negatives")
         else:
             raise ValueError(f"Split {split} not recognized for negatives")
 

@@ -125,7 +125,7 @@ def load_neg_spo(dataset, size="s"):
     """
     negs = []
 
-    for split in ("valid_neg", "test_neg"):
+    for split in ("valid_negatives", "test_negatives"):
         triples = pd.read_csv(
             os.path.join("data/triples/codex-" + size, split + ".txt"),
             sep="\t",
