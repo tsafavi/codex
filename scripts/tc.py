@@ -175,70 +175,70 @@ def calibrate(X_valid, y_valid, X_test, method="sigmoid"):
         raise ValueError("Calibration type {} not supported".format(method))
 
 
+@torch.no_grad()
 def main():
     args = parse_args()
 
-    with torch.no_grad():
-        # Load first model, get dataset
-        # Assumes all models trained on same data
-        checkpoint = load_checkpoint(args.model_files[0], device="cpu")
-        model = kge.model.KgeModel.create_from(checkpoint)
-        dataset = model.dataset
+    # Load first model, get dataset
+    # Assumes all models trained on same data
+    checkpoint = load_checkpoint(args.model_files[0], device="cpu")
+    model = kge.model.KgeModel.create_from(checkpoint)
+    dataset = model.dataset
 
-        splits = ("valid", "test")
-        valid_spo, test_spo = [dataset.split(split) for split in splits]
+    splits = ("valid", "test")
+    valid_spo, test_spo = [dataset.split(split) for split in splits]
 
-        if args.negative in ("uniform", "frequency"):
-            valid_neg_spo, test_neg_spo = [
-                generate_neg_spo(dataset, split, negative_type=args.negative)
-                for split in splits
-            ]
-        else:
-            valid_neg_spo, test_neg_spo = load_neg_spo(dataset, size=args.size)
+    if args.negative in ("uniform", "frequency"):
+        valid_neg_spo, test_neg_spo = [
+            generate_neg_spo(dataset, split, negative_type=args.negative)
+            for split in splits
+        ]
+    else:
+        valid_neg_spo, test_neg_spo = load_neg_spo(dataset, size=args.size)
+        print(
+            f"Loaded {len(valid_neg_spo)} valid negatives",
+            f"and {len(test_neg_spo)} test negatives",
+        )
+
+    metrics = []
+    for model_file in args.model_files:
+        if os.path.exists(model_file):
+            checkpoint = load_checkpoint(model_file, device="cpu")
+            model = kge.model.KgeModel.create_from(checkpoint)
+
+            # Score negative and positive validation triples
+            X_valid, y_valid = get_X_y(model, valid_spo, valid_neg_spo)
+            X_test, y_test = get_X_y(model, test_spo, test_neg_spo)
+
+            # Calibrate scores and predict on valid and test sets
             print(
-                f"Loaded {len(valid_neg_spo)} valid negatives",
-                f"and {len(test_neg_spo)} test negatives",
+                "Calibrating",
+                model_file,
+                "on the validation set using",
+                args.calib_type,
+                "calibration",
             )
 
-        metrics = []
-        for model_file in args.model_files:
-            if os.path.exists(model_file):
-                checkpoint = load_checkpoint(model_file, device="cpu")
-                model = kge.model.KgeModel.create_from(checkpoint)
+            # Calibrate and get validation/test predictions
+            y_pred_valid, y_pred_test = calibrate(
+                X_valid, y_valid, X_test, method=args.calib_type
+            )
 
-                # Score negative and positive validation triples
-                X_valid, y_valid = get_X_y(model, valid_spo, valid_neg_spo)
-                X_test, y_test = get_X_y(model, test_spo, test_neg_spo)
+            Xs, y_trues, y_preds = (
+                (X_valid, X_test),
+                (y_valid, y_test),
+                (y_pred_valid, y_pred_test),
+            )
+            metrics.append({"model_file": model_file})
 
-                # Calibrate scores and predict on valid and test sets
-                print(
-                    "Calibrating",
-                    model_file,
-                    "on the validation set using",
-                    args.calib_type,
-                    "calibration",
-                )
+            for X, y_true, y_pred, split in zip(Xs, y_trues, y_preds, splits):
+                metrics[-1]["accuracy_" + split] = accuracy_score(y_true, y_pred)
+                metrics[-1]["f1_" + split] = f1_score(y_true, y_pred)
 
-                # Calibrate and get validation/test predictions
-                y_pred_valid, y_pred_test = calibrate(
-                    X_valid, y_valid, X_test, method=args.calib_type
-                )
-
-                Xs, y_trues, y_preds = (
-                    (X_valid, X_test),
-                    (y_valid, y_test),
-                    (y_pred_valid, y_pred_test),
-                )
-                metrics.append({"model_file": model_file})
-
-                for X, y_true, y_pred, split in zip(Xs, y_trues, y_preds, splits):
-                    metrics[-1]["accuracy_" + split] = accuracy_score(y_true, y_pred)
-                    metrics[-1]["f1_" + split] = f1_score(y_true, y_pred)
-
-        for metric in metrics:
-            for key, val in metric.items():
-                print(f"{key}: {val}")
-            print()
+    for metric in metrics:
+        for key, val in metric.items():
+            print(f"{key}: {val}")
+        print()
 
 
 if __name__ == "__main__":
