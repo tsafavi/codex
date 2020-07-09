@@ -85,7 +85,7 @@ This script will install the library in the ```kge/``` directory inside your ven
 
 ### <a id="scripts">Reproducing our results</a>
 
-For the evaluation results not obtained using LibKGE's testing API, we provide several additional evaluation scripts to reproduce results in our paper. These scripts assume that you have set up LibKGE using the script we provided. 
+For the evaluation results not obtained using LibKGE's testing API, we provide several additional evaluation scripts to reproduce results in our paper. All scripts are written to run on a CPU. These scripts assume that you have set up LibKGE using the script we provided. 
 
 #### <a id="baseline-script">Link prediction baseline</a>
 
