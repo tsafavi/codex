@@ -172,7 +172,7 @@ def calibrate(X_valid, y_valid, X_test, method="sigmoid"):
             binarize(calibrator.predict(X_test)),
         )
     else:
-        raise ValueError("Calibration type {} not supported".format(method))
+        raise ValueError(f"Calibration type {method} not supported")
 
 
 @torch.no_grad()
