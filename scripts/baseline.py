@@ -202,15 +202,15 @@ def main():
                 baseline_metric = metrics_mean["Baseline"][metric_name]
                 diff = model_metric - baseline_metric
 
-                line = {
-                    "relation": relation_ids[rid],
-                    "metric": metric_name,
-                    "direction": direction,
-                    "count": len(test_filt),
-                    "diff": diff,
-                    "model": model_metric,
-                    "baseline": baseline_metric,
-                }
+                line = dict(
+                    relation=relation_ids[rid],
+                    metric=metric_name,
+                    direction=direction,
+                    count=len(test_filt),
+                    diff=diff,
+                    model=model_metric,
+                    baseline=baseline_metric
+                )
 
                 if args.csv is not None:
                     dfs.append(pd.DataFrame.from_dict(line, orient="index").transpose())

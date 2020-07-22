@@ -1,17 +1,10 @@
-"""Triple classification with different negative sampling and calibration techniques"""
 import argparse
 import os
 import torch
 
-import numpy as np
 import pandas as pd
 
-from tqdm import tqdm
-
 from sklearn.metrics import accuracy_score, f1_score
-from scipy.special import expit
-from sklearn.isotonic import IsotonicRegression
-from sklearn.linear_model import LogisticRegression
 
 from kge import Config
 import kge.model
@@ -43,10 +36,13 @@ def parse_args():
     )
 
     parser.add_argument(
-        "--calib-type",
-        default="sigmoid",
-        choices=["sigmoid", "isotonic"],
-        help=("Calibrator type. Default is sigmoid (Platt scaling)"),
+        "--csv",
+        default=None,
+        help=(
+            "CSV filename to save results. "
+            "Default None; if an argument is provided, "
+            "writes results to the specified file."
+        ),
     )
 
     return parser.parse_args()
@@ -109,7 +105,7 @@ def generate_neg_spo(dataset, split, negative_type="uniform", num_samples=1):
 
     neg_spo = torch.cat(
         (
-            torch.repeat_interleave(spo[:, :2], num_samples, dim=0),
+            torch.repeat_interleave(spo[:, :2].long(), num_samples, dim=0),
             torch.reshape(neg_o, (-1, 1)),
         ),
         dim=1,
@@ -145,36 +141,6 @@ def load_neg_spo(dataset, size="s"):
     return negs
 
 
-def calibrate(X_valid, y_valid, X_test, method="sigmoid"):
-    """
-    :param X_valid: scores of validation triples (n_valid,1)
-    :param y_valid: labels of validation triples (n_valid,)
-    :param X_test: scores of test triples (n_test,1)
-    :param method: one of "sigmoid", "isotonic"
-    :return: calibrated validation and test predictions
-        ((n_valid,) (n_test,))
-    """
-    if method == "sigmoid":
-        calibrator = LogisticRegression()
-        calibrator.fit(X_valid, y_valid)
-        return (calibrator.predict(X_valid), calibrator.predict(X_test))
-    elif method == "isotonic":
-        X_valid, X_test = expit(X_valid), expit(X_test)
-        X_valid, X_test = (torch.flatten(X_valid), torch.flatten(X_test))
-        calibrator = IsotonicRegression(out_of_bounds="clip")
-        calibrator.fit(X_valid, y_valid)
-
-        def binarize(y):
-            return np.asarray(y > 0.5, dtype=int)
-
-        return (
-            binarize(calibrator.predict(X_valid)),
-            binarize(calibrator.predict(X_test)),
-        )
-    else:
-        raise ValueError(f"Calibration type {method} not supported")
-
-
 @torch.no_grad()
 def main():
     args = parse_args()
@@ -186,7 +152,7 @@ def main():
     dataset = model.dataset
 
     splits = ("valid", "test")
-    valid_spo, test_spo = [dataset.split(split) for split in splits]
+    valid_spo, test_spo = [dataset.split(split).long() for split in splits]
 
     if args.negative in ("uniform", "frequency"):
         valid_neg_spo, test_neg_spo = [
@@ -200,7 +166,12 @@ def main():
             f"and {len(test_neg_spo)} test negatives",
         )
 
+    valid_spo_all = torch.cat((valid_spo, valid_neg_spo))
+    test_spo_all = torch.cat((test_spo, test_neg_spo))
+
     metrics = []
+    dfs = []
+
     for model_file in args.model_files:
         if os.path.exists(model_file):
             checkpoint = load_checkpoint(model_file, device="cpu")
@@ -210,30 +181,69 @@ def main():
             X_valid, y_valid = get_X_y(model, valid_spo, valid_neg_spo)
             X_test, y_test = get_X_y(model, test_spo, test_neg_spo)
 
-            # Calibrate scores and predict on valid and test sets
-            print(
-                "Calibrating",
-                model_file,
-                "on the validation set using",
-                args.calib_type,
-                "calibration",
+            valid_relations = valid_spo_all[:, 1].unique()
+            test_relations = test_spo_all[:, 1].unique()
+
+            y_pred = torch.zeros(y_test.shape, dtype=torch.long, device="cpu")
+
+            ############################################################################
+            # begin credits to https://github.com/uma-pi1/kge/blob/triple_classification/kge/job/triple_classification.py#L302 #
+            ############################################################################
+            rel_thresholds = {r: -float("inf") for r in range(dataset.num_relations())}
+
+            for r in valid_relations:  # set a threshold for each relation
+                current_rel = valid_spo_all[:, 1] == r
+                true_labels = y_valid[current_rel].view(-1)
+
+                predictions = (
+                    X_valid[current_rel].view(-1, 1) >= X_valid[current_rel].view(1, -1)
+                ).t()
+
+                accuracies = (predictions == true_labels).float().sum(dim=1)
+                accuracies_max = accuracies.max()
+
+                rel_thresholds[r.item()] = X_valid[current_rel][
+                    accuracies_max == accuracies
+                ].min()
+
+            for r in test_relations:  # get predictions based on validation thresholds
+                if r in valid_relations:
+                    current_rel = test_spo_all[:, 1] == r
+                    true_labels = y_test[current_rel]
+
+                    rel_threshold = rel_thresholds[r.item()]
+                    predictions = X_test[current_rel] >= rel_threshold
+
+                    y_pred[current_rel] = predictions.view(-1).long()
+                else:
+                    num_skipped = len(test_spo_all[test_spo_all[:, 1] == r])
+                    print(
+                        f"Relation {r} not in valid data;",
+                        f"skipping {num_skipped} test instances"
+                    )
+
+            ############################################################################
+            #                                end credits                               #
+            ############################################################################
+
+            y_test = y_test.numpy()
+            y_pred = y_pred.numpy()
+
+            line = dict(
+                accuracy=accuracy_score(y_test, y_pred),
+                f1=f1_score(y_test, y_pred),
+                model_file=model_file
             )
 
-            # Calibrate and get validation/test predictions
-            y_pred_valid, y_pred_test = calibrate(
-                X_valid, y_valid, X_test, method=args.calib_type
-            )
+            metrics.append(line)
 
-            Xs, y_trues, y_preds = (
-                (X_valid, X_test),
-                (y_valid, y_test),
-                (y_pred_valid, y_pred_test),
-            )
-            metrics.append({"model_file": model_file})
+            if args.csv is not None:
+                dfs.append(pd.DataFrame.from_dict(line, orient="index").transpose())
 
-            for X, y_true, y_pred, split in zip(Xs, y_trues, y_preds, splits):
-                metrics[-1]["accuracy_" + split] = accuracy_score(y_true, y_pred)
-                metrics[-1]["f1_" + split] = f1_score(y_true, y_pred)
+    if args.csv is not None:
+        df = pd.concat(dfs)
+        df.to_csv(args.csv, index=False)
+        print("Saved results to", args.csv)
 
     for metric in metrics:
         for key, val in metric.items():
