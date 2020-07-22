@@ -174,10 +174,10 @@ Alternatively, you can download the models manually following the links we provi
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.838 | 0.845 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/y5tbtzqa4ndtdrh/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| TransE | 0.832 | 0.840 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/67er5ddvsheyn41/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
-| ComplEx | 0.842 | 0.851 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/amui3jl9dt5y0v0/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| ConvE | 0.841 | 0.845 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/xxudenkcx249bso/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| RESCAL | 0.838 | 0.845 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
+| TransE | 0.832 | 0.840 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
+| ComplEx | 0.842 | 0.851 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ConvE | 0.841 | 0.845 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
 | TuckER | 0.839 | 0.845 | <a href="models/triple-classification/codex-s/tucker/config.yaml">config.yaml</a> | |
 
 #### <a id="m-tc">CoDEx-M</a>
@@ -185,7 +185,7 @@ Alternatively, you can download the models manually following the links we provi
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
 | RESCAL | 0.818 | 0.812 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/a41qdj3m889vpo9/checkpoint_best.pt?dl=0">KvsAll-kl<a/> |
-| TransE | 0.798 | 0.800 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1889mg22lg84fwe/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
+| TransE | 0.798 | 0.800 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
 | ComplEx | 0.824 | 0.819 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1kxb89a9u5zn95e/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 | ConvE | 0.829 | 0.830 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/yyo0v1mu6yluxft/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 | TuckER | 0.823 | 0.819 | <a href="models/triple-classification/codex-m/tucker/config.yaml">config.yaml</a> | |
