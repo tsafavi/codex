@@ -1,0 +1,63 @@
+dataset:
+  name: codex-l
+  num_entities: 77951
+  num_relations: 69
+entity_ranking:
+  metrics_per:
+    relation_type: true
+eval:
+  batch_size: 256
+import:
+- reciprocal_relations_model
+- relational_tucker3
+lookup_embedder:
+  dim: 256
+  initialize_args:
+    normal_:
+      mean: 0.0
+      std: 0.0002023299831038551
+    uniform_:
+      a: -0.90753396307718
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+  regularize_args:
+    weighted: true
+model: relational_tucker3
+negative_sampling:
+  implementation: batch
+reciprocal_relations_model:
+  base_model:
+    type: relational_tucker3
+relational_tucker3:
+  entity_embedder:
+    dim: 256
+    dropout: 0.16058462113142014
+    regularize_weight: 8.060630711127372e-11
+  relation_embedder:
+    base_embedder:
+      type: lookup_embedder
+    dim: 65536
+    dropout: 0.08574721589684486
+    regularize_weight: 7.190952293186328e-18
+train:
+  auto_correct: true
+  batch_size: 512
+  loss_arg: .nan
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    factor: 0.95
+    mode: max
+    patience: 4
+    threshold: 0.0001
+  max_epochs: 400
+  optimizer_args:
+    lr: 0.019580139046901493
+  type: 1vsAll
+valid:
+  early_stopping:
+    min_threshold:
+      epochs: 5
+      metric_value: 0.05
+

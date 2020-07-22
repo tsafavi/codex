@@ -1,0 +1,379 @@
+KvsAll:
+  label_smoothing: 0.0949656805023551
+  query_types:
+    _po: true
+    s_o: false
+    sp_: true
+ax_search:
+  num_sobol_trials: 20
+  num_trials: 20
+  parameter_constraints: []
+  parameters:
+  - name: model
+    type: choice
+    values:
+    - relational_tucker3
+    - reciprocal_relations_model
+  - is_ordered: true
+    name: train.batch_size
+    type: choice
+    values:
+    - 128
+    - 256
+    - 512
+    - 1024
+  - name: train.type
+    type: fixed
+    value: KvsAll
+  - name: train.optimizer
+    type: choice
+    values:
+    - Adam
+    - Adagrad
+  - name: train.loss
+    type: fixed
+    value: kl
+  - bounds:
+    - 0.0003
+    - 1.0
+    log_scale: true
+    name: train.optimizer_args.lr
+    type: range
+  - name: train.lr_scheduler
+    type: fixed
+    value: ReduceLROnPlateau
+  - name: train.lr_scheduler_args.mode
+    type: fixed
+    value: max
+  - name: train.lr_scheduler_args.factor
+    type: fixed
+    value: 0.95
+  - name: train.lr_scheduler_args.threshold
+    type: fixed
+    value: 0.0001
+  - bounds:
+    - 0
+    - 10
+    name: train.lr_scheduler_args.patience
+    type: range
+  - is_ordered: true
+    name: lookup_embedder.dim
+    type: choice
+    values:
+    - 128
+    - 256
+    - 512
+  - name: lookup_embedder.initialize
+    type: choice
+    values:
+    - xavier_normal_
+    - xavier_uniform_
+    - normal_
+    - uniform_
+  - name: lookup_embedder.initialize_args.normal_.mean
+    type: fixed
+    value: 0.0
+  - bounds:
+    - 1.0e-05
+    - 1.0
+    log_scale: true
+    name: lookup_embedder.initialize_args.normal_.std
+    type: range
+  - bounds:
+    - -1.0
+    - -1.0e-05
+    name: lookup_embedder.initialize_args.uniform_.a
+    type: range
+  - name: lookup_embedder.initialize_args.xavier_uniform_.gain
+    type: fixed
+    value: 1.0
+  - name: lookup_embedder.initialize_args.xavier_normal_.gain
+    type: fixed
+    value: 1.0
+  - is_ordered: true
+    name: lookup_embedder.regularize
+    type: choice
+    values:
+    - ''
+    - l3
+    - l2
+    - l1
+  - name: lookup_embedder.regularize_args.weighted
+    type: choice
+    values:
+    - true
+    - false
+  - bounds:
+    - 1.0e-20
+    - 0.1
+    log_scale: true
+    name: relational_tucker3.entity_embedder.regularize_weight
+    type: range
+  - bounds:
+    - 1.0e-20
+    - 0.1
+    log_scale: true
+    name: relational_tucker3.relation_embedder.regularize_weight
+    type: range
+  - bounds:
+    - -0.5
+    - 0.5
+    name: relational_tucker3.entity_embedder.dropout
+    type: range
+  - bounds:
+    - -0.5
+    - 0.5
+    name: relational_tucker3.relation_embedder.dropout
+    type: range
+  - bounds:
+    - -0.3
+    - 0.3
+    name: KvsAll.label_smoothing
+    type: range
+  - name: relational_tucker3.relation_embedder.dim
+    type: fixed
+    value: -1
+  sobol_seed: 0
+conve:
+  2D_aspect_ratio: 2
+  class_name: ConvE
+  convolution_bias: true
+  entity_embedder:
+    +++: +++
+    dropout: 0.2
+    type: lookup_embedder
+  feature_map_dropout: 0.2
+  filter_size: 3
+  padding: 0
+  projection_dropout: 0.3
+  relation_embedder:
+    +++: +++
+    dropout: 0.2
+    type: lookup_embedder
+  round_dim: false
+  stride: 1
+dataset:
+  +++: +++
+  files:
+    +++: +++
+    entity_ids:
+      filename: entity_ids.del
+      type: map
+    entity_strings:
+      filename: entity_ids.del
+      type: map
+    relation_ids:
+      filename: relation_ids.del
+      type: map
+    relation_strings:
+      filename: relation_ids.del
+      type: map
+    test:
+      filename: test.del
+      size: 10311
+      type: triples
+    test_without_unseen:
+      filename: test_without_unseen.del
+      size: 10311
+      type: triples
+    train:
+      filename: train.del
+      size: 185584
+      type: triples
+    train_sample:
+      filename: train_sample.del
+      size: 10310
+      type: triples
+    valid:
+      filename: valid.del
+      size: 10310
+      type: triples
+    valid_without_unseen:
+      filename: valid_without_unseen.del
+      size: 10310
+      type: triples
+  name: codex-m
+  num_entities: 17050
+  num_relations: 51
+  pickle: true
+entity_ranking:
+  chunk_size: -1
+  filter_splits:
+  - train
+  - valid
+  filter_with_test: true
+  hits_at_k_s:
+  - 1
+  - 3
+  - 10
+  - 50
+  - 100
+  - 200
+  - 300
+  - 400
+  - 500
+  - 1000
+  metrics_per:
+    argument_frequency: false
+    head_and_tail: false
+    relation_type: true
+  tie_handling: rounded_mean_rank
+eval:
+  batch_size: 256
+  num_workers: 0
+  pin_memory: false
+  split: valid
+  trace_level: epoch
+  type: entity_ranking
+grid_search:
+  parameters:
+    +++: +++
+  run: true
+import:
+- relational_tucker3
+- reciprocal_relations_model
+job:
+  device: cuda
+  type: train
+lookup_embedder:
+  class_name: LookupEmbedder
+  dim: 512
+  dropout: 0.0
+  initialize: xavier_normal_
+  initialize_args:
+    +++: +++
+    normal_:
+      mean: 0.0
+      std: 0.021610635731883543
+    uniform_:
+      a: -0.013633629432106331
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+  normalize:
+    p: -1.0
+    with_grad: false
+  pretrain:
+    ensure_all: false
+    model_filename: ''
+  regularize: lp
+  regularize_args:
+    +++: +++
+    p: 1
+    weighted: true
+  regularize_weight: 0.0
+  round_dim_to: []
+  sparse: false
+manual_search:
+  configurations: []
+  run: true
+model: reciprocal_relations_model
+negative_sampling:
+  chunk_size: -1
+  filtering:
+    implementation: fast_if_available
+    o: false
+    p: false
+    s: false
+    split: ''
+  frequency:
+    smoothing: 1
+  implementation: batch
+  num_samples:
+    o: -1
+    p: 0
+    s: 3
+  sampling_type: uniform
+  shared: false
+  with_replacement: true
+random_seed:
+  numpy: -1
+  python: -1
+  torch: -1
+reciprocal_relations_model:
+  base_model:
+    +++: +++
+    type: relational_tucker3
+  class_name: ReciprocalRelationsModel
+relational_tucker3:
+  class_name: RelationalTucker3
+  entity_embedder:
+    +++: +++
+    dropout: 0.1895404765382409
+    regularize_weight: 3.472500235451897e-15
+    type: lookup_embedder
+  relation_embedder:
+    +++: +++
+    base_embedder:
+      +++: +++
+    dim: -1
+    dropout: -0.48818968143314123
+    regularize_weight: 3.43367368126083e-14
+    type: tucker3_relation_embedder
+search:
+  device_pool: []
+  num_workers: 1
+  on_error: abort
+  type: ax
+train:
+  abort_on_nan: true
+  auto_correct: true
+  batch_size: 256
+  checkpoint:
+    every: 5
+    keep: 3
+  loss: kl
+  loss_arg: .nan
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    +++: +++
+    factor: 0.95
+    mode: max
+    patience: 1
+    threshold: 0.0001
+  max_epochs: 400
+  num_workers: 0
+  optimizer: Adagrad
+  optimizer_args:
+    +++: +++
+    lr: 0.014472014395960959
+  pin_memory: false
+  split: train
+  trace_level: epoch
+  type: KvsAll
+  visualize_graph: false
+tucker3_relation_embedder:
+  base_embedder:
+    +++: +++
+    dim: 100
+    dropout: 0.0
+    type: lookup_embedder
+  class_name: Tucker3RelationEmbedder
+  dim: -1
+  dropout: 0.0
+  initialize: normal_
+  initialize_args:
+    +++: +++
+  normalize: ''
+  pretrain:
+    ensure_all: false
+    model_filename: ''
+  regularize: lp
+  regularize_args:
+    p: 2
+  regularize_weight: 0.0
+user:
+  +++: +++
+valid:
+  early_stopping:
+    min_threshold:
+      epochs: 50
+      metric_value: 0.05
+    patience: 5
+  every: 5
+  metric: mean_reciprocal_rank_filtered_with_test
+  metric_expr: float("nan")
+  split: valid
+  trace_level: epoch
+verbose: true
