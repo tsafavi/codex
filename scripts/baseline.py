@@ -143,9 +143,8 @@ def evaluate_rankings(scores, test_spo, all_spo, direction="o", k=10):
     num_ties = torch.sum(scores == true_scores, dim=1, dtype=torch.double)
     ranks = ranks + num_ties // 2 + 1  # ranks are one-indexed
 
-    mrr = (1 / ranks).numpy()
-    hits = (ranks <= k).numpy()
-    return list(mrr), list(hits)
+    mrr, hits = (1 / ranks).tolist(), (ranks <= k).tolist()
+    return mrr, hits
 
 
 @torch.no_grad()
@@ -160,11 +159,9 @@ def main():
     dataset = model_pt.dataset
 
     # Load all data
-    train_spo, valid_spo, test_spo = (
-        dataset.split("train"),
-        dataset.split("valid"),
-        dataset.split("test"),
-    )
+    train_spo, valid_spo, test_spo = [
+        dataset.split(split) for split in ("train", "valid", "test")
+    ]
     all_spo = torch.cat((train_spo, valid_spo, test_spo), axis=0).long()
 
     # Load relation ID to string mapping
@@ -209,7 +206,7 @@ def main():
                     count=len(test_filt),
                     diff=diff,
                     model=model_metric,
-                    baseline=baseline_metric
+                    baseline=baseline_metric,
                 )
 
                 if args.csv is not None:
