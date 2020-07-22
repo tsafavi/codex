@@ -7,8 +7,8 @@ eval:
   metrics_per:
     relation_type: true
 import:
-- transe
 - reciprocal_relations_model
+- transe
 lookup_embedder:
   dim: 512
   initialize: xavier_normal_

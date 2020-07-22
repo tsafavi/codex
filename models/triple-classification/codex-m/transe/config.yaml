@@ -1,5 +1,5 @@
 dataset:
-  name: codex-m
+  name: codex-m/
   num_entities: 17050
   num_relations: 51
 eval:
@@ -7,36 +7,33 @@ eval:
   metrics_per:
     relation_type: true
 import:
-- transe
 - reciprocal_relations_model
+- transe
 lookup_embedder:
-  dim: 256
-  initialize: xavier_uniform_
+  dim: 512
+  initialize: xavier_normal_
   initialize_args:
     normal_:
       mean: 0.0
-      std: 0.01903646088689759
+      std: 7.387281885290558e-05
     uniform_:
-      a: -0.652908295305511
+      a: -0.860686260168301
     xavier_normal_:
       gain: 1.0
     xavier_uniform_:
       gain: 1.0
-  regularize_args:
-    p: 1
 model: reciprocal_relations_model
 negative_sampling:
   num_samples:
-    o: 16
-    s: 402
+    o: 56
+    s: 2
 reciprocal_relations_model:
   base_model:
     type: transe
 train:
   auto_correct: true
-  batch_size: 512
-  loss: margin_ranking
-  loss_arg: 2.335715088993311
+  batch_size: 128
+  loss_arg: .nan
   lr_scheduler: ReduceLROnPlateau
   lr_scheduler_args:
     factor: 0.95
@@ -44,22 +41,21 @@ train:
     patience: 6
     threshold: 0.0001
   max_epochs: 400
-  optimizer: Adam
   optimizer_args:
-    lr: 0.003722483096197307
+    lr: 0.04121772717931592
   type: negative_sampling
 transe:
   entity_embedder:
-    dropout: 0.46394078247249126
+    dropout: -0.008546690456569195
     normalize:
       p: -1.0
-    regularize_weight: 6.227687287890245e-06
+    regularize_weight: 1.3175179879955912e-07
   l_norm: 2.0
   relation_embedder:
-    dropout: 0.04913484863936901
+    dropout: -0.0637518921867013
     normalize:
       p: -1.0
-    regularize_weight: 3.5193161276337565e-06
+    regularize_weight: 3.7237496170376805e-18
 valid:
   early_stopping:
     min_threshold:

@@ -18,8 +18,8 @@ eval:
   metrics_per:
     relation_type: true
 import:
-- conve
 - reciprocal_relations_model
+- conve
 lookup_embedder:
   dim: 512
   initialize_args:
@@ -36,17 +36,11 @@ lookup_embedder:
 model: reciprocal_relations_model
 negative_sampling:
   implementation: batch
-reciprocal_relations_model:
-  base_model:
-    entity_embedder:
-      dim: 512
-    relation_embedder:
-      dim: 512
 train:
   auto_correct: true
   batch_size: 256
   loss: bce
-  loss_arg: 0.0
+  loss_arg: .nan
   lr_scheduler: ReduceLROnPlateau
   lr_scheduler_args:
     factor: 0.95
