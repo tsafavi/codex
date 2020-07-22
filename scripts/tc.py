@@ -184,7 +184,8 @@ def main():
             valid_relations = valid_spo_all[:, 1].unique()
             test_relations = test_spo_all[:, 1].unique()
 
-            y_pred = torch.zeros(y_test.shape, dtype=torch.long, device="cpu")
+            y_pred_valid = torch.zeros(y_valid.shape, dtype=torch.long, device="cpu")
+            y_pred_test = torch.zeros(y_test.shape, dtype=torch.long, device="cpu")
 
             ############################################################################
             # begin credits to https://github.com/uma-pi1/kge/blob/triple_classification/kge/job/triple_classification.py#L302 #
@@ -202,9 +203,11 @@ def main():
                 accuracies = (predictions == true_labels).float().sum(dim=1)
                 accuracies_max = accuracies.max()
 
-                rel_thresholds[r.item()] = X_valid[current_rel][
-                    accuracies_max == accuracies
-                ].min()
+                rel_threshold = X_valid[current_rel][accuracies_max == accuracies].min()
+                rel_thresholds[r.item()] = rel_threshold
+
+                predictions = X_valid[current_rel] >= rel_threshold
+                y_pred_valid[current_rel] = predictions.view(-1).long()
 
             for r in test_relations:  # get predictions based on validation thresholds
                 if r in valid_relations:
@@ -214,7 +217,7 @@ def main():
                     rel_threshold = rel_thresholds[r.item()]
                     predictions = X_test[current_rel] >= rel_threshold
 
-                    y_pred[current_rel] = predictions.view(-1).long()
+                    y_pred_test[current_rel] = predictions.view(-1).long()
                 else:
                     num_skipped = len(test_spo_all[test_spo_all[:, 1] == r])
                     print(
@@ -227,11 +230,13 @@ def main():
             ############################################################################
 
             y_test = y_test.numpy()
-            y_pred = y_pred.numpy()
+            y_pred_test = y_pred_test.numpy()
 
             line = dict(
-                accuracy=accuracy_score(y_test, y_pred),
-                f1=f1_score(y_test, y_pred),
+                valid_accuracy=accuracy_score(y_valid, y_pred_valid),
+                valid_f1=f1_score(y_valid, y_pred_valid),
+                test_accuracy=accuracy_score(y_test, y_pred_test),
+                test_f1=f1_score(y_test, y_pred_test),
                 model_file=model_file
             )
 

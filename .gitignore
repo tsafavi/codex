@@ -19,3 +19,5 @@ local/
 .vscode/
 codex.csv
 fb.csv
+test.csv
+upload.py
