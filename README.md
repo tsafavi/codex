@@ -145,6 +145,7 @@ Alternatively, you can download the models manually following the links we provi
 | TransE | 0.354 | 0.219 | 0.634 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/n2y9yy301inxbij/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
 | ComplEx | 0.465 | 0.372 | 0.646 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/2zxj9klewmbs35j/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 | ConvE | 0.444 | 0.343 | 0.635 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/93r05b854t0nw8h/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TuckER | 0.444 | 0.339 | 0.638 | | |
 
 #### <a id="m-lp">CoDEx-M</a>
 
@@ -154,6 +155,7 @@ Alternatively, you can download the models manually following the links we provi
 | TransE | 0.303 | 0.223 | 0.454 | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/5vzd6cw99cwhkz2/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
 | ComplEx | 0.337 | 0.262 | 0.476 | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/q0fqwogwn7txz0w/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 | ConvE | 0.318 | 0.239 | 0.464 | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/mmca4gomoo1rlvf/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| TuckER | 0.328 | 0.259 | 0.458 | | |
 
 #### <a id="l-lp">CoDEx-L</a>
 
@@ -163,6 +165,7 @@ Alternatively, you can download the models manually following the links we provi
 | TransE | 0.187 | 0.116 | 0.317 | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/9doc6jqfq7uqmpq/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
 | ComplEx | 0.294 | 0.237 | 0.400 | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/m12qiudcnsv6ts9/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
 | ConvE | 0.303 | 0.240 | 0.420 | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vhvdbaln0bwx625/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TuckER | 0.309 | 0.244 | 0.430 | | |
 
 ### <a id="tc">Triple classification results</a>
 
@@ -171,19 +174,21 @@ Alternatively, you can download the models manually following the links we provi
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.805 | 0.803 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/y5tbtzqa4ndtdrh/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| TransE | 0.662 | 0.640 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/67er5ddvsheyn41/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
-| ComplEx | 0.814 | 0.809 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/amui3jl9dt5y0v0/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| ConvE | 0.731 | 0.728 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/xxudenkcx249bso/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| RESCAL | 0.838 | 0.845 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/y5tbtzqa4ndtdrh/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| TransE | 0.832 | 0.840 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/67er5ddvsheyn41/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
+| ComplEx | 0.842 | 0.851 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/amui3jl9dt5y0v0/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.841 | 0.845 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/xxudenkcx249bso/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TuckER | 0.839 | 0.845 | | |
 
 #### <a id="m-tc">CoDEx-M</a>
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.756 | 0.735 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/a41qdj3m889vpo9/checkpoint_best.pt?dl=0">KvsAll-kl<a/> |
-| TransE | 0.651 | 0.558 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1889mg22lg84fwe/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
-| ComplEx | 0.765 | 0.751 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1kxb89a9u5zn95e/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| ConvE | 0.766 | 0.742 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/yyo0v1mu6yluxft/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| RESCAL | 0.818 | 0.812 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/a41qdj3m889vpo9/checkpoint_best.pt?dl=0">KvsAll-kl<a/> |
+| TransE | 0.798 | 0.800 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1889mg22lg84fwe/checkpoint_best.pt?dl=0">NegSamp-mr</a> |
+| ComplEx | 0.824 | 0.819 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1kxb89a9u5zn95e/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.829 | 0.830 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/yyo0v1mu6yluxft/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| TuckER | 0.823 | 0.819 | | |
 
 
 ## <a id="data">Data directory structure</a>
