@@ -141,6 +141,21 @@ def load_neg_spo(dataset, size="s"):
     return negs
 
 
+def get_threshold(scores, labels):
+    """
+    :param scores: torch.tensor of prediction scores
+    :param labels: torch.tensor of triple labels
+    :return threshold: best decision threshold for these scores
+    """
+    predictions = ((scores.view(-1, 1) >= scores.view(1, -1)).long()).t()
+
+    accuracies = (predictions == labels.view(-1)).float().sum(dim=1)
+    accuracies_max = accuracies.max()
+
+    threshold = scores[accuracies_max == accuracies].min().item()
+    return threshold
+
+
 @torch.no_grad()
 def main():
     args = parse_args()
@@ -190,41 +205,29 @@ def main():
             ############################################################################
             # begin credits to https://github.com/uma-pi1/kge/blob/triple_classification/kge/job/triple_classification.py#L302 #
             ############################################################################
-            rel_thresholds = {r: -float("inf") for r in range(dataset.num_relations())}
+            REL_KEY = -1
+            thresholds = {r: -float("inf") for r in range(dataset.num_relations())}
+            thresholds[REL_KEY] = -float("inf")
 
             for r in valid_relations:  # set a threshold for each relation
                 current_rel = valid_spo_all[:, 1] == r
-                true_labels = y_valid[current_rel].view(-1)
+                threshold = get_threshold(X_valid[current_rel], y_valid[current_rel])
+                thresholds[r.item()] = threshold
 
-                predictions = (
-                    X_valid[current_rel].view(-1, 1) >= X_valid[current_rel].view(1, -1)
-                ).t()
-
-                accuracies = (predictions == true_labels).float().sum(dim=1)
-                accuracies_max = accuracies.max()
-
-                rel_threshold = X_valid[current_rel][accuracies_max == accuracies].min()
-                rel_thresholds[r.item()] = rel_threshold
-
-                predictions = X_valid[current_rel] >= rel_threshold
+                predictions = X_valid[current_rel] >= threshold
                 y_pred_valid[current_rel] = predictions.view(-1).long()
 
+            # also set a global threshold for relations unseen in valid set
+            thresholds[REL_KEY] = get_threshold(X_valid, y_valid)
+
             for r in test_relations:  # get predictions based on validation thresholds
-                if r in valid_relations:
-                    current_rel = test_spo_all[:, 1] == r
-                    true_labels = y_test[current_rel]
+                key = r.item() if r.item() in thresholds else REL_KEY
+                threshold = thresholds[key]
 
-                    rel_threshold = rel_thresholds[r.item()]
-                    predictions = X_test[current_rel] >= rel_threshold
+                current_rel = test_spo_all[:, 1] == r
+                predictions = X_test[current_rel] >= threshold
 
-                    y_pred_test[current_rel] = predictions.view(-1).long()
-                else:
-                    num_skipped = len(test_spo_all[test_spo_all[:, 1] == r])
-                    print(
-                        f"Relation {r} not in valid data;",
-                        f"skipping {num_skipped} test instances"
-                    )
-
+                y_pred_test[current_rel] = predictions.view(-1).long()
             ############################################################################
             #                                end credits                               #
             ############################################################################
@@ -237,7 +240,7 @@ def main():
                 valid_f1=f1_score(y_valid, y_pred_valid),
                 test_accuracy=accuracy_score(y_test, y_pred_test),
                 test_f1=f1_score(y_test, y_pred_test),
-                model_file=model_file
+                model_file=model_file,
             )
 
             metrics.append(line)
