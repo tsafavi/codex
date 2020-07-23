@@ -129,8 +129,8 @@ def load_neg_spo(dataset, size="s"):
         ).values
 
         # Convert string IDs to integer IDs
-        entity_ids = {val: i for i, val in enumerate(dataset.entity_ids())}
-        relation_ids = {val: i for i, val in enumerate(dataset.relation_ids())}
+        entity_ids = dict(map(reversed, enumerate(dataset.entity_ids())))
+        relation_ids = dict(map(reversed, enumerate(dataset.relation_ids())))
 
         triples = [
             [entity_ids[s], relation_ids[p], entity_ids[o]] for (s, p, o) in triples
