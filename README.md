@@ -176,7 +176,7 @@ Alternatively, you can download the models manually following the links we provi
 |--------|----:|---:|------------:|-----------------:|
 | RESCAL | 0.843 | 0.852 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
 | TransE | 0.829 | 0.837 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
-| ComplEx | 0.836 | 0.847 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
+| ComplEx | 0.836 | 0.846 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
 | ConvE | 0.841 | 0.846 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
 | TuckER | 0.840 | 0.846 | <a href="models/triple-classification/codex-s/tucker/config.yaml">config.yaml</a> | |
 
