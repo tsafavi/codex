@@ -34,7 +34,8 @@ The statistics for each CoDEx dataset are as follows:
     - <a href="#entities">Entities and entity types</a>
     - <a href="#relations">Relations</a>
     - <a href="#triples">Triples</a>
-5. <a href="#ref">References and acknowledgements</a>
+5. <a href="#cite">How to cite</a>
+6. <a href="#ref">References and acknowledgements</a>
 
 ## <a id="quick-start">Quick start</a>
 
@@ -296,6 +297,18 @@ cd data/triples
 unzip raw.zip
 ```
 This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
+
+# <a id="cite">How to cite</a>
+If you used our work or found it helpful, please use the following citation: 
+```
+@inproceedings{
+  safavi2020codex,
+  title={CoDEx: A Comprehensive Knowledge Graph Completion Benchmark},
+  author={Tara Safavi and Danai Koutra},
+  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing},
+  year={2020},
+}
+```
 
 # <a id="ref">References and acknowledgements</a>
 
