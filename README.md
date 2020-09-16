@@ -62,7 +62,7 @@ pip install -e .
 To get familiar with the CoDEx datasets and the data-loading API in an easy-to-use interface, we have provided an exploration notebook with Jupyter. 
 To launch:
 ```
-# run from codex-master/
+# run from codex/
 python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
 jupyter lab
 ```
@@ -78,7 +78,7 @@ If you are working on a server and want to run JupyterLab remotely, check out [t
 To **use the pretrained models or run any scripts that involve pretrained models**, you will need to set up [LibKGE](https://github.com/uma-pi1/kge).
 Run the following: 
 ```
-# run from codex-master/
+# run from codex/
 # this may take a few minutes
 ./libkge_setup.sh
 ```
@@ -94,7 +94,7 @@ For the evaluation results not obtained using LibKGE's testing API, we provide s
 The results are saved to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
 To run:
 ```
-# run from codex-master/
+# run from codex/
 scripts/baseline.sh
 ```
 Note that this script first downloads the [best pretrained LibKGE model on FB15K-237](https://github.com/uma-pi1/kge#results-and-pretrained-models) to ```models/link-prediction/fb15k-237/rescal/``` and the best link prediction model on CoDEx-M to ```models/link-prediction/codex-m/complex/``` if they do not already exist. 
@@ -104,7 +104,7 @@ Note that this script first downloads the [best pretrained LibKGE model on FB15K
 ```scripts/tc.py``` runs triple classification and outputs validation and test accuracy/F1. 
 To run:
 ```
-# run from codex-master/
+# run from codex/
 scripts/tc.sh
 ```
 Note that this script first downloads all triple classification models on CoDEx-S and CoDEx-M and saves them to ```models/triple-classification/{codex-s,codex-m}/``` if they do not already exist. 
@@ -128,7 +128,7 @@ positional arguments:
 ```
 For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**:
 ```
-# run from codex-master/
+# run from codex/
 python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
