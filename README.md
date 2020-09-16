@@ -41,8 +41,8 @@ The statistics for each CoDEx dataset are as follows:
 
 ```
 # unzip the repository
-unzip codex.zip
-cd codex-master
+git clone https://github.com/tsafavi/codex.git
+cd codex
 
 # extract English Wikipedia plain-text excerpts for entities
 # other language codes available: ar, de, es, ru, zh
