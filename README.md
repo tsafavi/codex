@@ -95,6 +95,7 @@ The results are saved to CSV files named ```fb.csv``` and ```codex.csv```, respe
 To run:
 ```
 # run from codex/
+# this may take a few minutes
 scripts/baseline.sh
 ```
 Note that this script first downloads the [best pretrained LibKGE model on FB15K-237](https://github.com/uma-pi1/kge#results-and-pretrained-models) to ```models/link-prediction/fb15k-237/rescal/``` and the best link prediction model on CoDEx-M to ```models/link-prediction/codex-m/complex/``` if they do not already exist. 
@@ -105,6 +106,7 @@ Note that this script first downloads the [best pretrained LibKGE model on FB15K
 To run:
 ```
 # run from codex/
+# this may take a few minutes
 scripts/tc.sh
 ```
 Note that this script first downloads all triple classification models on CoDEx-S and CoDEx-M and saves them to ```models/triple-classification/{codex-s,codex-m}/``` if they do not already exist. 
