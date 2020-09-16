@@ -118,14 +118,14 @@ The arguments are as follows:
 ```
 usage: download_pretrained.py [-h]
                               {s,m,l} {triple-classification,link-prediction}
-                              {rescal,transe,complex,conve}
-                              [{rescal,transe,complex,conve} ...]
+                              {rescal,transe,complex,conve,tucker}
+                              [{rescal,transe,complex,conve,tucker} ...]
 
 positional arguments:
   {s,m,l}               CoDEx dataset to download model(s)
   {triple-classification,link-prediction}
                         Task to download model(s) for
-  {rescal,transe,complex,conve}
+  {rescal,transe,complex,conve,tucker}
                         Model(s) to download for this task
 ```
 For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**:
