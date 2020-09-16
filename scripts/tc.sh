@@ -2,7 +2,7 @@
 set -e
 
 declare -a sizes=("s" "m")
-declare -a models=("rescal" "transe" "complex" "conve")
+declare -a models=("rescal" "transe" "complex" "conve" "tucker")
 
 for size in "${sizes[@]}"; do
     # Download pretrained model if not already existing
@@ -10,12 +10,6 @@ for size in "${sizes[@]}"; do
 
     for model in "${models[@]}"; do
         model_file="models/triple-classification/codex-${size}/${model}/checkpoint_best.pt"
-        calib_type="isotonic"
-
-        if [ ${model} = "transe" ] && [ ${size} = "m" ]; then
-            calib_type="sigmoid"
-        fi
-        
-        python scripts/tc.py ${model_file} --size ${size} --calib-type ${calib_type}
+        python scripts/tc.py ${model_file} --size ${size}
     done
 done

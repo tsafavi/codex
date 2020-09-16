@@ -20,7 +20,7 @@ def parse_args():
     parser.add_argument(
         "models",
         nargs="+",
-        choices=["rescal", "transe", "complex", "conve"],
+        choices=["rescal", "transe", "complex", "conve", "tucker"],
         help="Model(s) to download for this task",
     )
 
