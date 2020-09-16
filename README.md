@@ -142,31 +142,31 @@ Alternatively, you can download the models manually following the links we provi
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|----:|-------:|--------:|------------:|-----------------:|
-| RESCAL | 0.404 | 0.293 | 0.623 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j62q0wo5xbkur8h/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| TransE | 0.354 | 0.219 | 0.634 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/n2y9yy301inxbij/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
-| ComplEx | 0.465 | 0.372 | 0.646 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/2zxj9klewmbs35j/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| ConvE | 0.444 | 0.343 | 0.635 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/93r05b854t0nw8h/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| TuckER | 0.444 | 0.339 | 0.638 | <a href="models/link-prediction/codex-s/tucker/config.yaml">config.yaml</a> | |
+| RESCAL | 0.404 | 0.293 | 0.623 | <a href="models/link-prediction/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/v209jchl93mmeuv/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TransE | 0.354 | 0.219 | 0.634 | <a href="models/link-prediction/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/8brqhb4bd5gnktc/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.465 | 0.372 | 0.646 | <a href="models/link-prediction/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/kk3pgdnyddsdzn9/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| ConvE | 0.444 | 0.343 | 0.635 | <a href="models/link-prediction/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/atvu77pzed6mcgh/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TuckER | 0.444 | 0.339 | 0.638 | <a href="models/link-prediction/codex-s/tucker/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/f87xloe2g3f4fvy/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 
 #### <a id="m-lp">CoDEx-M</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|----:|-------:|--------:|------------:|-----------------:|
-| RESCAL | 0.317 | 0.244 | 0.456 | <a href="models/link-prediction/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/2gt5qhjaxmka5a7/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| TransE | 0.303 | 0.223 | 0.454 | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/5vzd6cw99cwhkz2/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
-| ComplEx | 0.337 | 0.262 | 0.476 | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/q0fqwogwn7txz0w/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| ConvE | 0.318 | 0.239 | 0.464 | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/mmca4gomoo1rlvf/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
-| TuckER | 0.328 | 0.259 | 0.458 | <a href="models/link-prediction/codex-m/tucker/config.yaml">config.yaml</a> | |
+| RESCAL | 0.317 | 0.244 | 0.456 | <a href="models/link-prediction/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/e3kp3eu4nnknn5b/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TransE | 0.303 | 0.223 | 0.454 | <a href="models/link-prediction/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/y8uucaajpofct3x/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.337 | 0.262 | 0.476 | <a href="models/link-prediction/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/psy21fvbn5pbmw6/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.318 | 0.239 | 0.464 | <a href="models/link-prediction/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/awjhlrfjrgz9phi/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| TuckER | 0.328 | 0.259 | 0.458 | <a href="models/link-prediction/codex-m/tucker/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/so5l2owtx7wcos1/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 
 #### <a id="l-lp">CoDEx-L</a>
 
 |  | MRR | Hits@1 | Hits@10 | Config file | Pretrained model |
 |---------|----:|-------:|--------:|------------:|-----------------:|
-| RESCAL | 0.304 | 0.242 | 0.419 | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/5r5vur63thkqhpd/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| TransE | 0.187 | 0.116 | 0.317 | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/9doc6jqfq7uqmpq/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
-| ComplEx | 0.294 | 0.237 | 0.400 | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/m12qiudcnsv6ts9/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| ConvE | 0.303 | 0.240 | 0.420 | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/vhvdbaln0bwx625/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
-| TuckER | 0.309 | 0.244 | 0.430 | <a href="models/link-prediction/codex-l/tucker/config.yaml">config.yaml</a> | |
+| RESCAL | 0.304 | 0.242 | 0.419 | <a href="models/link-prediction/codex-l/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/wvbef9u98vmkbi8/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TransE | 0.187 | 0.116 | 0.317 | <a href="models/link-prediction/codex-l/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/s9d682b49tuq5mc/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.294 | 0.237 | 0.400 | <a href="models/link-prediction/codex-l/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/jqubvr77og2pvzv/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| ConvE | 0.303 | 0.240 | 0.420 | <a href="models/link-prediction/codex-l/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/qcfjy6i1sqbec0z/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TuckER | 0.309 | 0.244 | 0.430 | <a href="models/link-prediction/codex-l/tucker/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/j8u4nqwzz3v7jw1/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 
 ### <a id="tc">Triple classification results</a>
 
@@ -175,21 +175,21 @@ Alternatively, you can download the models manually following the links we provi
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.843 | 0.852 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> |  |
-| TransE | 0.829 | 0.837 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> |  |
-| ComplEx | 0.836 | 0.846 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> |  |
-| ConvE | 0.841 | 0.846 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> |  |
-| TuckER | 0.840 | 0.846 | <a href="models/triple-classification/codex-s/tucker/config.yaml">config.yaml</a> | |
+| RESCAL | 0.843 | 0.852 | <a href="models/triple-classification/codex-s/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/qedwhaus6gwyf1z/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TransE | 0.829 | 0.837 | <a href="models/triple-classification/codex-s/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/jkp6oxcgt28ki42/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.836 | 0.846 | <a href="models/triple-classification/codex-s/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/2d8clm7em6ygida/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| ConvE | 0.841 | 0.846 | <a href="models/triple-classification/codex-s/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/4rnexlf56x5qwvs/checkpoint_best.pt?dl=0">1vsAll-kl</a> |
+| TuckER | 0.840 | 0.846 | <a href="models/triple-classification/codex-s/tucker/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/xrlfygg6ck2z3ue/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 
 #### <a id="m-tc">CoDEx-M</a>
 
 |  | Acc | F1 | Config file | Pretrained model |
 |--------|----:|---:|------------:|-----------------:|
-| RESCAL | 0.818 | 0.815 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/a41qdj3m889vpo9/checkpoint_best.pt?dl=0">KvsAll-kl<a/> |
-| TransE | 0.797 | 0.803 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> |  |
-| ComplEx | 0.824 | 0.818 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/1kxb89a9u5zn95e/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| ConvE | 0.826 | 0.829 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/yyo0v1mu6yluxft/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
-| TuckER | 0.823 | 0.816 | <a href="models/triple-classification/codex-m/tucker/config.yaml">config.yaml</a> | |
+| RESCAL | 0.818 | 0.815 | <a href="models/triple-classification/codex-m/rescal/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/366h6xwccbvqkm8/checkpoint_best.pt?dl=0">KvsAll-kl<a/> |
+| TransE | 0.797 | 0.803 | <a href="models/triple-classification/codex-m/transe/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/0uil6mrrtadtqoe/checkpoint_best.pt?dl=0">NegSamp-kl</a> |
+| ComplEx | 0.824 | 0.818 | <a href="models/triple-classification/codex-m/complex/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/0yh95rtgvv12qxs/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| ConvE | 0.826 | 0.829 | <a href="models/triple-classification/codex-m/conve/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/s9fwf1v57mm23l8/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
+| TuckER | 0.823 | 0.816 | <a href="models/triple-classification/codex-m/tucker/config.yaml">config.yaml</a> | <a href="https://www.dropbox.com/s/jj09uah9cjkukl0/checkpoint_best.pt?dl=0">KvsAll-kl</a> |
 
 
 ## <a id="data">Data directory structure</a>
