@@ -21,8 +21,9 @@ The statistics for each CoDEx dataset are as follows:
 3. <a href="#models">Pretrained models and results</a>
     - <a href="#kge">LibKGE setup</a>
     - <a href="#scripts">Reproducing our results</a>
-      - <a href="#baseline-script">Link prediction baseline</a>
+      - <a href="#lp-script">Link prediction</a>
       - <a href="#tc-script">Triple classification</a>
+      - <a href="#baseline-script">Comparison to FB15k-237</a>
     - <a href="#pretrained">Downloading pretrained models via the command line</a>
     - <a href="#lp">Link prediction results</a>
       - <a href="#s-lp">CoDEx-S</a>
@@ -87,30 +88,41 @@ This script will install the library inside ```codex/kge/```, download the FB15K
 
 ### <a id="scripts">Reproducing our results</a>
 
-For the evaluation results not obtained using LibKGE's testing API, we provide several additional evaluation scripts to reproduce results in our paper. All scripts are written to run on a CPU. These scripts assume that you have set up LibKGE using the script we provided. 
+We provide evaluation scripts to reproduce results in our paper. You must have set up LibKGE using the <a href="#kge">instructions we provided</a>. 
 
-#### <a id="baseline-script">Link prediction baseline</a>
+#### <a id="lp-script">Link prediction</a>
 
-```scripts/baseline.py``` compares a simple frequency baseline to the best model on CoDEx-M and the FB15K-237 benchmark.
+```scripts/lp_gpu.sh``` and ```scripts/lp_cpu.sh``` run link prediction on all models and datasets using the LibKGE evaluation API.
+To run on GPU:
+```
+# run from codex/
+# this may take a few minutes
+scripts/lp_gpu.sh  # change to lp_cpu.sh to run on CPU
+```
+Note that this script first downloads all link prediction models on CoDEx-S through L and saves them to ```models/link-prediction/codex-{s,m,l}/``` if they do not already exist.
+
+#### <a id="tc-script">Triple classification</a>
+
+```scripts/tc.sh``` runs triple classification and outputs validation and test accuracy/F1. 
+To run:
+```
+# run from codex/
+# this may take a few minutes
+scripts/tc.sh  # runs on CPU
+```
+Note that this script first downloads all triple classification models on CoDEx-S and CoDEx-M and saves them to ```models/triple-classification/codex-{s,m}/``` if they do not already exist. 
+
+#### <a id="baseline-script">Comparison to FB15k-237</a>
+
+```scripts/baseline.sh``` compares a simple frequency baseline to the best model on CoDEx-M and the FB15K-237 benchmark.
 The results are saved to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
 To run:
 ```
 # run from codex/
 # this may take a few minutes
-scripts/baseline.sh
+scripts/baseline.sh  # runs on CPU
 ```
 Note that this script first downloads the [best pretrained LibKGE model on FB15K-237](https://github.com/uma-pi1/kge#results-and-pretrained-models) to ```models/link-prediction/fb15k-237/rescal/``` and the best link prediction model on CoDEx-M to ```models/link-prediction/codex-m/complex/``` if they do not already exist. 
-
-#### <a id="tc-script">Triple classification</a>
-
-```scripts/tc.py``` runs triple classification and outputs validation and test accuracy/F1. 
-To run:
-```
-# run from codex/
-# this may take a few minutes
-scripts/tc.sh
-```
-Note that this script first downloads all triple classification models on CoDEx-S and CoDEx-M and saves them to ```models/triple-classification/{codex-s,codex-m}/``` if they do not already exist. 
 
 ### <a id="pretrained">Downloading pretrained models via the command line</a>
 
