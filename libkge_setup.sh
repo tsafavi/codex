@@ -28,7 +28,7 @@ declare -a sizes=("s" "m" "l")
 for size in "${sizes[@]}"; do
     codex="codex-${size}"
     mkdir ${codex}
-    cp ../../data/triples/${codex}/{train.txt,valid.txt,test.txt} ${codex}
+    cp ../../data/triples/${codex}/{train,valid,test}.txt ${codex}
 done
 
 for size in "${sizes[@]}"; do
