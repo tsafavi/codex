@@ -1,6 +1,7 @@
 ![The CoDEx logo.](codex_logo.png)
 
-CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia. 
+CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia.
+As introduced and described by our <a href="https://arxiv.org/pdf/2009.07810.pdf" target="_blank">EMNLP 2020 paper</a>,
 CoDEx offers three rich knowledge graph datasets that contain positive and hard negative triples, entity types, entity and relation descriptions, and Wikipedia page extracts for entities. 
 We provide baseline performance results, configuration files, and pretrained models
 on CoDEx using the [LibKGE](https://github.com/uma-pi1/kge) library for two knowledge graph completion tasks, link prediction and triple classification.
@@ -41,8 +42,8 @@ The statistics for each CoDEx dataset are as follows:
 
 ```
 # unzip the repository
-unzip codex.zip
-cd codex-master
+git clone https://github.com/tsafavi/codex.git
+cd codex
 
 # extract English Wikipedia plain-text excerpts for entities
 # other language codes available: ar, de, es, ru, zh
@@ -62,7 +63,7 @@ pip install -e .
 To get familiar with the CoDEx datasets and the data-loading API in an easy-to-use interface, we have provided an exploration notebook with Jupyter. 
 To launch:
 ```
-# run from codex-master/
+# run from codex/
 python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
 jupyter lab
 ```
@@ -78,11 +79,11 @@ If you are working on a server and want to run JupyterLab remotely, check out [t
 To **use the pretrained models or run any scripts that involve pretrained models**, you will need to set up [LibKGE](https://github.com/uma-pi1/kge).
 Run the following: 
 ```
-# run from codex-master/
+# run from codex/
 # this may take a few minutes
 ./libkge_setup.sh
 ```
-This script will install the library in the ```kge/``` directory inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to the format the LibKGE requires. 
+This script will install the library inside ```codex/kge/```, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to the format the LibKGE requires. 
 
 ### <a id="scripts">Reproducing our results</a>
 
@@ -94,7 +95,8 @@ For the evaluation results not obtained using LibKGE's testing API, we provide s
 The results are saved to CSV files named ```fb.csv``` and ```codex.csv```, respectively. 
 To run:
 ```
-# run from codex-master/
+# run from codex/
+# this may take a few minutes
 scripts/baseline.sh
 ```
 Note that this script first downloads the [best pretrained LibKGE model on FB15K-237](https://github.com/uma-pi1/kge#results-and-pretrained-models) to ```models/link-prediction/fb15k-237/rescal/``` and the best link prediction model on CoDEx-M to ```models/link-prediction/codex-m/complex/``` if they do not already exist. 
@@ -104,7 +106,8 @@ Note that this script first downloads the [best pretrained LibKGE model on FB15K
 ```scripts/tc.py``` runs triple classification and outputs validation and test accuracy/F1. 
 To run:
 ```
-# run from codex-master/
+# run from codex/
+# this may take a few minutes
 scripts/tc.sh
 ```
 Note that this script first downloads all triple classification models on CoDEx-S and CoDEx-M and saves them to ```models/triple-classification/{codex-s,codex-m}/``` if they do not already exist. 
@@ -116,19 +119,19 @@ The arguments are as follows:
 ```
 usage: download_pretrained.py [-h]
                               {s,m,l} {triple-classification,link-prediction}
-                              {rescal,transe,complex,conve}
-                              [{rescal,transe,complex,conve} ...]
+                              {rescal,transe,complex,conve,tucker}
+                              [{rescal,transe,complex,conve,tucker} ...]
 
 positional arguments:
   {s,m,l}               CoDEx dataset to download model(s)
   {triple-classification,link-prediction}
                         Task to download model(s) for
-  {rescal,transe,complex,conve}
+  {rescal,transe,complex,conve,tucker}
                         Model(s) to download for this task
 ```
 For example, if you want to download the pretrained **link prediction** models for **ComplEx and ConvE** on **CoDEx-M**:
 ```
-# run from codex-master/
+# run from codex/
 python download_pretrained.py m link-prediction complex conve
 ```
 This script will place a ```checkpoint_best.pt``` LibKGE checkpoint file in ```models/link-prediction/codex-m/complex/``` and ```models/link-prediction/codex-m/conve/```, respectively. 
@@ -299,6 +302,8 @@ unzip raw.zip
 This will create a new ```data/triples/raw/``` directory containing a single file, ```triples.txt```, in the same tab-separated format as the other triple files. 
 
 # <a id="cite">How to cite</a>
+You can find the full text of our paper <a href="https://arxiv.org/pdf/2009.07810.pdf" target="_blank">here</a>.
+
 If you used our work or found it helpful, please use the following citation: 
 ```
 @inproceedings{
