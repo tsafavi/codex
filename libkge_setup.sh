@@ -5,6 +5,7 @@ set -e
 # LibKGE setup from https://github.com/uma-pi1/kge/blob/master/data/download_all.sh
 git clone https://github.com/uma-pi1/kge.git
 cd kge
+git checkout a9ecd249ec2d205df59287f64553a1536add4a43  # freeze but leave the git history
 pip install -e .
 
 cd data/
