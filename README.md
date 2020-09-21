@@ -83,7 +83,7 @@ Run the following:
 # this may take a few minutes
 ./libkge_setup.sh
 ```
-This script will install the library in the ```kge/``` directory inside your venv, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to the format the LibKGE requires. 
+This script will install the library inside ```codex/kge/```, download the FB15K-237 dataset (which we use in our experiments) to ```kge/data/```, and copy each CoDEx dataset to ```kge/data/``` and preprocess each dataset according to the format the LibKGE requires. 
 
 ### <a id="scripts">Reproducing our results</a>
 
