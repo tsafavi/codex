@@ -1,4 +1,4 @@
-![The CoDEx logo.](codex_logo.png)
+<img src="codex_logo.png" width="450" />
 
 CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia.
 As introduced and described by our EMNLP 2020 paper <a href="https://arxiv.org/pdf/2009.07810.pdf" target="_blank">CoDEx: A Comprehensive Knowledge Graph Completion Benchmark</a>,
