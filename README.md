@@ -318,12 +318,12 @@ You can find the full text of our paper <a href="https://arxiv.org/pdf/2009.0781
 
 If you used our work or found it helpful, please use the following citation: 
 ```
-@inproceedings{
-  safavi2020codex,
-  title={CoDEx: A Comprehensive Knowledge Graph Completion Benchmark},
-  author={Tara Safavi and Danai Koutra},
-  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing},
-  year={2020},
+@inproceedings{safavi2020codex,
+    title = "{C}o{DE}x: A {C}omprehensive {K}nowledge {G}raph {C}ompletion {B}enchmark",
+    author = "Safavi, Tara and Koutra, Danai",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    year = "2020",
+    pages = "8328--8350",
 }
 ```
 
