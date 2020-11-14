@@ -1,7 +1,7 @@
-![The CoDEx logo.](codex_logo.png)
+<img src="codex_logo.png" width="450" />
 
 CoDEx is a set of knowledge graph **Co**mpletion **D**atasets **Ex**tracted from Wikidata and Wikipedia.
-As introduced and described by our <a href="https://arxiv.org/pdf/2009.07810.pdf" target="_blank">EMNLP 2020 paper</a>,
+As introduced and described by our EMNLP 2020 paper <a href="https://arxiv.org/pdf/2009.07810.pdf" target="_blank">CoDEx: A Comprehensive Knowledge Graph Completion Benchmark</a>,
 CoDEx offers three rich knowledge graph datasets that contain positive and hard negative triples, entity types, entity and relation descriptions, and Wikipedia page extracts for entities. 
 We provide baseline performance results, configuration files, and pretrained models
 on CoDEx using the [LibKGE](https://github.com/uma-pi1/kge) framework for two knowledge graph completion tasks, link prediction and triple classification.
@@ -319,12 +319,12 @@ You can find the full text of our paper <a href="https://arxiv.org/pdf/2009.0781
 
 If you used our work or found it helpful, please use the following citation: 
 ```
-@inproceedings{
-  safavi2020codex,
-  title={CoDEx: A Comprehensive Knowledge Graph Completion Benchmark},
-  author={Tara Safavi and Danai Koutra},
-  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing},
-  year={2020},
+@inproceedings{safavi2020codex,
+    title = "{C}o{DE}x: A {C}omprehensive {K}nowledge {G}raph {C}ompletion {B}enchmark",
+    author = "Safavi, Tara and Koutra, Danai",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    year = "2020",
+    pages = "8328--8350",
 }
 ```
 
