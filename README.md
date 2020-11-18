@@ -15,6 +15,8 @@ The statistics for each CoDEx dataset are as follows:
 | CoDEx-L  | 77,951   | 69        | 551,193 | 30,622    | 30,622   | -         | -        | 612,437       |
 | Raw dump | 380,038  | 75        | -       | -         | -        | -         | -        | 1,156,222     |
 
+**Note**: If you are interested in contributing to the CoDEx corpus, feel free to open an issue or a PR! 
+
 ## Table of contents
 1. <a href="#quick-start">Quick start</a>
 2. <a href="#explore">Data exploration and analysis</a>
