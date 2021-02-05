@@ -321,12 +321,19 @@ You can find the full text of our paper <a href="https://arxiv.org/pdf/2009.0781
 
 If you used our work or found it helpful, please use the following citation: 
 ```
-@inproceedings{safavi2020codex,
+@inproceedings{safavi-koutra-2020-codex,
     title = "{C}o{DE}x: A {C}omprehensive {K}nowledge {G}raph {C}ompletion {B}enchmark",
-    author = "Safavi, Tara and Koutra, Danai",
+    author = "Safavi, Tara  and
+      Koutra, Danai",
     booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    month = nov,
     year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/2020.emnlp-main.669",
+    doi = "10.18653/v1/2020.emnlp-main.669",
     pages = "8328--8350",
+    abstract = "We present CoDEx, a set of knowledge graph completion datasets extracted from Wikidata and Wikipedia that improve upon existing knowledge graph completion benchmarks in scope and level of difficulty. In terms of scope, CoDEx comprises three knowledge graphs varying in size and structure, multilingual descriptions of entities and relations, and tens of thousands of hard negative triples that are plausible but verified to be false. To characterize CoDEx, we contribute thorough empirical analyses and benchmarking experiments. First, we analyze each CoDEx dataset in terms of logical relation patterns. Next, we report baseline link prediction and triple classification results on CoDEx for five extensively tuned embedding models. Finally, we differentiate CoDEx from the popular FB15K-237 knowledge graph completion dataset by showing that CoDEx covers more diverse and interpretable content, and is a more difficult link prediction benchmark. Data, code, and pretrained models are available at https://bit.ly/2EPbrJs.",
 }
 ```
 
