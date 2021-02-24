@@ -341,3 +341,5 @@ If you used our work or found it helpful, please use the following citation:
 
 We thank [HeadsOfBirds](https://thenounproject.com/search/?q=lightbulb&i=1148270) for the lightbulb icon and [Evan Bond](https://thenounproject.com/icon/1113230/) for the book icon in our logo.
 
+This project is licensed under the terms of the MIT license.
+
