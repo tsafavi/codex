@@ -42,7 +42,8 @@ The statistics for each CoDEx dataset are as follows:
 6. <a href="#ref">References and acknowledgements</a>
 
 ## <a id="quick-start">Quick start</a>
-
+If you'd like to download the CoDEx data, code, and/or pretrained models __locally to your machine__, run the following commands. 
+If you only want to play with the data in a __remote environment__, head to the <a href="#explore">next section on data exploration and analysis</a>, and follow the instructions to view the CoDEx data with Colab. 
 ```
 # unzip the repository
 git clone https://github.com/tsafavi/codex.git
@@ -64,16 +65,16 @@ pip install -e .
 ## <a id="explore">Data exploration and analysis</a>
 
 To get familiar with the CoDEx datasets and the data-loading API in an easy-to-use interface, we have provided an exploration notebook with Jupyter. 
-To launch:
-```
-# run from codex/
-python -m ipykernel install --user --name=myenv  # register your venv with jupyterlab
-jupyter lab
-```
-Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser,
-which provides a glimpse into each dataset, for example frequent entities and relations, negative triples, compositional (multi-hop) paths and symmetry, etc.
+You can run it remotely using [Google's Colab platform](https://colab.research.google.com/), or run it locally on your own machine.
 
-If you are working on a server and want to run JupyterLab remotely, check out [these instructions](https://www.blopig.com/blog/2018/03/running-jupyter-notebook-on-a-remote-server-via-ssh/) on how to set up port forwarding to view your remotely-hosted notebook locally. 
+- __Run on Colab__: Navigate to <a href="https://colab.research.google.com/github/tsafavi/codex/blob/master/Explore%20CoDEx.ipynb" target="_blank">Explore CoDEx.ipynb</a> and follow the instructions in the first cell to install all the requirements and data remotely. __Make sure to restart the Colab runtime after installing the requirements__ before you run any of the following cells. 
+- __Run locally__: First register your virtual environment with JupyterLab, then launch JupyterLab: 
+  ```
+  # run from codex/
+  python -m ipykernel install --user --name=myenv
+  jupyter lab
+  ```
+  Now, navigate to JupyterLab in your browser and open the ```Explore CoDEx.ipynb``` notebook in your browser.  
 
 ## <a id="models">Pretrained models and results</a>
 
