@@ -65,9 +65,9 @@ pip install -e .
 ## <a id="explore">Data exploration and analysis</a>
 
 To get familiar with the CoDEx datasets and the data-loading API in an easy-to-use interface, we have provided an exploration notebook with Jupyter. 
-You can run it remotely using [Google's Colab platform](https://colab.research.google.com/), or run it locally on your own machine.
+You have two options for running the notebook: 
 
-- __Run on Colab__: Navigate to <a href="https://colab.research.google.com/github/tsafavi/codex/blob/master/Explore%20CoDEx.ipynb" target="_blank">Explore CoDEx.ipynb</a> and follow the instructions in the first cell to install all the requirements and data remotely. __Make sure to restart the Colab runtime after installing the requirements__ before you run any of the following cells. 
+- __Run on Google Colab__: Navigate to the <a href="https://colab.research.google.com/github/tsafavi/codex/blob/master/Explore%20CoDEx.ipynb" target="_blank">Explore CoDEx.ipynb on Google's Colab platform</a> and follow the instructions in the first cell to install all the requirements and data remotely. __Make sure to restart the Colab runtime after installing the requirements__ before you run any of the following cells. 
 - __Run locally__: First register your virtual environment with JupyterLab, then launch JupyterLab: 
   ```
   # run from codex/
