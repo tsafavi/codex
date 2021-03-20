@@ -31,6 +31,7 @@ class Codex(object):
         )
 
         self.entities_ = {}
+        self.entity_extracts_ = {}
         self.relations_ = {}
         self.entity_types_ = {}
         self.type_labels_ = {}
@@ -74,13 +75,20 @@ class Codex(object):
 
     def entity_extract(self, eid):
         """Get the Wikipedia intro extract for this entity"""
-        fname = os.path.join(
-            self.data_dir_base, "entities", self.code, "extracts", f"{eid}.txt"
-        )
-        if os.path.exists(fname):
-            with open(fname) as f:
-                return "".join(f.readlines())
-        return ""
+        entity_extracts = self._load_entity_extracts()
+        if entity_extracts != {}:
+            if eid in entity_extracts:
+                return entity_extracts[eid]
+            else:
+                return ""
+        else:       # if json doesn't exist, go back to previous implementation
+            fname = os.path.join(
+                self.data_dir_base, "entities", self.code, "extracts", f"{eid}.txt"
+            )
+            if os.path.exists(fname):
+                with open(fname) as f:
+                    return "".join(f.readlines())
+            return ""
 
     def relation_label(self, rid):
         """Get the label of this relation"""
@@ -161,6 +169,21 @@ class Codex(object):
                 )
             )
         return self.entities_
+
+    def _load_entity_extracts(self):
+        # if json doesn't exist, return {} so as to go back to previous implementation
+        try:
+            if not len(self.entity_extracts_):
+                self.entity_extracts_ = json.load(
+                    open(
+                        os.path.join(
+                            self.data_dir_base, "entities", self.code, "entity_extracts.json"
+                        )
+                    )
+                )
+        except OSError as e:
+            self.entity_extracts_ = {}
+        return self.entity_extracts_
 
     def _load_relations(self):
         if not len(self.relations_):
