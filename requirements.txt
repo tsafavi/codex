@@ -1,5 +1,5 @@
 jupyterlab
-matplotlib
+matplotlib<=3.2
 pandas
 seaborn
 tqdm
